@@ -41,7 +41,6 @@ projects[pathauto] = 1.0
 projects[ctools] = 1.0
 projects[token] = 1.0
 projects[views] = 3.3
-projects[media] = 2.0-unstable3
 
 ; Devel Tools
 projects[diff][version] = "2.0"
