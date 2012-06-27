@@ -34,7 +34,6 @@ api = 2
 
 ;move these to featuires
 projects[entity] = 1.0-rc2
-projects[entityreference] = 1.0-rc1
 projects[features] = 1.0-rc1
 projects[file_entity] = 2.0-unstable3
 projects[pathauto] = 1.0
