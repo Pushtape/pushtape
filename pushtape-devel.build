@@ -1,10 +1,10 @@
 ;******************************************************************************
 ; Run this to get discipolos development version of Pushtape from github:
-; drush make https://raw.github.com/discipolo/pushtape/7.x-3.x/pushtape-devel.build
+; drush make https://raw.github.com/discipolo/pushtape/7.x-1.x-panels/pushtape-devel.build
 ;******************************************************************************
 
-api = 2
 core = 7.x
+api = 2
 
 projects[drupal][version] = "7.14"
 projects[drupal][type] = "core"
