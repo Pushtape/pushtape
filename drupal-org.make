@@ -8,11 +8,14 @@
 
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work
+
 core = 7.x
 api = 2
 
 ;version override
+
 projects[defaultcontent][version] = "2.x-dev"
+projects[defaultcontent][patch][1263536] = ""
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 ;include panopoly make instead of being behind ...
