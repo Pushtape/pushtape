@@ -15,7 +15,7 @@ api = 2
 ;version override
 
 projects[defaultcontent][version] = "2.x-dev"
-projects[defaultcontent][patch][1263536] = ""
+projects[defaultcontent][patch][1263536] =
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 ;include panopoly make instead of being behind ...
