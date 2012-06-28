@@ -32,19 +32,19 @@ api = 2
 ; version string. For example, if you wanted to specify Views 6.x-2.7,
 ; you would use:
 
-;move these to featuires
-projects[entity] = 1.0-rc2
-projects[features] = 1.0-rc1
+;move these to features
+projects[entity] = 1.0-rc3
+projects[features] = 1.0-rc3
 projects[file_entity] = 2.0-unstable3
-projects[pathauto] = 1.0
+projects[pathauto] = 1.1
 projects[ctools] = 1.0
-projects[token] = 1.0
+projects[token] = 1.1
 projects[views] = 3.3
 
 ; Devel Tools
 projects[diff][version] = "2.0"
 projects[libraries][version] = "2.x-dev"
-projects[strongarm][version] = "2.0-rc1"
+projects[strongarm][version] = "2.0"
 projects[devel][version] = "1.2"
 projects[coder][version] = "1.x-dev"
 projects[omega_tools][version] = "3.0-rc4"
