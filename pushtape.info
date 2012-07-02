@@ -28,8 +28,9 @@ dependencies[] = ctools
 dependencies[] = token
 
 ;Install Profile
-dependencies[] = pushtape_core
+dependencies[] = pushtape_ui
 dependencies[] = pushtape_discography
 
 files[] = pushtape.profile
 files[] = pushtape.install
+project status url = http://updates.drupal.org/release-history/pushtape/7.x
