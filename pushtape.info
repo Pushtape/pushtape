@@ -1,7 +1,7 @@
 name = Pushtape
 description = Music publishing profile. 
 core = 7.x
-version = "7.x-1.x-upstream"
+version = "7.x-1.0beta2-upstream"
 
 ; Core
 dependencies[] = block
@@ -19,11 +19,13 @@ dependencies[] = file
 dependencies[] = rdf
 
 ;Contrib
+
+dependencies[] = entity
+dependencies[] = views
 dependencies[] = features
 dependencies[] = pathauto
 dependencies[] = ctools
 dependencies[] = token
-dependencies[] = views
 
 ;Install Profile
 dependencies[] = pushtape_core
