@@ -52,12 +52,12 @@ projects[delta][version] = "3.0-beta10"
 
 ;Pushtape apps
 
-;projects[pushtape_core][location] = http://apps.rosenstrauch.com/fserver
-projects[pushtape_core][type] = "module"
-projects[pushtape_core][download][type] = "git"
-projects[pushtape_core][download][url] = "git://github.com/discipolo/pushtape_core.git"
-projects[pushtape_core][download][branch] = "7.x-1.x"
-projects[pushtape_core][subdir] = pushtape_apps
+;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_ui][type] = "module"
+projects[pushtape_ui][download][type] = "git"
+projects[pushtape_ui][download][url] = "git://github.com/discipolo/pushtape_ui.git"
+projects[pushtape_ui][download][branch] = "7.x-1.x"
+projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_discography][type] = "module"
