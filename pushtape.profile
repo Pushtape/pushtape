@@ -195,8 +195,8 @@ function pushtape_apps_servers_info() {
 /**
  * Apps installer default content callback.
  *
- * Adapted from openenterprise_default_content()
- */
+ * Adapted from openenterprise_default_content() --> apps take care of this
+
 function pushtape_default_content(&$modules) {
   $files = system_rebuild_module_data();
   foreach($modules as $module) {
@@ -208,7 +208,7 @@ function pushtape_default_content(&$modules) {
     }
   }
 }
-
+ */
 /**
  * Task handler to set the awesome maintenance theme
  */
