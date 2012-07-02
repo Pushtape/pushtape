@@ -35,7 +35,7 @@ api = 2
 ;move these to features
 projects[entity] = 1.0-rc3
 projects[features] = 1.0-rc3
-projects[file_entity] = 2.0-unstable3
+projects[file_entity] = 2.0-unstable6
 projects[pathauto] = 1.1
 projects[ctools] = 1.0
 projects[token] = 1.1
@@ -45,10 +45,10 @@ projects[views] = 3.3
 projects[diff][version] = "2.0"
 projects[libraries][version] = "2.x-dev"
 projects[strongarm][version] = "2.0"
-projects[devel][version] = "1.2"
+projects[devel][version] = "1.3"
 projects[coder][version] = "1.x-dev"
 projects[omega_tools][version] = "3.0-rc4"
-projects[delta][version] = "3.0-beta9"
+projects[delta][version] = "3.0-beta10"
 
 ;Pushtape apps
 
