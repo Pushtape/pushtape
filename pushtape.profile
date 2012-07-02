@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements hook_form_FORM_ID_alter()
+ * Implements hook_form_FORM_ID_alter().
  */
 function pushtape_form_install_configure_form_alter(&$form, $form_state) {
 
@@ -17,25 +17,15 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
 
   // Don't set the email address to "admin@localhost" as that will fail D7's
 // email address validation.
- if ($_SERVER['HTTP_HOST'] != 'localhost') {
- $form['site_information']['site_mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
- $form['admin_account']['account']['mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
- }
-  
+  if ($_SERVER['HTTP_HOST'] != 'localhost') {
+  $form['site_information']['site_mail']['#default_value'] = 'admin@' . $_SERVER['HTTP_HOST'];
+  $form['admin_account']['account']['mail']['#default_value'] = 'admin@' . $_SERVER['HTTP_HOST'];
+  }
+ 
 }
 /**
- * Implements hook_init
+ * Implements hook_init().
  */
 function pushtape_init() {
-
-}
-
-/**
- * Implements hook_form_alter().
- *
- * Allows the profile to alter the site-configuration form. This is
- * called through custom invocation, so $form_state is not populated.
- */
-function pushtape_form_alter(&$form, $form_state, $form_id) {
 
 }

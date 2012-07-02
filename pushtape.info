@@ -32,3 +32,4 @@ dependencies[] = pushtape_core
 dependencies[] = pushtape_discography
 
 files[] = pushtape.profile
+files[] = pushtape.install
