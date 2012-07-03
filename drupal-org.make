@@ -42,7 +42,9 @@ projects[token] = 1.1
 projects[views] = 3.3
 
 ; Devel Tools
+projects[admin][version] = "2.x-dev" // for contexteditor
 projects[diff][version] = "2.0"
+projects[context][version] = "2.0"
 projects[libraries][version] = "2.x-dev"
 projects[strongarm][version] = "2.0"
 projects[devel][version] = "1.3"
