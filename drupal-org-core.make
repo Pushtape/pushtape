@@ -1,7 +1,5 @@
 ;******************************************************************************
 ; This patches core according to http://drupal.org/node/1476014
-; Run this to get discipolos development version of Pushtape from github: 
-; drush make https://raw.github.com/discipolo/pushtape/7.x-1.x-upstream/pushtape-devel.build
 ;******************************************************************************
 
 api = 2
