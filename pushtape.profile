@@ -51,11 +51,11 @@ function pushtape_install_tasks($install_state) {
   $pushtape_server = array(
     'machine name' => 'pushtape',
     'default apps' => array(
-     'pushtape_core',
-     'pushtape_music',
+     'pushtape_ui',
+     'pushtape_discography',
       ),
     'required apps' => array(
-      'pushtape_core',
+      'pushtape_ui',
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $pushtape_server);
@@ -180,7 +180,7 @@ function pushtape_apps_servers_info() {
       'description' => "Apps for Pushtape",
       'manifest' => 'http://www.apps.rosenstrauch.com/app/query/pushtape',
       'profile' => $profile,
-      'profile_version' => isset($info['version']) ? $info['version'] : '7.x-3.x',
+      'profile_version' => isset($info['version']) ? $info['version'] : '7.x-1.x-panels',
       'server_name' => $_SERVER['SERVER_NAME'],
       'server_ip' => $_SERVER['SERVER_ADDR'],
     ),
