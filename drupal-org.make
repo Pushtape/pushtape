@@ -8,7 +8,7 @@
 
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work
-core = 7.12
+core = 7.14
 api = 2
 
 ; OPTIONAL ATTRIBUTES
