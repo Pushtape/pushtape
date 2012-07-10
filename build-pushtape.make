@@ -3,7 +3,7 @@
 ; drush make https://raw.github.com/discipolo/pushtape/7.x-1.x-panels/build-pushtape.make
 ;******************************************************************************
 
-core = 7.14
+core = 7.x
 api = 2
 
 Include the definition for how to build Drupal core directly, including patches:
