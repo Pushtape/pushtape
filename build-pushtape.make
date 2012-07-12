@@ -3,8 +3,12 @@
 ; drush make https://raw.github.com/discipolo/pushtape/7.x-1.x-panels/build-pushtape.make
 ;******************************************************************************
 
-core = 7.x
+; The version of Drupal the profile is built for. You must include both a
+; major and a minor release - just specifying 6.x won't work
+
 api = 2
+core = 7.14
+
 
 ;Include the definition for how to build Drupal core directly, including patches:
 includes[] = https://raw.github.com/discipolo/pushtape/7.x-1.x-panels/drupal-org-core.make
