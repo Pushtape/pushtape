@@ -2,10 +2,8 @@
 ; Run this to get discipolos development version of Pushtape from github:
 ; drush make https://raw.github.com/discipolo/pushtape/7.x-1.x-panels/build-pushtape.make
 ;******************************************************************************
-
-api = 2
 core = 7.x
-
+api = 2
 
 ;Include the definition for how to build Drupal core directly, including patches:
 includes[] = https://raw.github.com/discipolo/pushtape/7.x-1.x-panels/drupal-org-core.make
