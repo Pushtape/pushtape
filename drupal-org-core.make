@@ -1,7 +1,5 @@
-; The version of Drupal the profile is built for. You must include both a
-; major and a minor release - just specifying 6.x won't work
 api = 2
-core = 7.14
+core = 7.x
 
 
 use same core as panopoly

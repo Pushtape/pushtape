@@ -1,17 +1,8 @@
-; This is a comment. Anything starting with a semicolon is a comment
-; and will be ignored by the parser. Blanks lines are also ignored.
-;
-; The file uses standard info file format:
-; attribute = value
-
-; REQUIRED ATTRIBUTES
-
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work
 
-api = 2
 core = 7.14
-
+api = 2
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 ;include panopoly make instead of being behind ...
