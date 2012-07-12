@@ -3,7 +3,7 @@ core = 7.x
 
 ;override version of defaultcontent
 
-projects[defaultcontent] = 1.x-dev
+projects[defaultcontent][version] = 1.x-dev
 projects[defaultcontent][subdir] = contrib
 
 ;use same core as panopoly
