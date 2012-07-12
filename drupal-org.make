@@ -4,6 +4,12 @@
 core = 7.14
 api = 2
 
+
+;override version of defaultcontent
+
+projects[defaultcontent] = 1.x-dev
+projects[defaultcontent][subdir] = contrib
+
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 ;include panopoly make instead of being behind ...
 
