@@ -130,7 +130,7 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
   }
 
   // Remove the demo content selection option since this is
-  // handled through the Panopoly demo module.
+  // handled through the Panopoly/pushtape demo module.
   $form['default_content_fieldset']['#access'] = FALSE;
 
   // Remove the "skip this step" option since why would we want that?
