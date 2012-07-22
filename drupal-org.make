@@ -35,7 +35,6 @@ api = 2
 ;move these to features
 projects[entity] = 1.0-rc3
 projects[features] = 1.0-rc3
-projects[file_entity] = 2.0-unstable6
 projects[pathauto] = 1.1
 projects[ctools] = 1.0
 projects[token] = 1.1
@@ -83,18 +82,18 @@ projects[pushtape_mediaplayer][subdir] = pushtape_apps
 ;projects[pushtape_connect][subdir] = pushtape_apps
 
 ;projects[pushtape_events][location] = http://apps.rosenstrauch.com/fserver
-;projects[pushtape_events][type] = "module"
-;projects[pushtape_events][download][type] = "git"
-;projects[pushtape_events][download][url] = "git://github.com/discipolo/pushtape_events.git"
-;projects[pushtape_events][download][branch] = "7.x-2.x"
-;projects[pushtape_events][subdir] = pushtape_apps
+projects[pushtape_events][type] = "module"
+projects[pushtape_events][download][type] = "git"
+projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_events.git"
+projects[pushtape_events][download][branch] = "7.x-1.x"
+projects[pushtape_events][subdir] = pushtape_apps
 
 ;projects[pushtape_news][location] = http://apps.rosenstrauch.com/fserver
-;projects[pushtape_news][type] = "module"
-;projects[pushtape_news][download][type] = "git"
-;projects[pushtape_news][download][url] = "git://github.com/discipolo/pushtape_news.git"
-;projects[pushtape_news][download][branch] = "7.x-2.x"
-;projects[pushtape_news][subdir] = pushtape_apps
+projects[pushtape_news][type] = "module"
+projects[pushtape_news][download][type] = "git"
+projects[pushtape_news][download][url] = "git://github.com/discipolo/pushtape_news.git"
+projects[pushtape_news][download][branch] = "7.x-1.x"
+projects[pushtape_news][subdir] = pushtape_apps
 
 projects[omega] = 3.1
 
