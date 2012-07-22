@@ -281,6 +281,18 @@ projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pusht
 projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
 projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
+projects[pushtape_events][type] = "module"
+projects[pushtape_events][download][type] = "git"
+projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_events.git"
+projects[pushtape_events][download][branch] = "7.x-1.x"
+projects[pushtape_events][subdir] = pushtape_apps
+
+projects[pushtape_news][type] = "module"
+projects[pushtape_news][download][type] = "git"
+projects[pushtape_news][download][url] = "git://github.com/Pushtape/pushtape_news.git"
+projects[pushtape_news][download][branch] = "7.x-1.x-panels"
+projects[pushtape_news][subdir] = pushtape_apps
+
 ; Defining a theme is no different.
 
 projects[omega] = 3.1
