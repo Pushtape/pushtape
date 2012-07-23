@@ -20,12 +20,12 @@ dependencies[] = rdf
 
 ;Contrib
 
-dependencies[] = entity
+;dependencies[] = entity
 dependencies[] = views
 dependencies[] = features
 dependencies[] = pathauto
 dependencies[] = ctools
-dependencies[] = token
+;dependencies[] = token
 
 ;Install Profile
 dependencies[] = pushtape_ui
