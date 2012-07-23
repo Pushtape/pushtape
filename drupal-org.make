@@ -284,7 +284,7 @@ projects[pushtape_mediaplayer][subdir] = pushtape_apps
 projects[pushtape_events][type] = "module"
 projects[pushtape_events][download][type] = "git"
 projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_events.git"
-projects[pushtape_events][download][branch] = "7.x-1.x"
+projects[pushtape_events][download][branch] = "7.x-1.x-panels"
 projects[pushtape_events][subdir] = pushtape_apps
 
 projects[pushtape_news][type] = "module"
