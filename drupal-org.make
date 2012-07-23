@@ -58,28 +58,28 @@ projects[delta][subdir] = contrib
 ;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_ui][type] = module
 projects[pushtape_ui][download][type] = git
-projects[pushtape_ui][download][url] = git://github.com/discipolo/pushtape_ui.git
+projects[pushtape_ui][download][url] = git://github.com/Pushtape/pushtape_ui.git
 projects[pushtape_ui][download][branch] = 7.x-1.x
 projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_discography][type] = module
 projects[pushtape_discography][download][type] = git
-projects[pushtape_discography][download][url] = git://github.com/discipolo/pushtape_discography.git
+projects[pushtape_discography][download][url] = git://github.com/Pushtape/pushtape_discography.git
 projects[pushtape_discography][download][branch] = 7.x-1.x
 projects[pushtape_discography][subdir] = pushtape_apps
 
 ;projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_mediaplayer][type] = module
 projects[pushtape_mediaplayer][download][type] = git
-projects[pushtape_mediaplayer][download][url] = git://github.com/discipolo/pushtape_mediaplayer.git
+projects[pushtape_mediaplayer][download][url] = git://github.com/Pushtape/pushtape_mediaplayer.git
 projects[pushtape_mediaplayer][download][branch] = 7.x-1.x-upstream
 projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
 ;projects[pushtape_connect][location] = http://apps.rosenstrauch.com/fserver
 ;projects[pushtape_connect][type] = module
 ;projects[pushtape_connect][download][type] = git
-;projects[pushtape_connect][download][url] = git://github.com/discipolo/pushtape_connect.git
+;projects[pushtape_connect][download][url] = git://github.com/Pushtape/pushtape_connect.git
 ;projects[pushtape_connect][download][branch] = 7.x-2.x
 ;projects[pushtape_connect][subdir] = pushtape_apps
 
@@ -93,7 +93,7 @@ projects[pushtape_events][subdir] = pushtape_apps
 ;projects[pushtape_news][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_news][type] = module
 projects[pushtape_news][download][type] = git
-projects[pushtape_news][download][url] = git://github.com/discipolo/pushtape_news.git
+projects[pushtape_news][download][url] = git://github.com/Pushtape/pushtape_news.git
 projects[pushtape_news][download][branch] = 7.x-1.x
 projects[pushtape_news][subdir] = pushtape_apps
 
