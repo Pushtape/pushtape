@@ -36,20 +36,28 @@ api = 2
 ; Devel Tools
 projects[admin][version] = 2.0-beta3
 projects[admin][subdir] = contrib
+
 projects[diff][version] = 2.0
 projects[diff][subdir] = contrib
+
 projects[context][version] = 3.0-beta3
 projects[context][subdir] = contrib
-projects[libraries][version] = 2.x-dev
+
+projects[libraries][version] = 1.0
 projects[libraries][subdir] = contrib
+
 projects[strongarm][version] = 2.0
 projects[strongarm][subdir] = contrib
+
 projects[devel][version] = 1.3
 projects[devel][subdir] = contrib
+
 projects[coder][version] = 1.x-dev
 projects[coder][subdir] = contrib
+
 projects[omega_tools][version] = 3.0-rc4
 projects[omega_tools][subdir] = contrib
+
 projects[delta][version] = 3.0-beta10
 projects[delta][subdir] = contrib
 
