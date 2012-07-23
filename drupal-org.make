@@ -264,7 +264,7 @@ libraries[respondjs][download][url] = https://github.com/scottjehl/Respond/tarba
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
 projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
-projects[pushtape_ui][download][branch] = "7.x-1.x"
+projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
 projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
@@ -292,6 +292,12 @@ projects[pushtape_news][download][type] = "git"
 projects[pushtape_news][download][url] = "git://github.com/Pushtape/pushtape_news.git"
 projects[pushtape_news][download][branch] = "7.x-1.x-panels"
 projects[pushtape_news][subdir] = pushtape_apps
+
+projects[pushtape_galleries][type] = "module"
+projects[pushtape_galleries][download][type] = "git"
+projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
+projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
+projects[pushtape_galleries][subdir] = pushtape_apps
 
 ; Defining a theme is no different.
 
