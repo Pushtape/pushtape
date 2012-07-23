@@ -35,14 +35,14 @@ projects[delta][subdir] = contrib
 projects[pushtape_ui][type] = module
 projects[pushtape_ui][download][type] = git
 projects[pushtape_ui][download][url] = git://github.com/Pushtape/pushtape_ui.git
-projects[pushtape_ui][download][branch] = 7.x-1.x
+projects[pushtape_ui][download][branch] = 7.x-1.x-upstream
 projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_discography][type] = module
 projects[pushtape_discography][download][type] = git
 projects[pushtape_discography][download][url] = git://github.com/Pushtape/pushtape_discography.git
-projects[pushtape_discography][download][branch] = 7.x-1.x
+projects[pushtape_discography][download][branch] = 7.x-1.x-upstream
 projects[pushtape_discography][subdir] = pushtape_apps
 
 ;projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
@@ -63,15 +63,22 @@ projects[pushtape_mediaplayer][subdir] = pushtape_apps
 projects[pushtape_events][type] = module
 projects[pushtape_events][download][type] = git
 projects[pushtape_events][download][url] = git://github.com/Pushtape/pushtape_events.git
-projects[pushtape_events][download][branch] = 7.x-1.x
+projects[pushtape_events][download][branch] = 7.x-1.x-upstream
 projects[pushtape_events][subdir] = pushtape_apps
 
 ;projects[pushtape_news][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_news][type] = module
 projects[pushtape_news][download][type] = git
 projects[pushtape_news][download][url] = git://github.com/Pushtape/pushtape_news.git
-projects[pushtape_news][download][branch] = 7.x-1.x
+projects[pushtape_news][download][branch] = 7.x-1.x-upstream
 projects[pushtape_news][subdir] = pushtape_apps
+
+;projects[pushtape_galleries][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_galleries][type] = module
+projects[pushtape_galleries][download][type] = git
+projects[pushtape_galleries][download][url] = git://github.com/Pushtape/pushtape_galleries.git
+projects[pushtape_galleries][download][branch] = 7.x-1.x-upstream
+projects[pushtape_galleries][subdir] = pushtape_apps
 
 projects[omega] = 3.1
 
