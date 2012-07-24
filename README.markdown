@@ -74,7 +74,7 @@ this branch is dedicated to using stable components
 
 ###Features####
 
-- Pushtape UI: adds UI improvements.
+- Pushtape UI: adds UI improvements. Tracks inherit Artist Date and artwork from albums. provides option to create a new album during track creation.
 - [Pushtape Discography](https://github.com/discipolo/pushtape_discography): adds Track & Album content types, views and demo content.
 - [Pushtape Mediaplayer](https://github.com/discipolo/pushtape_mediaplayer): adds the ability to stream audio tracks.
 
