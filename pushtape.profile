@@ -5,12 +5,12 @@
 function pushtape_install_tasks($install_state) {
   // Kick off the tasks
   $tasks = array();
-     
+
     if (ini_get('memory_limit') != '-1' && ini_get('memory_limit') <= '196M'){
         ini_set('memory_limit', '196M');
-        
+
         }
-      
+
   // Summon the power of the Apps module
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
 
@@ -38,7 +38,7 @@ function pushtape_install_tasks($install_state) {
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $panopoly_server);
-  
+
   //$tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
 
   // Rename one of the default apps tasks. In the case of a non-interactive
@@ -59,7 +59,7 @@ function pushtape_install_tasks($install_state) {
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $pushtape_server);
-  
+
 //$tasks['apps_profile_apps_select_form_pushtape']['display_name'] = t('Install apps for Pushtape');
 
     // Rename one of the default apps tasks. In the case of a non-interactive
@@ -68,7 +68,7 @@ function pushtape_install_tasks($install_state) {
   if (isset($tasks['apps_profile_apps_select_form_pushtape'])) {
     $tasks['apps_profile_apps_select_form_pushtape']['display_name'] = t('Install apps for pushtape');
   }
-  
+
   // Setup the theme selection and configuration tasks
   $tasks['pushtape_theme_form'] = array(
     'display_name' => t('Choose a theme'),
@@ -79,7 +79,7 @@ function pushtape_install_tasks($install_state) {
     'type' => 'form',
   );
 
-  
+
   return $tasks;
 }
 
@@ -105,7 +105,7 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
  $form['site_information']['site_mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
  $form['admin_account']['account']['mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
  }
-  
+
 }
 
 /**
@@ -191,7 +191,7 @@ function pushtape_apps_servers_info() {
 function pushtape_default_content(&$modules) {
   $files = system_rebuild_module_data();
   foreach($modules as $module) {
-    // This assumes a pattern MYMODULE_democontent which is probably not always true. Might be 
+    // This assumes a pattern MYMODULE_democontent which is probably not always true. Might be
     // better to check $_SESSION['apps_manifest'] and check to see if this exists:
     // function_exists($_SESSION['module']['configure form'])
     if (isset($files[$module . '_democontent'])) {
@@ -253,7 +253,7 @@ function pushtape_apps_check($form, &$form_state) {
 
   return $form;
 }
-                
+
 /**
  * Form to choose the starting theme from list of available options
  */
@@ -261,7 +261,7 @@ function pushtape_theme_form($form, &$form_state) {
 
   // Set the page title
   drupal_set_title(t('Choose a theme!'));
-  
+
   // Create list of theme options, minus admin + testing + starter themes
   $themes = array();
   foreach(system_rebuild_theme_data() as $theme) {
@@ -292,7 +292,7 @@ function pushtape_theme_form($form, &$form_state) {
  * Form submit handler to select the theme
  */
 function pushtape_theme_form_submit($form, &$form_state) {
-  
+
   // Enable and set the theme of choice
   $theme = $form_state['input']['theme'];
   theme_enable(array($theme));
@@ -311,10 +311,10 @@ function pushtape_theme_configure_form($form, &$form_state) {
 
   // Set the title
   drupal_set_title(t('Configure theme settings!'));
-  
+
   $theme = variable_get('theme_default');
   ctools_include('system.admin', 'system', '');
-  $form = system_theme_settings($form, $form_state, $theme); 
+  $form = system_theme_settings($form, $form_state, $theme);
   return $form;
 }
 
@@ -324,12 +324,12 @@ function pushtape_theme_configure_form($form, &$form_state) {
 function pushtape_finished_yah($form, &$form_state) {
   // Hide some messages from various modules that are just too chatty!
   drupal_get_messages('status');
-  
+
   $form = array();
-  
+
   //set the title
   drupal_set_title(t('Congratulations!'));
-  
+
   //set the guidelines
   variable_set('pushtape_install_guidelines', '');
 
@@ -383,11 +383,12 @@ _field_info_collate_fields();
   // will be warned if they've installed an out of date Drupal version.
   // Will also trigger indexing of profile-supplied content or feeds.
   drupal_cron_run();
-  
+
   // $form_state['redirect'] won't work here since we are still in the
   // installer, so use drupal_goto() (for interactive installs only) instead.
   $install_state = $form_state['build_info']['args'][0];
   if ($install_state['interactive']) {
+    variable_set('install_task', 'done');
     drupal_goto('<front>');
   }
 }

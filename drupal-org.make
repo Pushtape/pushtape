@@ -19,32 +19,30 @@ projects[ctools][patch][1444732] = https://drupal.org/files/1444732-exposed-sort
 projects[ctools][patch][1198808] = http://drupal.org/files/1198808-work-around-jquery-bug-with-auto-submit-ctools-1.0.patch
 projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
 
-projects[panels][version] = 3.x-dev
+;projects[panels][version] = 3.x-dev
 projects[panels][subdir] = contrib
 projects[panels][type] = module
 projects[panels][download][type] = git
-;projects[panels][download][revision] = 3f50718
-projects[panels][download][branch] = 7.x-3.x
+projects[panels][download][revision] = 3f50718
+;projects[panels][download][branch] = 7.x-3.x
 
 projects[panels_breadcrumbs][version] = 1.6
 projects[panels_breadcrumbs][subdir] = contrib
 projects[panels_breadcrumbs][type] = module
 
-projects[panelizer][version] = 3.x-dev
+;projects[panelizer][version] = 3.x-dev
 projects[panelizer][subdir] = contrib
 projects[panelizer][type] = module
 projects[panelizer][download][type] = git
-;projects[panelizer][download][revision] = 186f4bc
-projects[panelizer][download][branch] = 7.x-3.x
-projects[panelizer][patch][1675136] = http://drupal.org/files/taxonomy-term-fix-1675136-3.patch
-projects[panelizer][patch][1620116] = http://drupal.org/files/panelizer-n1620116-d7_3.patch
+projects[panelizer][download][revision] = 186f4bc
+;projects[panelizer][download][branch] = 7.x-3.x
 
-projects[fieldable_panels_panes][version] = 1.x-dev
+;projects[fieldable_panels_panes][version] = 1.x-dev
 projects[fieldable_panels_panes][subdir] = contrib
 projects[fieldable_panels_panes][type] = module
 projects[fieldable_panels_panes][download][type] = git
-;projects[fieldable_panels_panes][download][revision] = 851c1b1
-projects[fieldable_panels_panes][download][branch] = 7.x-1.x
+projects[fieldable_panels_panes][download][revision] = 851c1b1
+;projects[fieldable_panels_panes][download][branch] = 7.x-1.x
 
 projects[pm_existing_pages][version] = 1.4
 projects[pm_existing_pages][type] = module
@@ -83,12 +81,12 @@ projects[field_group][version] = 1.1
 projects[field_group][type] = module
 projects[field_group][subdir] = contrib
 
-projects[file_entity][version] = 2.x-dev
+;projects[file_entity][version] = 2.x-dev
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 projects[file_entity][download][type] = git
-;projects[file_entity][download][revision] = ba18f8b
-projects[file_entity][download][branch] = 7.x-2.x
+projects[file_entity][download][revision] = ba18f8b
+;projects[file_entity][download][branch] = 7.x-2.x
 
 ; Panopoly - Contrib - Search
 projects[facetapi][version] = 1.0
@@ -98,23 +96,24 @@ projects[facetapi][subdir] = contrib
 projects[search_api][version] = 1.1
 projects[search_api][type] = module
 projects[search_api][subdir] = contrib
+projects[search_api][patch][1698098] = http://drupal.org/files/search-api-disabled-index-configure-link.patch
 
 projects[search_api_solr][version] = 1.0-rc2
 projects[search_api_solr][type] = module
 projects[search_api_solr][subdir] = contrib
-projects[search_api_solr][patch][1407282] = http://drupal.org/files/custom-connection-class-1407282-25.patch
+projects[search_api_solr][patch][1407282] = http://drupal.org/files/1407282--variable_solr_connection_class-27.patch
 
 projects[search_api_db][version] = 1.0-beta3
 projects[search_api_db][type] = module
 projects[search_api_db][subdir] = contrib
 
 ; Panopoly - Contrib - Media
-projects[media][version] = 2.x-dev
+;projects[media][version] = 2.x-dev
 projects[media][type] = module
 projects[media][subdir] = contrib
 projects[media][download][type] = git
-;projects[media][download][revision] = cc55948
-projects[media][download][branch] = 7.x-2.x
+projects[media][download][revision] = cc55948
+;projects[media][download][branch] = 7.x-2.x
 
 projects[media_youtube][version] = 1.0-beta3
 projects[media_youtube][type] = module
@@ -139,10 +138,10 @@ projects[wysiwyg][subdir] = contrib
 projects[wysiwyg][type] = module
 projects[wysiwyg][version] = 2.x-dev
 projects[wysiwyg][patch][1489096] = http://drupal.org/files/wysiwyg-table-format.patch
-;projects[wysiwyg][patch][356480] = http://drupal.org/files/356480-by-zhangtaihao-Shawn_Smiley-sun.-Lazy-load-ed-p0.patch
+projects[wysiwyg][patch][356480] = http://drupal.org/files/356480-by-zhangtaihao-Shawn_Smiley-sun.-Lazy-load-ed-p0.patch
 projects[wysiwyg][download][type] = git
-;projects[wysiwyg][download][revision] = 7e6609e
-projects[wysiwyg][download][branch] = 7.x-2.x
+projects[wysiwyg][download][revision] = 7e6609e
+;projects[wysiwyg][download][branch] = 7.x-2.x
 
 projects[wysiwyg_filter][version] = 1.6-rc2
 projects[wysiwyg_filter][subdir] = contrib
@@ -195,26 +194,25 @@ projects[apps][patch][1482684] = http://drupal.org/files/apps-single-item-style.
 projects[apps][patch][1558280] = http://drupal.org/files/apps-screen-design-css-p0.patch
 projects[apps][patch][1561652] = http://drupal.org/files/apps-allow-drush-site-install.patch
 
-projects[features][version] = 1.0
+projects[features][version] = 1.x-dev
 projects[features][subdir] = contrib
 projects[features][type] = module
-;projects[features][patch][1647894] = http://drupal.org/files/features-1647894-1.patch
 
 projects[entity][version] = 1.0-rc3
 projects[entity][type] = module
 projects[entity][subdir] = contrib
 
-projects[uuid][version] = 1.x-dev
+;projects[uuid][version] = 1.x-dev
 projects[uuid][type] = module
 projects[uuid][subdir] = contrib
 projects[uuid][download][type] = git
-;projects[uuid][download][revision] = 806c301
-projects[uuid][download][branch] = 7.x-1.x
+projects[uuid][download][revision] = 806c301
+;projects[uuid][download][branch] = 7.x-1.x
 
-projects[defaultcontent][version] = 1.0-alpha5
+projects[defaultcontent][version] = 1.x-dev
 projects[defaultcontent][type] = module
 projects[defaultcontent][subdir] = contrib
-projects[defaultcontent][patch][1263536] = http://drupal.org/files/base64_encode_files-1263536-1_0.patch
+;projects[defaultcontent][patch][1263536] = http://drupal.org/files/base64_encode_files-1263536-1_0.patch
 
 projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
