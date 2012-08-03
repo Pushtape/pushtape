@@ -90,11 +90,11 @@ projects[file_entity][download][revision] = ba18f8b
 ;projects[file_entity][download][branch] = 7.x-2.x
 
 ; Panopoly - Contrib - Search
-projects[facetapi][version] = 1.0
+projects[facetapi][version] = 1.1
 projects[facetapi][type] = module
 projects[facetapi][subdir] = contrib
 
-projects[search_api][version] = 1.1
+projects[search_api][version] = 1.2
 projects[search_api][type] = module
 projects[search_api][subdir] = contrib
 projects[search_api][patch][1698098] = http://drupal.org/files/search-api-disabled-index-configure-link.patch
@@ -219,7 +219,7 @@ projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
 projects[strongarm][subdir] = contrib
 
-projects[libraries][version] = 2.0-alpha2
+projects[libraries][version] = 2.0
 projects[libraries][type] = module
 projects[libraries][subdir] = contrib
 
@@ -265,45 +265,45 @@ libraries[respondjs][download][url] = https://github.com/scottjehl/Respond/tarba
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
 projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
-projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
+projects[pushtape_ui][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_discography][type] = "module"
 projects[pushtape_discography][download][type] = "git"
 projects[pushtape_discography][download][url] = "git://github.com/Pushtape/pushtape_discography.git"
-projects[pushtape_discography][download][branch] = "7.x-1.x-panels"
+projects[pushtape_discography][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_discography][subdir] = pushtape_apps
 
 ;projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_mediaplayer][type] = "module"
 projects[pushtape_mediaplayer][download][type] = "git"
 projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pushtape_mediaplayer.git"
-projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
+projects[pushtape_mediaplayer][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
 projects[pushtape_events][type] = "module"
 projects[pushtape_events][download][type] = "git"
 projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_events.git"
-projects[pushtape_events][download][branch] = "7.x-1.x-panels"
+projects[pushtape_events][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_events][subdir] = pushtape_apps
 
 projects[pushtape_news][type] = "module"
 projects[pushtape_news][download][type] = "git"
 projects[pushtape_news][download][url] = "git://github.com/Pushtape/pushtape_news.git"
-projects[pushtape_news][download][branch] = "7.x-1.x-panels"
+projects[pushtape_news][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_news][subdir] = pushtape_apps
 
 projects[pushtape_galleries][type] = "module"
 projects[pushtape_galleries][download][type] = "git"
 projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
-projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
+projects[pushtape_galleries][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_galleries][subdir] = pushtape_apps
 
 projects[pushtape_front][type] = "module"
 projects[pushtape_front][download][type] = "git"
 projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_front.git"
-projects[pushtape_front][download][branch] = "7.x-1.x-panels"
+projects[pushtape_front][download][tag] = "panels7.x-1.0-alpha2"
 projects[pushtape_front][subdir] = pushtape_apps
 
 ; Defining a theme is no different.
