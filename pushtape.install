@@ -227,12 +227,12 @@ function pushtape_import_content() {
     $operations[] = array('_pushtape_taxonomy_menu', array(t('Setting up menus.')));
   }
 
-  // Run all available migrations.
+  /*// Run all available migrations.
   $migrations = migrate_migrations();
   foreach ($migrations as $machine_name => $migration) {
     $operations[] = array('_pushtape_import', array($machine_name, t('Importing content.')));
   }
-
+*/
   if ($install_demo_site) {
     $operations[] = array('_pushtape_example_user', array(t('Setting up users.')));
   }

@@ -94,3 +94,9 @@ projects[omega_pushtape][type] = theme
 projects[omega_pushtape][download][type] = git
 projects[omega_pushtape][download][url] = http://git.drupal.org/sandbox/discipolo/1474174.git
 projects[omega_pushtape][download][branch] = 7.x-1.x
+
+;projects[pushtape_kickstart_theme][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_kickstart_theme][type] = theme
+projects[pushtape_kickstart_theme][download][type] = git
+projects[pushtape_kickstart_theme][download][url] = http://git.drupal.org/sandbox/discipolo/1719258.git
+projects[pushtape_kickstart_theme][download][branch] = master
