@@ -553,12 +553,12 @@ function pushtape_install() {
   variable_set('mimemail_format', 'full_html');
   // Set checkout progress.
    // Enable themes
-  theme_enable(array('pushtape_kickstart_theme', 'seven'));
-  variable_set('admin_theme', 'seven');
+  theme_enable(array('pushtape_kickstart_theme', 'seven', 'pushtape_kickstart_admin_theme'));
+  variable_set('admin_theme', 'pushtape_kickstart_admin_theme');
   variable_set('theme_default', 'pushtape_kickstart_theme');
-  variable_set('site_frontpage', 'releases');
+  // variable_set('site_frontpage', 'releases');
   // variable_set('clean_url', 1);
-  //variable_set('site_footer', 'Built with Pushtape');
+  // variable_set('site_footer', 'Built with Pushtape');
   // variable_set('node_admin_theme', '1');
 }
 

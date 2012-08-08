@@ -97,7 +97,7 @@ function _pushtape_post_import($operation, &$context) {
  */
 function _pushtape_setup_omega_theme() {
   $default_theme = 'pushtape_kickstart_theme';
-  $admin_theme = 'pushtape_kickstart_theme';
+  $admin_theme = 'pushtape_kickstart_admin_theme';
   theme_enable(array($default_theme, $admin_theme));
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
