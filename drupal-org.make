@@ -100,3 +100,9 @@ projects[pushtape_kickstart_theme][type] = theme
 projects[pushtape_kickstart_theme][download][type] = git
 projects[pushtape_kickstart_theme][download][url] = http://git.drupal.org/sandbox/discipolo/1719258.git
 projects[pushtape_kickstart_theme][download][branch] = master
+
+;projects[pushtape_kickstart_admin_theme][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_kickstart_admin_theme][type] = theme
+projects[pushtape_kickstart_admin_theme][download][type] = git
+projects[pushtape_kickstart_admin_theme][download][url] = http://git.drupal.org/sandbox/discipolo/1719862.git
+projects[pushtape_kickstart_admin_theme][download][branch] = master
