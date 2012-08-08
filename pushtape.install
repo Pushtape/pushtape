@@ -1,36 +1,343 @@
 <?php
+
 /**
-* Implement hook_install().
-*
-* Perform actions to set up the site for this profile.
-*/
+ * @file
+ * Installation code for Pushtape Kickstart.
+ */
+
+/**
+ * Implements hook_install_tasks().
+ */
+function pushtape_install_tasks() {
+  // Since any module can add a drupal_set_message, this can bug the user
+  // when we display this page. For a better user experience,
+  // remove all the messages.
+  drupal_get_messages(NULL, TRUE);
+  $tasks = array();
+  $current_task = variable_get('install_task', 'done');
+  $install_demo_site = variable_get('pushtape_demo_site', FALSE);
+
+  $tasks['pushtape_configure_site_form'] = array(
+    'display_name' => st('Configure site'),
+    'type' => 'form',
+  );
+  $tasks['pushtape_install_additional_modules'] = array(
+    'display_name' => $install_demo_site ? st('Install demo site') : st('Install additional functionality'),
+    'type' => 'batch',
+    // Show this task only after the Kickstart steps have bene reached.
+    'display' => strpos($current_task, 'pushtape_') !== FALSE,
+  );
+  $tasks['pushtape_import_content'] = array(
+    'display_name' => st('Import content'),
+    'type' => 'batch',
+    // Show this task only after the Kickstart steps have bene reached.
+    'display' => strpos($current_task, 'pushtape_') !== FALSE,
+  );
+
+  return $tasks;
+}
+
+/**
+ * Implements hook_install_tasks_alter().
+ */
+function pushtape_install_tasks_alter(&$tasks, $install_state) {
+  $tasks['install_select_profile']['display'] = FALSE;
+  $tasks['install_finished']['function'] = 'pushtape_install_finished';
+
+  _pushtape_set_theme('pushtape_kickstart_theme');
+}
+
+/**
+ * Force-set a theme at any point during the execution of the request.
+ *
+ * Drupal doesn't give us the option to set the theme during the installation
+ * process and forces enable the maintenance theme too early in the request
+ * for us to modify it in a clean way.
+ */
+function _pushtape_set_theme($target_theme) {
+  if ($GLOBALS['theme'] != $target_theme) {
+    unset($GLOBALS['theme']);
+
+    drupal_static_reset();
+    $GLOBALS['conf']['maintenance_theme'] = $target_theme;
+    _drupal_maintenance_theme();
+  }
+}
+
+/**
+ * Task callback: returns the form allowing the user to add example site content on install.
+ */
+function pushtape_configure_site_form() {
+  drupal_set_title(st('Configure site'));
+
+  // Prepare all the options for sample content.
+  $options = array(
+    '1' => st('Yes'),
+    '0' => st('No'),
+  );
+  $form['functionality'] = array(
+    '#type' => 'fieldset',
+    '#title' => st('Functionality'),
+  );
+  $form['functionality']['install_demo_site'] = array(
+    '#type' => 'radios',
+    '#title' => st('Do you want to install the demo site?'),
+    '#description' => st('Shows you everything Pushtape Kickstart can do. Includes a custom theme, sample content and products.'),
+    '#options' => $options,
+    '#default_value' => '1',
+  );
+
+  $options_selection = array(
+    'merchandising' => 'Additional <strong>blocks</strong> for featuring specific content.',
+    'slideshow' => 'Frontpage <strong>slideshow</strong>.',
+    'menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
+    'blog' => '<strong>Blog</strong> functionality.',
+    'social' => '<strong>Social</strong> logins and links for sharing products via social networks.',
+    'zoom_cloud' => '<strong>Zoom & Gallery</strong> mode for products.',
+  );
+  $form['functionality']['extras'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $options_selection,
+    '#title' => t("Install additional functionality"),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="install_demo_site"]' => array('value' => '0'),
+      ),
+    ),
+  );
+
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => st('Create and Finish'),
+    '#weight' => 15,
+  );
+  return $form;
+}
+
+/**
+ * Submit callback: creates the requested sample content.
+ */
+function pushtape_configure_site_form_submit(&$form, &$form_state) {
+  variable_set('pushtape_demo_site', $form_state['values']['install_demo_site']);
+  variable_set('pushtape_selected_extras', $form_state['values']['extras']);
+
+}
+
+/**
+ * Task callback: uses Batch API to import modules based on user selection.
+ * Installs all demo site modules if requested, or any modules providing
+ * additional functionality to the base install.
+ */
+function pushtape_install_additional_modules() {
+  $install_demo_site = variable_get('pushtape_demo_site', FALSE);
+  if ($install_demo_site) {
+    $modules = array(
+      'pushtape_ui',
+      'pushtape_news',
+      'pushtape_events',
+      'pushtape_galleries',
+      'pushtape_front',
+      'pushtape_mediaplayer',
+      'pushtape_discography',
+      'pushtape_menus',
+    );
+  }
+  else {
+    $modules = array(
+      'pushtape_content',
+      'pushtape_lite_search',
+      'pushtape_user',
+      'pushtape_migrate',
+    );
+    $selected_extras = variable_get('pushtape_selected_extras', array());
+    if (!empty($selected_extras['pushtape_ui'])) {
+      $modules[] = 'pushtape_ui';
+    }
+    if (!empty($selected_extras['news'])) {
+      $modules[] = 'pushtape_news';
+    }
+    if (!empty($selected_extras['menus'])) {
+      $modules[] = 'pushtape_menus';
+    }
+    if (!empty($selected_extras['blog'])) {
+      $modules[] = 'pushtape_events';
+    }
+    if (!empty($selected_extras['connect'])) {
+      $modules[] = 'pushtape_connect';
+    }
+    if (!empty($selected_extras['Discography'])) {
+      $modules[] = 'pushtape_discograhy';
+    }
+  }
+
+  // Resolve the dependencies now, so that module_enable() doesn't need
+  // to do it later for each individual module (which kills performance).
+  $files = system_rebuild_module_data();
+  $modules_sorted = array();
+  foreach ($modules as $module) {
+    if ($files[$module]->requires) {
+      // Create a list of dependencies that haven't been installed yet.
+      $dependencies = array_keys($files[$module]->requires);
+      $dependencies = array_filter($dependencies, '_pushtape_filter_dependencies');
+      // Add them to the module list.
+      $modules = array_merge($modules, $dependencies);
+    }
+  }
+  $modules = array_unique($modules);
+  foreach ($modules as $module) {
+    $modules_sorted[$module] = $files[$module]->sort;
+  }
+  arsort($modules_sorted);
+
+  $operations = array();
+  foreach ($modules_sorted as $module => $weight) {
+    $operations[] = array('_pushtape_enable_module', array($module, $files[$module]->info['name']));
+  }
+  $operations[] = array('_pushtape_flush_caches', array(t('Flushed caches.')));
+
+  $batch = array(
+    'title' => $install_demo_site ? t('Installing demo site') : t('Installing additional functionality'),
+    'operations' => $operations,
+    'file' => drupal_get_path('profile', 'pushtape') . '/pushtape.install_callbacks.inc',
+  );
+
+  return $batch;
+}
+
+/**
+ * array_filter() callback used to filter out already installed dependencies.
+ */
+function _pushtape_filter_dependencies($dependency) {
+  return !module_exists($dependency);
+}
+
+/**
+ * Task callback: return a batch API array with the products to be imported.
+ */
+function pushtape_import_content() {
+  // Fixes problems when the CSV files used for importing have been created
+  // on a Mac, by forcing PHP to detect the appropriate line endings.
+  ini_set("auto_detect_line_endings", TRUE);
+
+  $operations = array();
+
+  $install_demo_site = variable_get('pushtape_demo_site', FALSE);
+  if ($install_demo_site) {
+    $operations[] = array('_pushtape_taxonomy_menu', array(t('Setting up menus.')));
+  }
+
+  // Run all available migrations.
+  $migrations = migrate_migrations();
+  foreach ($migrations as $machine_name => $migration) {
+    $operations[] = array('_pushtape_import', array($machine_name, t('Importing content.')));
+  }
+
+  if ($install_demo_site) {
+    $operations[] = array('_pushtape_example_user', array(t('Setting up users.')));
+  }
+  // Perform post-import tasks.
+  $operations[] = array('_pushtape_post_import', array(t('Completing setup.')));
+
+  $batch = array(
+    'title' => t('Importing content'),
+    'operations' => $operations,
+    'file' => drupal_get_path('profile', 'pushtape') . '/pushtape.install_callbacks.inc',
+  );
+
+  return $batch;
+}
+
+/**
+ * Custom installation task; perform final steps and redirect the user to the new site if there are no errors.
+ *
+ * @param $install_state
+ *   An array of information about the current installation state.
+ *
+ * @return
+ *   A message informing the user about errors if there was some.
+ */
+function pushtape_install_finished(&$install_state) {
+  drupal_set_title(st('@drupal installation complete', array('@drupal' => drupal_install_profile_distribution_name())), PASS_THROUGH);
+  $messages = drupal_set_message();
+
+  // Flush all caches to ensure that any full bootstraps during the installer
+  // do not leave stale cached data, and that any content types or other items
+  // registered by the install profile are registered correctly.
+  drupal_flush_all_caches();
+
+  // Remember the profile which was used.
+  variable_set('install_profile', drupal_get_profile());
+
+  // Install profiles are always loaded last
+  db_update('system')
+    ->fields(array('weight' => 1000))
+    ->condition('type', 'module')
+    ->condition('name', drupal_get_profile())
+    ->execute();
+
+  // Cache a fully-built schema.
+  drupal_get_schema(NULL, TRUE);
+
+  // Run cron to populate update status tables (if available) so that users
+  // will be warned if they've installed an out of date Drupal version.
+  // Will also trigger indexing of profile-supplied content or feeds.
+  drupal_cron_run();
+
+  if (isset($messages['error'])) {
+    $output = '<p>' . (isset($messages['error']) ? st('Review the messages above before visiting <a href="@url">your new site</a>.', array('@url' => url(''))) : st('<a href="@url">Visit your new site</a>.', array('@url' => url('')))) . '</p>';
+    return $output;
+  }
+  else {
+    // Since any module can add a drupal_set_message, this can bug the user
+    // when we redirect him to the front page. For a better user experience,
+    // remove all the message that are only "notifications" message.
+    drupal_get_messages('status', TRUE);
+    drupal_get_messages('completed', TRUE);
+    // Migrate adds its messages under the wrong type, see #1659150.
+    drupal_get_messages('ok', TRUE);
+
+    // If we don't install drupal using Drush, redirect the user to the front
+    // page.
+    if (!drupal_is_cli()) {
+      if (module_exists('overlay')) {
+        drupal_goto('', array('fragment' => 'overlay=admin/help/first-steps'));
+      }
+      else {
+        drupal_goto('admin/help/first-steps');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
 function pushtape_install() {
-  // pulse, reverb, impulse
-  
   // Add text formats.
   $filtered_html_format = array(
-    'format' => 'filtered_html', 
-    'name' => 'Filtered HTML', 
-    'weight' => 0, 
+    'format' => 'filtered_html',
+    'name' => 'Filtered HTML',
+    'weight' => 0,
     'filters' => array(
       // URL filter.
       'filter_url' => array(
-        'weight' => 0, 
+        'weight' => 0,
         'status' => 1,
       ),
-      // HTML filter. 
+      // HTML filter.
       'filter_html' => array(
-        'weight' => 1, 
+        'weight' => 1,
         'status' => 1,
       ),
-      // Line break filter. 
+      // Line break filter.
       'filter_autop' => array(
-        'weight' => 2, 
+        'weight' => 2,
         'status' => 1,
       ),
-      // HTML corrector filter. 
+      // HTML corrector filter.
       'filter_htmlcorrector' => array(
-        'weight' => 10, 
+        'weight' => 10,
         'status' => 1,
       ),
     ),
@@ -39,122 +346,163 @@ function pushtape_install() {
   filter_format_save($filtered_html_format);
 
   $full_html_format = array(
-    'format' => 'full_html', 
-    'name' => 'Full HTML', 
-    'weight' => 1, 
+    'format' => 'full_html',
+    'name' => 'Full HTML',
+    'weight' => 1,
     'filters' => array(
       // URL filter.
       'filter_url' => array(
-        'weight' => 0, 
+        'weight' => 0,
         'status' => 1,
       ),
-      // Line break filter. 
+      // Line break filter.
       'filter_autop' => array(
-        'weight' => 1, 
+        'weight' => 1,
         'status' => 1,
       ),
-      // HTML corrector filter. 
+      // HTML corrector filter.
       'filter_htmlcorrector' => array(
-        'weight' => 10, 
+        'weight' => 10,
         'status' => 1,
       ),
     ),
   );
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
-/*
-  // Enable some standard blocks.
-  $default_theme = 'omega';
-  $admin_theme = 'seven';
-  $values = array(
+
+  // Enable themes and blocks.
+  $default_theme = 'pushtape_theme';
+  $admin_theme = 'pushtape_admin';
+  theme_enable(array($default_theme, $admin_theme));
+  variable_set('theme_default', $default_theme);
+  variable_set('admin_theme', $admin_theme);
+  variable_set('node_admin_theme', '1');
+
+  $blocks = array(
     array(
-      'module' => 'system', 
-      'delta' => 'main', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'content', 
-      'pages' => '', 
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '<front>', // Do not show the block on front.
+      'visibility' => 0,
       'cache' => -1,
     ),
     array(
-      'module' => 'system', 
-      'delta' => 'help', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'help', 
-      'pages' => '', 
+      'module' => 'system',
+      'delta' => 'navigation',
+      'theme' => $default_theme,
+      'status' => 0, // Do not enable the navigation menu block.
+      'weight' => 0,
+      'region' => 'sidebar_first',
+      'pages' => '',
       'cache' => -1,
     ),
     array(
-      'module' => 'views', 
-      'delta' => 'releases-block_1', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'sidebar_second', 
-      'pages' => '', 
-      'cache' => -1,
-    ),    
-    array(
-      'module' => 'system', 
-      'delta' => 'main', 
-      'theme' => $admin_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'content', 
-      'pages' => '', 
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'preface_first',
+      'pages' => '',
       'cache' => -1,
     ),
     array(
-      'module' => 'system', 
-      'delta' => 'help', 
-      'theme' => $admin_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'help', 
-      'pages' => '', 
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
       'cache' => -1,
     ),
     array(
-      'module' => 'user', 
-      'delta' => 'login', 
-      'theme' => $admin_theme, 
-      'status' => 1, 
-      'weight' => 10, 
-      'region' => 'content', 
-      'pages' => '', 
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'help',
+      'pages' => '',
       'cache' => -1,
     ),
     array(
-      'module' => 'search', 
-      'delta' => 'form', 
-      'theme' => $admin_theme, 
-      'status' => 1, 
-      'weight' => -10, 
-      'region' => 'dashboard_sidebar', 
-      'pages' => '', 
+      'module' => 'user',
+      'delta' => 'login',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 10,
+      'region' => 'content',
+      'pages' => '',
       'cache' => -1,
+    ),
+    // Connector.
+    array(
+      'module' => 'connector',
+      'delta' => 'one_click_block',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 1,
+      'region' => 'content',
+      'pages' => "user\r\nuser/login",
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'cache' => -1,
+    ),
+    // Search sorting.
+    array(
+      'module' => 'search_api_sorts',
+      'delta' => 'search-sorts',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -30,
+      'region' => 'content',
+      'pages' => '',
+      'visibility' => 0,
+      'cache' => -1,
+    ),
+    // Pushtape checkout progress
+    array(
+      'module' => 'pushtape_checkout_progress',
+      'delta' => 'indication',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'breadcrumb',
+      'pages' => "checkout/*\ncart",
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'cache' => -1,
+      'title' => '<none>',
     ),
   );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
-  foreach ($values as $record) {
-    $query->values($record);
-  }
-  $query->execute();
 
-  // Insert default pre-defined node types into the database. For a complete
-  // list of available node type attributes, refer to the node type API
-  // documentation at: http://api.drupal.org/api/HEAD/function/hook_node_info.
+  drupal_static_reset();
+  _block_rehash($admin_theme);
+  _block_rehash($default_theme);
+  foreach ($blocks as $record) {
+    $module = array_shift($record);
+    $delta = array_shift($record);
+    $theme = array_shift($record);
+    db_update('block')
+      ->fields($record)
+      ->condition('module', $module)
+      ->condition('delta', $delta)
+      ->condition('theme', $theme)
+      ->execute();
+  }
+
+// Insert default pre-defined node types into the database.
   $types = array(
     array(
-      'type' => 'page', 
-      'name' => st('Basic page'), 
-      'base' => 'node_content', 
-      'description' => st("Use <em>basic pages</em> for your static content, such as an 'About us' page."), 
-      'custom' => 1, 
-      'modified' => 1, 
+      'type' => 'page',
+      'name' => st('Basic page'),
+      'base' => 'node_content',
+      'description' => st("Use <em>basic pages</em> for your static content, such as an 'About us' page."),
+      'custom' => 1,
+      'modified' => 1,
       'locked' => 0,
     ),
   );
@@ -165,68 +513,17 @@ function pushtape_install() {
     node_add_body_field($type);
   }
 
-  // Insert default pre-defined RDF mapping into the database.
-  $rdf_mappings = array(
-    array(
-      'type' => 'node', 
-      'bundle' => 'page', 
-      'mapping' => array(
-        'rdftype' => array('foaf:Document'),
-      ),
-    ),
-  );
-  foreach ($rdf_mappings as $rdf_mapping) {
-    rdf_mapping_save($rdf_mapping);
-  }
-
-  // Default "Basic page" to not be promoted and have comments disabled.
+  // "Basic page" configuration.
   variable_set('node_options_page', array('status'));
   variable_set('comment_page', COMMENT_NODE_HIDDEN);
-
-  // Don't display date and author information for "Basic page" nodes by default.
   variable_set('node_submitted_page', FALSE);
-
-  // Enable user picture support and set the default to a square thumbnail option.
-  variable_set('user_pictures', '1');
-  variable_set('user_picture_dimensions', '1024x1024');
-  variable_set('user_picture_file_size', '800');
-  variable_set('user_picture_style', 'thumbnail');
-
-  // Allow visitor account creation with administrative approval.
-  variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
-
-  // Create a default vocabulary named "Tags", enabled for the 'article' content type.
-  $description = st('Use tags to group articles on similar topics into categories.');
-  $help = st('Enter a comma-separated list of words to describe your content.');
-  $vocabulary = (object) array(
-    'name' => st('Tags'), 
-    'description' => $description, 
-    'machine_name' => 'tags', 
-    'help' => $help,
-  );
-  taxonomy_vocabulary_save($vocabulary);
-
-  $field = array(
-    'field_name' => 'field_' . $vocabulary->machine_name, 
-    'type' => 'taxonomy_term_reference',
-    // Set cardinality to unlimited for tagging. 
-    'cardinality' => FIELD_CARDINALITY_UNLIMITED, 
-    'settings' => array(
-      'allowed_values' => array(
-        array(
-          'vocabulary' => $vocabulary->machine_name, 
-          'parent' => 0,
-        ),
-      ),
-    ),
-  );
-  field_create_field($field);
-
+  variable_set('pathauto_node_page_pattern', '[node:title]');
 
   // Enable default permissions for system roles.
   $filtered_html_permission = filter_permission_name($filtered_html_format);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
+
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
 
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
@@ -242,113 +539,26 @@ function pushtape_install() {
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
 
-  $root = user_load(array('uid' => 1));
-  
-  // Create user/2
-  $new_user = array(
-        'name' => 'artist',
-        'pass' => $root->pass,
-        'mail' => $root->mail,
-        'init' => $root->mail,
-        'status' => 1,
-  );
-  
-  // $account returns user object
-  $account = user_save(null, $new_user);
-  
-  // Create a default role for artists, with all available permissions assigned.
-  $artist_role = new stdClass();
-  $artist_role->name = 'artist';
-  $artist_role->weight = 2;
-  user_role_save($artist_role);
-  //user_role_grant_permissions($artist_role->rid, array_keys(module_invoke_all('permission')));
-
-  // Assign user 2 the "artist" role.
-  db_insert('users_roles')
-    ->fields(array('uid' => 2, 'rid' => $artist_role->rid))
-    ->execute();
-
+  // Create a "site Administrator" role for site administrators.
+  $admin_role = new stdClass();
+  $admin_role->name = 'site administrator';
+  $admin_role->weight = 2;
+  user_role_save($admin_role);
 
   // Update the menu router information.
   menu_rebuild();
-  
-  
-  
-  // Enable some standard blocks.
-  $default_theme = variable_get('theme_default', 'omega_pushtape');
-  $values = array(
-    array(
-      'module' => 'system', 
-      'delta' => 'main', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'content', 
-      'pages' => '', 
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'user', 
-      'delta' => 'login', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'sidebar_second', 
-      'pages' => '', 
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system', 
-      'delta' => 'main-menu', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'header', 
-      'pages' => '', 
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'views', 
-      'delta' => 'releases-block_1', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'sidebar_second', 
-      'pages' => '', 
-      'cache' => -1,
-    ),    
-    array(
-      'module' => 'system', 
-      'delta' => 'help', 
-      'theme' => $default_theme, 
-      'status' => 1, 
-      'weight' => 0, 
-      'region' => 'help', 
-      'pages' => '', 
-      'cache' => -1,
-    ),
-  );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
-  foreach ($values as $record) {
-    $query->values($record);
-  }
-  $query->execute();
-*/
-  // New accounts made by administrators only.
-  variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
 
-  // Enable default permissions for system roles.
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
-  
-  // Enable themes
-  theme_enable(array('omega_pushtape', 'seven'));
+  // Set Mimemail.
+  variable_set('mimemail_format', 'full_html');
+  // Set checkout progress.
+   // Enable themes
+  theme_enable(array('pushtape_kickstart_theme', 'seven'));
   variable_set('admin_theme', 'seven');
-  variable_set('theme_default', 'omega_pushtape');
+  variable_set('theme_default', 'pushtape_kickstart_theme');
   variable_set('site_frontpage', 'releases');
   // variable_set('clean_url', 1);
   //variable_set('site_footer', 'Built with Pushtape');
-  // variable_set('node_admin_theme', '1');  
-
+  // variable_set('node_admin_theme', '1');
 }
+
 
