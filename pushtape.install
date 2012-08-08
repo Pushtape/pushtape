@@ -133,6 +133,15 @@ function pushtape_install_additional_modules() {
   $install_demo_site = variable_get('pushtape_demo_site', FALSE);
   if ($install_demo_site) {
     $modules = array(
+
+      'pushtape_news_democontent',
+      'pushtape_events_democontent',
+      'pushtape_discography_democontent',
+
+    );
+  }
+  else {
+    $modules = array(
       'pushtape_ui',
       'pushtape_news',
       'pushtape_events',
@@ -141,14 +150,6 @@ function pushtape_install_additional_modules() {
       'pushtape_mediaplayer',
       'pushtape_discography',
       'pushtape_menus',
-    );
-  }
-  else {
-    $modules = array(
-      'pushtape_content',
-      'pushtape_lite_search',
-      'pushtape_user',
-      'pushtape_migrate',
     );
     $selected_extras = variable_get('pushtape_selected_extras', array());
     if (!empty($selected_extras['pushtape_ui'])) {
