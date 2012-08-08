@@ -13,7 +13,6 @@ dependencies[] = number
 dependencies[] = options
 dependencies[] = path
 dependencies[] = taxonomy
-dependencies[] = toolbar
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
@@ -26,6 +25,8 @@ dependencies[] = features
 dependencies[] = pathauto
 dependencies[] = ctools
 ;dependencies[] = token
+dependencies[] = admin
+
 
 ;Install Profile
 dependencies[] = pushtape_ui

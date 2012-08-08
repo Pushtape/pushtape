@@ -26,7 +26,7 @@ projects[coder][subdir] = contrib
 projects[omega_tools][version] = 3.0-rc4
 projects[omega_tools][subdir] = contrib
 
-projects[delta][version] = 3.0-beta10
+projects[delta][version] = 3.0-beta11
 projects[delta][subdir] = contrib
 
 ;Pushtape apps
@@ -79,6 +79,13 @@ projects[pushtape_galleries][download][type] = git
 projects[pushtape_galleries][download][url] = git://github.com/Pushtape/pushtape_galleries.git
 projects[pushtape_galleries][download][branch] = 7.x-1.x-upstream
 projects[pushtape_galleries][subdir] = pushtape_apps
+
+;projects[pushtape_front][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_front][type] = module
+projects[pushtape_front][download][type] = git
+projects[pushtape_front][download][url] = git://github.com/Pushtape/pushtape_front.git
+projects[pushtape_front][download][branch] = 7.x-1.x-upstream
+projects[pushtape_front][subdir] = pushtape_apps
 
 projects[omega] = 3.1
 
