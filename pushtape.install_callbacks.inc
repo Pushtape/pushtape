@@ -194,7 +194,7 @@ function _pushtape_setup_omega_theme() {
       'visibility' => 0,
       'cache' => -1,
     ),
-    // Commerce Kickstart Content.
+    // pushtape Kickstart Content.
     array(
       'module' => 'pushtape_content',
       'delta' => 'social',
@@ -230,7 +230,7 @@ function _pushtape_setup_omega_theme() {
     ),
     array(
       'module' => 'pushtape_content',
-      'delta' => 'powered_drupal_commerce',
+      'delta' => 'powered_drupal_pushtape',
       'theme' => $default_theme,
       'status' => 1,
       'weight' => -30,
@@ -239,19 +239,7 @@ function _pushtape_setup_omega_theme() {
       'visibility' => 0,
       'cache' => -1,
     ),
-    // Commerce checkout progress
-    array(
-      'module' => 'commerce_checkout_progress',
-      'delta' => 'indication',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => -10,
-      'region' => 'content',
-      'pages' => "checkout/*\ncart",
-      'visibility' => BLOCK_VISIBILITY_LISTED,
-      'cache' => -1,
-      'title' => '<none>',
-    ),
+
   );
 
   drupal_static_reset();
