@@ -35,14 +35,14 @@ function _pushtape_taxonomy_menu($operation, &$context) {
 
   // Set up taxonomy main menu.
   $collection = taxonomy_vocabulary_machine_name_load('collection');
-  $variable_name = _taxonomy_menu_build_variable('vocab_menu', $collection->vid);
+/* $variable_name = _taxonomy_menu_build_variable('vocab_menu', $collection->vid);
   variable_set($variable_name, 'main-menu');
   $variable_name = _taxonomy_menu_build_variable('vocab_parent', $collection->vid);
   variable_set($variable_name, '0');
   $variable_name = _taxonomy_menu_build_variable('path', $collection->vid);
   variable_set($variable_name, 'taxonomy_menu_path_default');
   $variable_name = _taxonomy_menu_build_variable('rebuild', $collection->vid);
-  variable_set($variable_name, 1);
+  variable_set($variable_name, 1);*/
 }
 
 /**
