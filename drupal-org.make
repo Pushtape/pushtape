@@ -37,6 +37,7 @@ projects[panelizer][download][type] = git
 projects[panelizer][download][revision] = 186f4bc
 ;projects[panelizer][download][branch] = 7.x-3.x
 projects[panelizer][patch][1675136] = http://drupal.org/files/taxonomy-term-fix-1675136-3.patch
+projects[panelizer][patch][1412022] = http://drupal.org/files/panelizer-duplicates-1412022-10_1.patch
 
 ;projects[fieldable_panels_panes][version] = 1.x-dev
 projects[fieldable_panels_panes][subdir] = contrib
