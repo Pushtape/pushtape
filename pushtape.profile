@@ -265,7 +265,7 @@ drupal_set_title(t('Choose a theme'));
 // Create list of theme options, minus admin + testing + starter themes
 $themes = array();
 foreach(system_rebuild_theme_data() as $theme) {
-if (!in_array($theme->name, array('test_theme', 'update_test_basetheme', 'update_test_subtheme', 'block_test_theme', 'stark', 'seven'))) {
+if (!in_array($theme->name, array('test_theme', 'update_test_basetheme', 'update_test_subtheme', 'block_test_theme', 'stark', 'seven', 'alpha', 'omega', ))) {
 $themes[$theme->name] = theme('image', array('path' => $theme->info['screenshot'])) . '<strong>' . $theme->info['name'] . '</strong><br><p><em>' . $theme->info['description'] . '</em></p><p class="clearfix"></p>';
   }
 }
