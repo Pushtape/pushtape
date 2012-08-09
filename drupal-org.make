@@ -8,8 +8,9 @@ projects[admin][subdir] = contrib
 projects[diff][version] = 2.0
 projects[diff][subdir] = contrib
 
-projects[context][version] = 3.0-beta3
+projects[context][version] = 3.x.dev
 projects[context][subdir] = contrib
+projects[context][patch][1050724] = http://drupal.org/files/context-context-ui-revamp-1050724-29.patch
 
 projects[libraries][version] = 1.0
 projects[libraries][subdir] = contrib
