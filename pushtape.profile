@@ -73,10 +73,6 @@ function pushtape_install_tasks($install_state) {
     'display_name' => t('Choose a theme'),
     'type' => 'form',
   );
-  $tasks['pushtape_theme_configure_form'] = array(
-    'display_name' => t('Configure theme settings'),
-    'type' => 'form',
-  );
 
   // Set up a finishing task to do cache clearing and various cleanup
   $tasks['pushtape_final_setup'] = array(
