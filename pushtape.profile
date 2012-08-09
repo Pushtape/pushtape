@@ -53,6 +53,7 @@ function pushtape_install_tasks($install_state) {
     'default apps' => array(
      'pushtape_ui',
      'pushtape_discography',
+     'pushtape_front',
       ),
     'required apps' => array(
       'pushtape_ui',
