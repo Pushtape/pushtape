@@ -3,8 +3,6 @@
  * Implements hook_install_tasks()
  */
 function pushtape_install_tasks($install_state) {
-  // Kick off the tasks
-  $tasks = array();
 
     if (ini_get('memory_limit') != '-1' && ini_get('memory_limit') <= '196M'){
         ini_set('memory_limit', '196M');
@@ -80,15 +78,49 @@ function pushtape_install_tasks($install_state) {
     'type' => 'form',
   );
 
+  // Set up a finishing task to do cache clearing and various cleanup
+  $tasks['pushtape_final_setup'] = array(
+    'run' => '2',
+  );
 
   return $tasks;
 }
 
 /**
+ * Implements hook_install_tasks_alter()
+ */
+ function pushtape_install_tasks_alter(&$tasks, $install_state) {
+
+ // Magically insert an install task to add the pushtape icon to Seven!
+ if (!array_key_exists('pushtape_add_icon', $tasks)) {
+ $panopoly_add_icon = array('pushtape_add_icon', array('run' => 2));
+ $tasks = array_reverse($tasks);
+ $install_select_profile = array_pop($tasks);
+ $install_select_locale = array_pop($tasks);
+ $install_load_profile = array_pop($tasks);
+ $install_verify_requirements = array_pop($tasks);
+ $install_settings_form = array_pop($tasks);
+ $install_system_module = array_pop($tasks);
+ $install_bootstrap_full = array_pop($tasks);
+ $tasks['pushtape_add_icon'] = array('run' => 2);
+ $tasks['install_bootstrap_full'] = $install_bootstrap_full;
+ $tasks['install_system_module'] = $install_system_module;
+ $tasks['install_settings_form'] = $install_settings_form;
+ $tasks['install_verify_requirements'] = $install_verify_requirements;
+ $tasks['install_load_profile'] = $install_load_profile;
+ $tasks['install_select_locale'] = $install_select_locale;
+ $tasks['install_select_profile'] = $install_select_profile;
+ $tasks = array_reverse($tasks);
+ }
+
+ // Since we only offer one language, define a callback to set this
+ $tasks['install_select_locale']['function'] = 'pushtape_locale_selection';
+ }
+
+/**
  * Implements hook_form_FORM_ID_alter()
  */
 function pushtape_form_install_configure_form_alter(&$form, $form_state) {
-
 
   // Hide some messages from various modules that are just too chatty!
   drupal_get_messages('status');
@@ -100,9 +132,8 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
   $form['server_settings']['site_default_country']['#default_value'] = 'AT';
   $form['server_settings']['date_default_timezone']['#default_value'] = 'America/Los_Angeles'; // West coast, best coast
 
-  // Don't set the email address to "admin@localhost" as that will fail D7's
-// email address validation.
- if ($_SERVER['HTTP_HOST'] != 'localhost') {
+   // Define a default email address if we can guess a valid one
+  if (valid_email_address('admin@' . $_SERVER['HTTP_HOST'])) {
  $form['site_information']['site_mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
  $form['admin_account']['account']['mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
  }
@@ -139,20 +170,6 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
 }
 
 /**
- * Implements hook_install_tasks_alter()
- */
-function pushtape_install_tasks_alter(&$tasks, $install_state) {
-
-  // Since we only offer one language, define a callback to set this
-  $tasks['install_select_locale']['function'] = 'pushtape_locale_selection';
-
-  // Create a more fun finished page with our Pushtape Saurus
-  $tasks['install_finished']['function'] = 'pushtape_finished_yah';
-  $tasks['install_finished']['display_name'] = t('Finished!');
-  $tasks['install_finished']['type'] = 'form';
-}
-
-/**
  * Task handler to set the language to English since that is the only one
  * we have at the moment.
  */
@@ -182,32 +199,6 @@ function pushtape_apps_servers_info() {
       'manifest' => (empty($info['version']) || $info['version'] == '7.x-1.x-dev') ? 'http://apps.getpantheon.com/panopoly-dev' : 'http://apps.getpantheon.com/panopoly',
     ),
   );
-}
-
-/**
- * Apps installer default content callback.
- *
- * Adapted from openenterprise_default_content() --> apps take care of this
-
-function pushtape_default_content(&$modules) {
-  $files = system_rebuild_module_data();
-  foreach($modules as $module) {
-    // This assumes a pattern MYMODULE_democontent which is probably not always true. Might be
-    // better to check $_SESSION['apps_manifest'] and check to see if this exists:
-    // function_exists($_SESSION['module']['configure form'])
-    if (isset($files[$module . '_democontent'])) {
-      $modules[] = $module . '_democontent';
-    }
-  }
-}
- */
-/**
- * Task handler to set the awesome maintenance theme
- */
-function pushtape_set_theme() {
-  $themes = list_themes();
-  $theme = $themes['pushtape_wireframe'];
-  _drupal_theme_initialize($theme);
 }
 
 /**
@@ -260,136 +251,63 @@ function pushtape_apps_check($form, &$form_state) {
  */
 function pushtape_theme_form($form, &$form_state) {
 
-  // Set the page title
-  drupal_set_title(t('Choose a theme!'));
+// Set the page title
+drupal_set_title(t('Choose a theme'));
 
-  // Create list of theme options, minus admin + testing + starter themes
-  $themes = array();
-  foreach(system_rebuild_theme_data() as $theme) {
-    if (!in_array($theme->name, array('omega', 'navin','cube', 'garland', 'alpha', 'tao', 'rubik', 'test_theme', 'update_test_basetheme', 'update_test_subtheme', 'block_test_theme', 'stark', 'seven', 'pushtape_maintenance', 'starterkit_omega_html5', 'starterkit_omega_xhtml', 'starterkit_alpha_html5', 'starterkit_alpha_xhtml'))) {
-      $themes[$theme->name] = theme('image', array('path' => $theme->info['screenshot'])) . '<strong>' . $theme->info['name'] . '</strong><br><p><em>' . $theme->info['description'] . '</em></p>';
-    }
+// Create list of theme options, minus admin + testing + starter themes
+$themes = array();
+foreach(system_rebuild_theme_data() as $theme) {
+if (!in_array($theme->name, array('test_theme', 'update_test_basetheme', 'update_test_subtheme', 'block_test_theme', 'stark', 'seven'))) {
+$themes[$theme->name] = theme('image', array('path' => $theme->info['screenshot'])) . '<strong>' . $theme->info['name'] . '</strong><br><p><em>' . $theme->info['description'] . '</em></p><p class="clearfix"></p>';
   }
-
-  $form['theme_wrapper'] = array(
-    '#title' => t('Starting Theme'),
-    '#type' => 'fieldset',
-  );
-
-  $form['theme_wrapper']['theme'] = array(
-    '#type' => 'radios',
-    '#options' => $themes,
-    '#default_value' => 'bartik',
-  );
-
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Choose theme',
-  );
-  return $form;
 }
 
-/**
- * Form submit handler to select the theme
- */
+ $form['theme_wrapper'] = array(
+ '#title' => t('Starting Theme'),
+'#type' => 'fieldset',
+);
+ $form['theme_wrapper']['theme'] = array(
+ '#type' => 'radios',
+ '#options' => $themes,
+ '#default_value' => 'bartik',
+ );
+
+ $form['submit'] = array(
+ '#type' => 'submit',
+ '#value' => 'Choose theme',
+);
+return $form;
+}
+
 function pushtape_theme_form_submit($form, &$form_state) {
 
-  // Enable and set the theme of choice
-  $theme = $form_state['input']['theme'];
-  theme_enable(array($theme));
-  variable_set('theme_default', $theme);
- // Set the Bartik or Garland logo to be Panopoly's logo
+// Enable and set the theme of choice
+$theme = $form_state['input']['theme'];
+theme_enable(array($theme));
+variable_set('theme_default', $theme);
 
-  // Flush theme caches so things are right
-  system_rebuild_theme_data();
-  drupal_theme_rebuild();
+// Set the Bartik or Garland logo to be Pushtape's logo
+if ($theme == 'bartik' || $theme == 'garland') {
+$theme_data = _system_rebuild_theme_data();
+$theme_data[$theme]->info['settings']['default_logo'] = 0;
+$theme_data[$theme]->info['settings']['logo_path'] = 'profiles/pushtape/images/pushtape_icon_theme.png';
+variable_set('theme_' . $theme . '_settings', $theme_data[$theme]->info['settings']);
+}
+
+// Flush theme caches so things are right
+
+system_rebuild_theme_data();
+drupal_theme_rebuild();
 }
 
 /**
- * Form to choose the starting theme
- */
-function pushtape_theme_configure_form($form, &$form_state) {
+* Handler callback to do additional setup reqired for the site to be awesome
+*/
+function pushtape_final_setup(&$install_state) {
 
-  // Set the title
-  drupal_set_title(t('Configure theme settings!'));
-
-  $theme = variable_get('theme_default');
-  ctools_include('system.admin', 'system', '');
-  $form = system_theme_settings($form, $form_state, $theme);
-  return $form;
-}
-
-/**
- * Form to finish it all out and send us on our way
- */
-function pushtape_finished_yah($form, &$form_state) {
-  // Hide some messages from various modules that are just too chatty!
-  drupal_get_messages('status');
-
-  $form = array();
-
-  //set the title
-  drupal_set_title(t('Congratulations!'));
-
-  //set the guidelines
-  variable_set('pushtape_install_guidelines', '');
-
-  $form['openingtext'] = array(
-    '#markup' => '<h2 class="bubble">' . t('Congratulations, you just installed Pushtape!') . '<span class="tip"></span></h2>',
-  );
-
-  $form['actions'] = array(
-   '#prefix' => '<div class="form-actions">',
-   '#suffix' => '</div>',
-  );
-
-  $form['actions']['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Visit your new site!',
-  );
-
-  return $form;
-}
-
-/**
- * Submit form to finish it out and send us on our way!
- */
-function pushtape_finished_yah_submit($form, &$form_state) {
-  //clean up variables
-  variable_del('pushtape_install_guidelines');
-_field_info_collate_fields(TRUE);
-_field_info_collate_fields();
-
-  // Once more for good measure
-  drupal_flush_all_caches();
-
-    // Remember the profile which was used.
-  variable_set('install_profile', drupal_get_profile());
-
-  // Install profiles are always loaded last
-  db_update('system')
-    ->fields(array('weight' => 1000))
-    ->condition('type', 'module')
-    ->condition('name', drupal_get_profile())
-    ->execute();
-
-  // Allow anonymous and authenticated users to see content
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
-
-  // Cache a fully-built schema.
-  drupal_get_schema(NULL, TRUE);
-
-  // Run cron to populate update status tables (if available) so that users
-  // will be warned if they've installed an out of date Drupal version.
-  // Will also trigger indexing of profile-supplied content or feeds.
-  drupal_cron_run();
-
-  // $form_state['redirect'] won't work here since we are still in the
-  // installer, so use drupal_goto() (for interactive installs only) instead.
-  $install_state = $form_state['build_info']['args'][0];
-  if ($install_state['interactive']) {
-    variable_set('install_task', 'done');
-    drupal_goto('<front>');
-  }
+// Allow anonymous and authenticated users to see and search content
+user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
+user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
+user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('search content'));
+user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('search content'));
 }
