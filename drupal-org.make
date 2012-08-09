@@ -12,12 +12,12 @@ api = 2
 core = 7.x
 
 ; Panopoly - Contrib - Foundation
-projects[ctools][version] = 1.0
+
+projects[ctools][version] = 1.1
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
-projects[ctools][patch][1444732] = https://drupal.org/files/1444732-exposed-sort-as-pane-config.patch
-projects[ctools][patch][1198808] = http://drupal.org/files/1198808-work-around-jquery-bug-with-auto-submit-ctools-1.0.patch
 projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
+projects[ctools][patch][1708438] = http://drupal.org/files/1708438-blur-event.patch
 
 ;projects[panels][version] = 3.x-dev
 projects[panels][subdir] = contrib
@@ -25,6 +25,12 @@ projects[panels][type] = module
 projects[panels][download][type] = git
 projects[panels][download][revision] = 3f50718
 ;projects[panels][download][branch] = 7.x-3.x
+projects[panels][patch][1690124] = http://drupal.org/files/1690124-hide-ipe-toolbal-with-open-modal_2.patch
+projects[panels][patch][1711302] = http://drupal.org/files/1711302-panels_ipe_shorten_add_language_conditional_on_1690124.patch
+projects[panels][patch][1711494] = http://drupal.org/files/1711494-double-ids.patch
+projects[panels][patch][1549660] = http://drupal.org/files/1549660-list-region-style-dont-render-empty-placeholder.patch
+projects[panels][patch][1493130] = http://drupal.org/files/1493130-1.patch
+projects[panels][patch][1549660] = http://drupal.org/files/1549660-allow-region-style-settings_panopoly_2.patch
 
 projects[panels_breadcrumbs][version] = 1.6
 projects[panels_breadcrumbs][subdir] = contrib
@@ -38,13 +44,12 @@ projects[panelizer][download][revision] = 186f4bc
 ;projects[panelizer][download][branch] = 7.x-3.x
 projects[panelizer][patch][1675136] = http://drupal.org/files/taxonomy-term-fix-1675136-3.patch
 projects[panelizer][patch][1412022] = http://drupal.org/files/panelizer-duplicates-1412022-10_1.patch
+projects[panelizer][patch][1555194] = http://drupal.org/files/1555194-panelizer-did-should-not-export.patch
 
-;projects[fieldable_panels_panes][version] = 1.x-dev
+projects[fieldable_panels_panes][version] = 1.1
 projects[fieldable_panels_panes][subdir] = contrib
 projects[fieldable_panels_panes][type] = module
-projects[fieldable_panels_panes][download][type] = git
-projects[fieldable_panels_panes][download][revision] = 851c1b1
-;projects[fieldable_panels_panes][download][branch] = 7.x-1.x
+projects[fieldable_panels_panes][patch][1715918] = http://drupal.org/files/fieldable-panel-panes-load-vid.patch
 
 projects[pm_existing_pages][version] = 1.4
 projects[pm_existing_pages][type] = module
@@ -87,8 +92,12 @@ projects[field_group][subdir] = contrib
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 projects[file_entity][download][type] = git
-projects[file_entity][download][revision] = ba18f8b
+projects[file_entity][download][revision] = a8986e5
 ;projects[file_entity][download][branch] = 7.x-2.x
+
+projects[entityreference][version] = 1.0-rc3
+projects[entityreference][type] = module
+projects[entityreference][subdir] = contrib
 
 ; Panopoly - Contrib - Search
 projects[facetapi][version] = 1.1
@@ -114,7 +123,7 @@ projects[search_api_db][subdir] = contrib
 projects[media][type] = module
 projects[media][subdir] = contrib
 projects[media][download][type] = git
-projects[media][download][revision] = cc55948
+projects[media][download][revision] = 1a0304d
 ;projects[media][download][branch] = 7.x-2.x
 
 projects[media_youtube][version] = 1.0-beta3
@@ -142,7 +151,7 @@ projects[wysiwyg][version] = 2.x-dev
 projects[wysiwyg][patch][1489096] = http://drupal.org/files/wysiwyg-table-format.patch
 projects[wysiwyg][patch][356480] = http://drupal.org/files/356480-by-zhangtaihao-Shawn_Smiley-sun.-Lazy-load-ed-p0.patch
 projects[wysiwyg][download][type] = git
-projects[wysiwyg][download][revision] = 7e6609e
+projects[wysiwyg][download][revision] = d17bf11
 ;projects[wysiwyg][download][branch] = 7.x-2.x
 
 projects[wysiwyg_filter][version] = 1.6-rc2
@@ -173,6 +182,14 @@ projects[views_bulk_operations][version] = 3.0-rc1
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
 
+;projects[views_autocomplete_filters][version] = 1.x-dev
+projects[views_autocomplete_filters][subdir] = contrib
+projects[views_autocomplete_filters][type] = module
+projects[views_autocomplete_filters][download][type] = git
+projects[views_autocomplete_filters][download][revision] = 7d85509
+;projects[views_autocomplete_filters][download][branch] = 7.x-1.x
+projects[views_autocomplete_filters][patch][1151292] = http://drupal.org/files/views_autocomplete_filters-1151292-10_0.patch
+
 projects[simplified_menu_admin][version] = 1.0-beta2
 projects[simplified_menu_admin][type] = module
 projects[simplified_menu_admin][subdir] = contrib
@@ -196,7 +213,7 @@ projects[apps][patch][1482684] = http://drupal.org/files/apps-single-item-style.
 projects[apps][patch][1558280] = http://drupal.org/files/apps-screen-design-css-p0.patch
 projects[apps][patch][1561652] = http://drupal.org/files/apps-allow-drush-site-install.patch
 
-projects[features][version] = 1.x-dev
+projects[features][version] = 1.0
 projects[features][subdir] = contrib
 projects[features][type] = module
 
