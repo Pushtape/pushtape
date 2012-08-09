@@ -178,6 +178,18 @@ function pushtape_locale_selection(&$install_state) {
 }
 
 /**
+ * Task handler to set the icon of the maintaince theme to the Panopoly icon since
+ * that icon is awesome and the Drupal alien (while also awesome) is scarey to new ppl
+ */
+function pushtape_add_icon(&$install_state) {
+ $theme_data = _system_rebuild_theme_data();
+ $seven_data = $theme_data['seven']->info['settings'];
+ $seven_data['default_logo'] = 0;
+ $seven_data['logo_path'] = 'profiles/panopoly/images/panopoly_icon_install.png';
+ variable_set('theme_seven_settings', $seven_data);
+ }
+
+ /**
  * Implements hook_appstore_stores_info()
  */
 function pushtape_apps_servers_info() {
