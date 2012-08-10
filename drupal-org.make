@@ -8,6 +8,8 @@ projects[admin][subdir] = contrib
 projects[diff][version] = 2.0
 projects[diff][subdir] = contrib
 
+projects[examples][version] = 1.x-dev
+projects[examples][subdir] = contrib
 
 projects[context][subdir] = contrib
 projects[context][version] = 7.x-3.x
