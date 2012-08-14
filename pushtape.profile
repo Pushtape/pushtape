@@ -14,7 +14,7 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
   // Set a default name for the dev site and change title's label.
   $form['site_information']['site_name']['#title'] = 'site name';
   $form['site_information']['site_mail']['#title'] = 'site email address';
-  $form['site_information']['site_name']['#default_value'] = t('Commerce Kickstart');
+  $form['site_information']['site_name']['#default_value'] = t('Pushtape Kickstart');
 
   // Set a default country so we can benefit from it on Address Fields.
   $form['server_settings']['site_default_country']['#default_value'] = 'US';
@@ -96,7 +96,7 @@ function pushtape_custom_setting(&$form, &$form_state) {
  * Implements hook_update_projects_alter().
  */
 function pushtape_update_projects_alter(&$projects) {
-  // Enable update status for the Commerce Kickstart profile.
+  // Enable update status for the Pushtape Kickstart profile.
   $modules = system_rebuild_module_data();
   // The module object is shared in the request, so we need to clone it here.
   $kickstart = clone $modules['pushtape'];
