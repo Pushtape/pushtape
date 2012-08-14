@@ -88,12 +88,12 @@ function pushtape_configure_site_form() {
   );
 
   $options_selection = array(
-    'merchandising' => 'Additional <strong>blocks</strong> for featuring specific content.',
-    'slideshow' => 'Frontpage <strong>slideshow</strong>.',
-    'menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
-    'blog' => '<strong>Blog</strong> functionality.',
-    'social' => '<strong>Social</strong> logins and links for sharing products via social networks.',
-    'zoom_cloud' => '<strong>Zoom & Gallery</strong> mode for products.',
+    'Front' => 'Additional <strong>blocks</strong> for featuring specific content.',
+    'News' => 'Frontpage <strong>slideshow</strong>.',
+    'Events' => 'Custom <strong>admin menu</strong> designed for site owners.',
+    'Player' => '<strong>Blog</strong> functionality.',
+    'Connect' => '<strong>Social</strong> logins and links for sharing products via social networks.',
+    'Gallery' => '<strong>Zoom & Gallery</strong> mode for products.',
   );
   $form['functionality']['extras'] = array(
     '#type' => 'checkboxes',
@@ -143,32 +143,27 @@ function pushtape_install_additional_modules() {
   else {
     $modules = array(
       'pushtape_ui',
-      'pushtape_news',
-      'pushtape_events',
-      'pushtape_galleries',
-      'pushtape_front',
-      'pushtape_mediaplayer',
       'pushtape_discography',
-      'pushtape_menus',
+
     );
     $selected_extras = variable_get('pushtape_selected_extras', array());
-    if (!empty($selected_extras['pushtape_ui'])) {
-      $modules[] = 'pushtape_ui';
+    if (!empty($selected_extras['front'])) {
+      $modules[] = 'pushtape_front';
     }
     if (!empty($selected_extras['news'])) {
       $modules[] = 'pushtape_news';
     }
-    if (!empty($selected_extras['menus'])) {
-      $modules[] = 'pushtape_menus';
+    if (!empty($selected_extras['events'])) {
+      $modules[] = 'pushtape_events';
     }
-    if (!empty($selected_extras['blog'])) {
+    if (!empty($selected_extras['player'])) {
       $modules[] = 'pushtape_events';
     }
     if (!empty($selected_extras['connect'])) {
       $modules[] = 'pushtape_connect';
     }
-    if (!empty($selected_extras['Discography'])) {
-      $modules[] = 'pushtape_discograhy';
+    if (!empty($selected_extras['Gallery'])) {
+      $modules[] = 'pushtape_gallery';
     }
   }
 
