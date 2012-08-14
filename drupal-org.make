@@ -1,5 +1,4 @@
-core = 7.14
-api = 2
+core = 7.15
 
 ; Devel Tools
 projects[admin][version] = 2.0-beta3
