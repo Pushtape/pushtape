@@ -49,6 +49,10 @@ projects[omega_tools][subdir] = contrib
 projects[delta][version] = 3.0-beta11
 projects[delta][subdir] = contrib
 
+projects[simpletest_automator[version] = 1.x-dev
+projects[simpletest_automator][subdir] = contrib
+
+
 ;Pushtape apps
 
 ;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
