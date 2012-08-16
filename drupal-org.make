@@ -59,14 +59,14 @@ projects[simpletest_automator][subdir] = contrib
 ;projects[pushtape_menus][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_menus][type] = module
 projects[pushtape_menus][download][type] = git
-projects[pushtape_menus][download][url] = git://github.com/Discipolo/pushtape_menus.git
+projects[pushtape_menus][download][url] = git://github.com/discipolo/pushtape_menus.git
 projects[pushtape_menus][download][branch] = master
 projects[pushtape_menus][subdir] = pushtape_apps
 
 ;projects[toolbar_megamenu][location] = http://apps.rosenstrauch.com/fserver
 projects[toolbar_megamenu][type] = module
 projects[toolbar_megamenu][download][type] = git
-projects[toolbar_megamenu][download][url] = git://github.com/Discipolo/toolbar_megamenu.git
+projects[toolbar_megamenu][download][url] = git://github.com/discipolo/toolbar_megamenu.git
 projects[toolbar_megamenu][download][branch] = master
 projects[toolbar_megamenu][subdir] = pushtape_apps
 
