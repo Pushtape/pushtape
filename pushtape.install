@@ -89,8 +89,9 @@ function pushtape_configure_site_form() {
 
   $options_selection = array(
     'Front' => 'Additional <strong>blocks</strong> for featuring specific content.',
-    'News' => 'Frontpage <strong>slideshow</strong>.',
-    'Events' => 'Custom <strong>admin menu</strong> designed for site owners.',
+    'News' => 'News <strong>slideshow</strong>.',
+    'Events' => 'Event <strong>Calendar</strong>.',
+    'Menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
     'Player' => '<strong>Blog</strong> functionality.',
     'Connect' => '<strong>Social</strong> logins and links for sharing products via social networks.',
     'Gallery' => '<strong>Zoom & Gallery</strong> mode for products.',
@@ -152,6 +153,9 @@ function pushtape_install_additional_modules() {
     }
     if (!empty($selected_extras['news'])) {
       $modules[] = 'pushtape_news';
+    }
+        if (!empty($selected_extras['menus'])) {
+      $modules[] = 'pushtape_menus';
     }
     if (!empty($selected_extras['events'])) {
       $modules[] = 'pushtape_events';
