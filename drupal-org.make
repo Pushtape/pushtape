@@ -10,39 +10,38 @@ api = 2
 
 
 ; Panopoly - Contrib - Foundation
-
 projects[ctools][version] = 1.1
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
 projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
 projects[ctools][patch][1708438] = http://drupal.org/files/1708438-blur-event.patch
+projects[ctools][patch][1735254] = http://drupal.org/files/1735254-exclude-form-element-autosubmit_with_docs.patch
 
 ;projects[panels][version] = 3.x-dev
 projects[panels][subdir] = contrib
 projects[panels][type] = module
 projects[panels][download][type] = git
-projects[panels][download][revision] = 3f50718
+projects[panels][download][revision] = 0b237c0
 ;projects[panels][download][branch] = 7.x-3.x
-projects[panels][patch][1690124] = http://drupal.org/files/1690124-hide-ipe-toolbal-with-open-modal_2.patch
-projects[panels][patch][1711302] = http://drupal.org/files/1711302-panels_ipe_shorten_add_language_conditional_on_1690124.patch
-projects[panels][patch][1711494] = http://drupal.org/files/1711494-double-ids.patch
 projects[panels][patch][1549660] = http://drupal.org/files/1549660-list-region-style-dont-render-empty-placeholder.patch
-projects[panels][patch][1493130] = http://drupal.org/files/1493130-1.patch
-projects[panels][patch][1549660] = http://drupal.org/files/1549660-allow-region-style-settings_panopoly_2.patch
+projects[panels][patch][1690128] = http://drupal.org/files/1690128-add-panes-to-top-ipe.patch
+projects[panels][patch][1735336] = http://drupal.org/files/1735336-repaint-draghandle-ipe-initial.patch
+projects[panels][patch][1735350] = http://drupal.org/files/1735350-prevent-double-form-id-change-layout.patch
 
-projects[panels_breadcrumbs][version] = 1.6
+;projects[panels_breadcrumbs][version] = 2.x-dev
 projects[panels_breadcrumbs][subdir] = contrib
 projects[panels_breadcrumbs][type] = module
+projects[panels_breadcrumbs][download][type] = git
+projects[panels_breadcrumbs][download][revision] = 531f589
+;projects[panels_breadcrumbs][download][branch] = 7.x-2.x
 
 ;projects[panelizer][version] = 3.x-dev
 projects[panelizer][subdir] = contrib
 projects[panelizer][type] = module
 projects[panelizer][download][type] = git
-projects[panelizer][download][revision] = 186f4bc
+projects[panelizer][download][revision] = f276bfe
 ;projects[panelizer][download][branch] = 7.x-3.x
-projects[panelizer][patch][1675136] = http://drupal.org/files/taxonomy-term-fix-1675136-3.patch
-projects[panelizer][patch][1412022] = http://drupal.org/files/panelizer-duplicates-1412022-10_1.patch
-;projects[panelizer][patch][1555194] = http://drupal.org/files/1555194-panelizer-did-should-not-export.patch
+projects[panelizer][patch][1555194] = http://drupal.org/files/1387634-features-support-panelizer-unified.patch
 
 projects[fieldable_panels_panes][version] = 1.1
 projects[fieldable_panels_panes][subdir] = contrib
@@ -57,9 +56,18 @@ projects[views][version] = 3.3
 projects[views][type] = module
 projects[views][subdir] = contrib
 
-projects[token][version] = 1.1
+projects[token][version] = 1.2
 projects[token][type] = module
 projects[token][subdir] = contrib
+
+
+projects[layout][version] = 1.0-alpha2
+projects[layout][type] = module
+projects[layout][subdir] = contrib
+
+projects[gridbuilder][version] = 1.0-alpha2
+projects[gridbuilder][type] = module
+projects[gridbuilder][subdir] = contrib
 
 ; Panopoly - Contrib - Field UI and Content Types
 projects[tablefield][version] = 2.0
@@ -70,7 +78,7 @@ projects[link][version] = 1.0
 projects[link][type] = module
 projects[link][subdir] = contrib
 
-projects[date][version] = 2.5
+projects[date][version] = 2.6
 projects[date][type] = module
 projects[date][subdir] = contrib
 
@@ -133,7 +141,7 @@ projects[media_vimeo][type] = module
 projects[media_vimeo][subdir] = contrib
 
 ; Panopoly - Contrib - Menus and URLs
-projects[pathauto][version] = 1.1
+projects[pathauto][version] = 1.2
 projects[pathauto][subdir] = contrib
 projects[pathauto][type] = module
 projects[pathauto][patch][936222] = http://drupal.org/files/936222-pathauto-persist.patch
@@ -143,14 +151,15 @@ projects[menu_block][subdir] = contrib
 projects[menu_block][type] = module
 
 ; Panopoly - Contrib - User Experience
+
 projects[wysiwyg][subdir] = contrib
 projects[wysiwyg][type] = module
 ;projects[wysiwyg][version] = 2.x-dev
 projects[wysiwyg][patch][1489096] = http://drupal.org/files/wysiwyg-table-format.patch
-;projects[wysiwyg][patch][356480] = http://drupal.org/files/lazy_wysiwyg-356480-150.patch
+projects[wysiwyg][patch][356480] = http://drupal.org/files/lazy_wysiwyg-356480-150.patch
 projects[wysiwyg][download][type] = git
-;projects[wysiwyg][download][revision] = d17bf11
-projects[wysiwyg][download][branch] = 7.x-2.x
+projects[wysiwyg][download][revision] = d17bf11
+;projects[wysiwyg][download][branch] = 7.x-2.x
 
 projects[wysiwyg_filter][version] = 1.6-rc2
 projects[wysiwyg_filter][subdir] = contrib
@@ -163,41 +172,6 @@ projects[caption_filter][subdir] = contrib
 projects[image_resize_filter][version] = 1.13
 projects[image_resize_filter][type] = module
 projects[image_resize_filter][subdir] = contrib
-
-
-; OPTIONAL ATTRIBUTES
-
-; Here you see the format of an array in a .make file. Text enclosed
-; in brackets are array keys, and each set to the right of the last is
-; a layer deeper in the array. Note that the root array element is
-; not enclosed in brackets:
-; root_element[first_key][next_key] = value
-
-; The projects attribute is where you define the modules/themes that
-; are to be packaged with the profile. The first key is the short name
-; of the project (as seen in the drupal.org/project/{projectshortname}
-; URI). Note that you *must* specify an exact version of a module or
-; theme (one that points to an 'official' release node) -- you cannot
-; use development releases!
-
-; These projects are defined using the short form definition. You can
-; use this form if you only want to declare the version of the project.
-; The version is the value to the right of the core Drupal version in a full
-; version string. For example, if you wanted to specify Views 6.x-2.7,
-; you would use:
-
-projects[features] = 1.0-rc3
-projects[pathauto] = 1.1
-projects[ctools] = 1.0
-projects[token] = 1.1
-projects[views] = 3.3
-projects[media] = 1.1
-projects[pushtape_features] = 1.4
-projects[entityreference] = 1.0-rc3
-projects[references] = 2.0
-
-projects[omega] = 3.1
-
 
 projects[date_popup_authored][version] = 1.1
 projects[date_popup_authored][subdir] = contrib
@@ -236,15 +210,9 @@ projects[backports][type] = module
 projects[backports][subdir] = contrib
 
 ; Panopoly - Contrib - Products
-projects[apps][version] = 1.0-beta6
+projects[apps][version] = 1.0-beta7
 projects[apps][subdir] = contrib
 projects[apps][type] = module
-projects[apps][patch][1479164] = http://drupal.org/files/1479164-apps-permissions-check-modules-not-conf-reroll.patch
-projects[apps][patch][1479536] = http://drupal.org/files/apps-multiple-install-servers-1479536-4.patch
-projects[apps][patch][1480912] = http://drupal.org/files/apps-clean-up-the-cleanup.patch
-projects[apps][patch][1482684] = http://drupal.org/files/apps-single-item-style.patch
-projects[apps][patch][1558280] = http://drupal.org/files/apps-screen-design-css-p0.patch
-projects[apps][patch][1561652] = http://drupal.org/files/apps-allow-drush-site-install.patch
 
 projects[features][version] = 1.0
 projects[features][subdir] = contrib
@@ -261,10 +229,12 @@ projects[uuid][download][type] = git
 projects[uuid][download][revision] = 806c301
 ;projects[uuid][download][branch] = 7.x-1.x
 
-projects[defaultcontent][version] = 1.x-dev
+;projects[defaultcontent][version] = 1.x-dev
 projects[defaultcontent][type] = module
 projects[defaultcontent][subdir] = contrib
-;projects[defaultcontent][patch][1263536] = http://drupal.org/files/base64_encode_files-1263536-1_0.patch
+projects[defaultcontent][download][type] = git
+projects[defaultcontent][download][revision] = d8806d8
+;projects[defaultcontent][download][branch] = 7.x-1.x
 
 projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
@@ -273,6 +243,11 @@ projects[strongarm][subdir] = contrib
 projects[libraries][version] = 2.0
 projects[libraries][type] = module
 projects[libraries][subdir] = contrib
+
+projects[json2][type] = module
+projects[json2][version] = 1.0
+projects[json2][subdir] = contrib
+
 
 ; Panopoly - Contrib - Development
 projects[devel][version] = 1.3
@@ -298,6 +273,7 @@ libraries[SolrPhpClient][download][url] = http://solr-php-client.googlecode.com/
 
 libraries[markitup][download][type] = get
 libraries[markitup][download][url] = https://github.com/markitup/1.x/tarball/master
+libraries[markitup][patch][1715642] = http://drupal.org/files/1715642-adding-html-set-markitup-editor.patch
 
 libraries[jquery.cycle][download][type] = get
 libraries[jquery.cycle][download][url] = https://github.com/malsup/cycle/zipball/master
@@ -305,6 +281,9 @@ libraries[jquery.cycle][download][url] = https://github.com/malsup/cycle/zipball
 libraries[respondjs][download][type] = get
 libraries[respondjs][download][url] = https://github.com/scottjehl/Respond/tarball/master
 
+libraries[json2][download][type] = get
+libraries[json2][download][url] = https://github.com/douglascrockford/JSON-js/blob/master/json2.js
+libraries[json2][revision] = fc535e9cc8fa78bbf45a85835c830e7f799a5084
 ; use this if the issue above is resolved
 ;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 ;include panopoly make instead of being behind ... this leads to https://github.com/Pushtape/pushtape/issues/4
@@ -357,7 +336,16 @@ projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_fr
 projects[pushtape_front][download][branch] = "7.x-1.x-panels"
 projects[pushtape_front][subdir] = pushtape_apps
 
-; Defining a theme is no different.
+
+; Panopoly - Themes
+projects[responsive_bartik][version] = 1.x-dev
+projects[responsive_bartik][type] = theme
+projects[responsive_bartik][download][type] = git
+projects[responsive_bartik][download][revision] = 27cbb75
+projects[responsive_bartik][download][branch] = 7.x-1.x
+
+projects[adaptivetheme][version] = 3.0
+projects[adaptivetheme][type] = theme
 
 projects[omega] = 3.1
 
