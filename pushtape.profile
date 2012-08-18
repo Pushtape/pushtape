@@ -28,6 +28,15 @@ $tasks = array();
     ),
     'required apps' => array(
       'panopoly_core',
+      'panopoly_admin',
+      'panopoly_core',
+      'panopoly_images',
+      'panopoly_magic',
+      'panopoly_pages',
+      'panopoly_theme',
+      'panopoly_widgets',
+      'panopoly_wysiwyg',
+      'panopoly_users',
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $panopoly_server);
