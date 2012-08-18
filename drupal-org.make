@@ -10,7 +10,7 @@ api = 2
 
 
 ; Panopoly - Contrib - Foundation
-projects[ctools][version] = 1.1
+projects[ctools][version] = 1.2
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
 projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
@@ -43,7 +43,7 @@ projects[panelizer][download][revision] = f276bfe
 ;projects[panelizer][download][branch] = 7.x-3.x
 projects[panelizer][patch][1555194] = http://drupal.org/files/1387634-features-support-panelizer-unified.patch
 
-projects[fieldable_panels_panes][version] = 1.1
+projects[fieldable_panels_panes][version] = 1.2
 projects[fieldable_panels_panes][subdir] = contrib
 projects[fieldable_panels_panes][type] = module
 projects[fieldable_panels_panes][patch][1715918] = http://drupal.org/files/fieldable-panel-panes-load-vid.patch
