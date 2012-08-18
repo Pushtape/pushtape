@@ -3,7 +3,7 @@
  * Implements hook_install_tasks()
  */
 function pushtape_install_tasks($install_state) {
-
+$tasks = array();
     if (ini_get('memory_limit') != '-1' && ini_get('memory_limit') <= '196M'){
         ini_set('memory_limit', '196M');
 
