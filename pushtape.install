@@ -91,7 +91,7 @@ function pushtape_configure_site_form() {
     'Front' => 'Additional <strong>blocks</strong> for featuring specific content.',
     'News' => 'News <strong>slideshow</strong>.',
     'Events' => 'Event <strong>Calendar</strong>.',
-    'pushtape_kickstart_menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
+    'Menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
     'Player' => '<strong>Blog</strong> functionality.',
     'Connect' => '<strong>Social</strong> logins and links for sharing products via social networks.',
     'Gallery' => '<strong>Zoom & Gallery</strong> mode for products.',
@@ -143,6 +143,7 @@ function pushtape_install_additional_modules() {
   }
   else {
     $modules = array(
+      'pushtape_front',
       'pushtape_ui',
       'pushtape_discography',
       'pushtape_events',
@@ -151,22 +152,22 @@ function pushtape_install_additional_modules() {
       'pushtape_kickstart_menus',
     );
     $selected_extras = variable_get('pushtape_selected_extras', array());
-    if (!empty($selected_extras['front'])) {
+    if (!empty($selected_extras['Front'])) {
       $modules[] = 'pushtape_front';
     }
-    if (!empty($selected_extras['news'])) {
+    if (!empty($selected_extras['News'])) {
       $modules[] = 'pushtape_news';
     }
-        if (!empty($selected_extras['pushtape_kickstart_menus'])) {
+    if (!empty($selected_extras['Menus'])) {
       $modules[] = 'pushtape_kickstart_menus';
     }
-    if (!empty($selected_extras['events'])) {
+    if (!empty($selected_extras['Events'])) {
       $modules[] = 'pushtape_events';
     }
-    if (!empty($selected_extras['player'])) {
+    if (!empty($selected_extras['Player'])) {
       $modules[] = 'pushtape_events';
     }
-    if (!empty($selected_extras['connect'])) {
+    if (!empty($selected_extras['Connect'])) {
       $modules[] = 'pushtape_connect';
     }
     if (!empty($selected_extras['Gallery'])) {
