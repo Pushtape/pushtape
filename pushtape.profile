@@ -12,31 +12,33 @@ $tasks = array();
   // Summon the power of the Apps module
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
 
-  // Setup the Panopoly Apps install task
+  // Set up the Panopoly Apps install task
   $panopoly_server = array(
     'machine name' => 'panopoly',
     'default apps' => array(
       'panopoly_admin',
       'panopoly_core',
+      'panopoly_demo',
       'panopoly_images',
       'panopoly_magic',
       'panopoly_pages',
+      'panopoly_search',
       'panopoly_theme',
+      'panopoly_users',
       'panopoly_widgets',
       'panopoly_wysiwyg',
-      'panopoly_users',
     ),
     'required apps' => array(
-      'panopoly_core',
       'panopoly_admin',
       'panopoly_core',
       'panopoly_images',
       'panopoly_magic',
       'panopoly_pages',
+      'panopoly_search',
       'panopoly_theme',
+      'panopoly_users',
       'panopoly_widgets',
       'panopoly_wysiwyg',
-      'panopoly_users',
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $panopoly_server);
