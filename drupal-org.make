@@ -284,6 +284,7 @@ libraries[respondjs][download][url] = https://github.com/scottjehl/Respond/tarba
 libraries[json2][download][type] = get
 libraries[json2][download][url] = https://github.com/douglascrockford/JSON-js/blob/master/json2.js
 libraries[json2][revision] = fc535e9cc8fa78bbf45a85835c830e7f799a5084
+
 ; use this if the issue above is resolved
 ;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 ;include panopoly make instead of being behind ... this leads to https://github.com/Pushtape/pushtape/issues/4
@@ -351,11 +352,11 @@ projects[toolbar_megamenu][download][branch] = master
 projects[toolbar_megamenu][subdir] = pushtape_apps
 
 ; Panopoly - Themes
-projects[responsive_bartik][version] = 1.x-dev
+;projects[responsive_bartik][version] = 1.x-dev
 projects[responsive_bartik][type] = theme
 projects[responsive_bartik][download][type] = git
 projects[responsive_bartik][download][revision] = 27cbb75
-projects[responsive_bartik][download][branch] = 7.x-1.x
+;projects[responsive_bartik][download][branch] = 7.x-1.x
 
 projects[adaptivetheme][version] = 3.0
 projects[adaptivetheme][type] = theme
