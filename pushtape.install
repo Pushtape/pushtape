@@ -44,7 +44,7 @@ function pushtape_install_tasks_alter(&$tasks, $install_state) {
   $tasks['install_select_profile']['display'] = FALSE;
   $tasks['install_finished']['function'] = 'pushtape_install_finished';
 
-  _pushtape_set_theme('pushtape_kickstart_theme');
+  _pushtape_set_theme('pushtape_kickstart_admin');
 }
 
 /**
@@ -375,8 +375,8 @@ function pushtape_install() {
   filter_format_save($full_html_format);
 
   // Enable themes and blocks.
-  $default_theme = 'pushtape_theme';
-  $admin_theme = 'pushtape_admin';
+  $default_theme = 'pushtape_kickstart_theme';
+  $admin_theme = 'pushtape_kickstart_admin';
   theme_enable(array($default_theme, $admin_theme));
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
@@ -468,19 +468,6 @@ function pushtape_install() {
       'visibility' => 0,
       'cache' => -1,
     ),
-    // Pushtape checkout progress
-    array(
-      'module' => 'pushtape_checkout_progress',
-      'delta' => 'indication',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => -10,
-      'region' => 'breadcrumb',
-      'pages' => "checkout/*\ncart",
-      'visibility' => BLOCK_VISIBILITY_LISTED,
-      'cache' => -1,
-      'title' => '<none>',
-    ),
   );
 
   drupal_static_reset();
@@ -556,9 +543,9 @@ function pushtape_install() {
   variable_set('mimemail_format', 'full_html');
   // Set checkout progress.
    // Enable themes
-  theme_enable(array('pushtape_kickstart_theme', 'seven', 'pushtape_kickstart_admin_theme'));
-  variable_set('admin_theme', 'pushtape_kickstart_admin_theme');
-  variable_set('theme_default', 'pushtape_kickstart_theme');
+  theme_enable(array('pushtape_kickstart_theme', 'seven', 'pushtape_kickstart_admin'));
+  variable_set('admin_theme', 'pushtape_kickstart_admin');
+  variable_set('theme_default', 'pushtape_kickstart_admin');
   // variable_set('site_frontpage', 'releases');
   // variable_set('clean_url', 1);
   // variable_set('site_footer', 'Built with Pushtape');
