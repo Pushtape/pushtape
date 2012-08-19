@@ -25,8 +25,19 @@ dependencies[] = features
 dependencies[] = pathauto
 dependencies[] = ctools
 ;dependencies[] = token
-dependencies[] = admin
 
+
+
+;Devel
+
+dependencies[] = admin
+dependencies[] = context
+dependencies[] = context_layouts
+dependencies[] = advanced_help
+dependencies[] = coder
+dependencies[] = delta
+dependencies[] = diff
+dependencies[] = omega_tools
 
 ;Install Profile
 dependencies[] = pushtape_ui

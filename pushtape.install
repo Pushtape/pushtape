@@ -89,6 +89,7 @@ function pushtape_configure_site_form() {
 
   $options_selection = array(
     'Front' => 'Additional <strong>blocks</strong> for featuring specific content.',
+    'Guide' => 'Help.',
     'News' => 'News <strong>slideshow</strong>.',
     'Events' => 'Event <strong>Calendar</strong>.',
     'Menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
@@ -138,6 +139,14 @@ function pushtape_install_additional_modules() {
       'pushtape_news_democontent',
       'pushtape_events_democontent',
       'pushtape_discography_democontent',
+      'pushtape_front',
+      'pushtape_ui',
+      'pushtape_discography',
+      'pushtape_events',
+      'pushtape_news',
+      'pushtape_mediaplayer',
+      'pushtape_kickstart_menus',
+      'pushtape_kickstart_help',
 
     );
   }
@@ -150,8 +159,12 @@ function pushtape_install_additional_modules() {
       'pushtape_news',
       'pushtape_mediaplayer',
       'pushtape_kickstart_menus',
+      'pushtape_kickstart_help',
     );
     $selected_extras = variable_get('pushtape_selected_extras', array());
+    if (!empty($selected_extras['Guide'])) {
+      $modules[] = 'pushtape_kickstart_help';
+    }
     if (!empty($selected_extras['Front'])) {
       $modules[] = 'pushtape_front';
     }

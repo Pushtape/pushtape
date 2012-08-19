@@ -59,6 +59,13 @@ projects[simpletest_automator][subdir] = contrib
 ;Pushtape apps
 
 
+;projects[pushtape_help][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_help][type] = module
+projects[pushtape_help][download][type] = git
+projects[pushtape_help][download][url] = git://github.com/Pushtape/pushtape_help.git
+projects[pushtape_help][download][branch] = master
+projects[pushtape_help][subdir] = pushtape_apps
+
 ;projects[pushtape_menus][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_menus][type] = module
 projects[pushtape_menus][download][type] = git
