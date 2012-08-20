@@ -13,9 +13,9 @@ api = 2
 projects[ctools][version] = 1.2
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
-projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
-projects[ctools][patch][1708438] = http://drupal.org/files/1708438-blur-event.patch
-projects[ctools][patch][1735254] = http://drupal.org/files/1735254-exclude-form-element-autosubmit_with_docs.patch
+;projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
+;projects[ctools][patch][1708438] = http://drupal.org/files/1708438-blur-event.patch
+;projects[ctools][patch][1735254] = http://drupal.org/files/1735254-exclude-form-element-autosubmit_with_docs.patch
 
 ;projects[panels][version] = 3.x-dev
 projects[panels][subdir] = contrib
@@ -46,7 +46,7 @@ projects[panelizer][patch][1555194] = http://drupal.org/files/1387634-features-s
 projects[fieldable_panels_panes][version] = 1.2
 projects[fieldable_panels_panes][subdir] = contrib
 projects[fieldable_panels_panes][type] = module
-projects[fieldable_panels_panes][patch][1715918] = http://drupal.org/files/fieldable-panel-panes-load-vid.patch
+;projects[fieldable_panels_panes][patch][1715918] = http://drupal.org/files/fieldable-panel-panes-load-vid.patch
 
 projects[pm_existing_pages][version] = 1.4
 projects[pm_existing_pages][type] = module
