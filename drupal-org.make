@@ -362,12 +362,7 @@ projects[adaptivetheme][version] = 3.0
 projects[adaptivetheme][type] = theme
 
 projects[omega] = 3.1
-
-projects[omega_pushtape][type] = "theme"
-projects[omega_pushtape][download][type] = "git"
-projects[omega_pushtape][download][url] = "http://git.drupal.org/sandbox/discipolo/1474174.git"
-projects[omega_pushtape][download][branch] = "7.x-1.x"
-
+projects[flux] = 1.x-dev
 projects[pushtape_wireframe][type] = "theme"
 projects[pushtape_wireframe][download][type] = "git"
 projects[pushtape_wireframe][download][url] = "http://git.drupal.org/sandbox/gusaus/1547514.git"
