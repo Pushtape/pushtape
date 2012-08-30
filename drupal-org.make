@@ -9,44 +9,31 @@ api = 2
 ; keep up to date manually or via git
 
 
+
 ; Panopoly - Contrib - Foundation
 projects[ctools][version] = 1.2
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
-;projects[ctools][patch][1294478] = http://drupal.org/files/1294478-modal-dynamic-mode.patch
-;projects[ctools][patch][1708438] = http://drupal.org/files/1708438-blur-event.patch
-;projects[ctools][patch][1735254] = http://drupal.org/files/1735254-exclude-form-element-autosubmit_with_docs.patch
+projects[ctools][patch][1294478] = http://drupal.org/files/dynamic-modal-1294478-34.patch
+projects[ctools][patch][1708438] = http://drupal.org/files/1708438-blur-event_0.patch
 
-;projects[panels][version] = 3.x-dev
+projects[panels][version] = 3.3
 projects[panels][subdir] = contrib
 projects[panels][type] = module
-projects[panels][download][type] = git
-projects[panels][download][revision] = 0b237c0
-;projects[panels][download][branch] = 7.x-3.x
-projects[panels][patch][1549660] = http://drupal.org/files/1549660-list-region-style-dont-render-empty-placeholder.patch
-projects[panels][patch][1690128] = http://drupal.org/files/1690128-add-panes-to-top-ipe.patch
-;projects[panels][patch][1735336] = http://drupal.org/files/1735336-repaint-draghandle-ipe-initial.patch
-projects[panels][patch][1735350] = http://drupal.org/files/1735350-prevent-double-form-id-change-layout.patch
+projects[panels][patch][1735336] = http://drupal.org/files/1735336-repaint-draghandle-ipe-initial.patch
 
-;projects[panels_breadcrumbs][version] = 2.x-dev
 projects[panels_breadcrumbs][subdir] = contrib
 projects[panels_breadcrumbs][type] = module
 projects[panels_breadcrumbs][download][type] = git
-projects[panels_breadcrumbs][download][revision] = 531f589
-;projects[panels_breadcrumbs][download][branch] = 7.x-2.x
+projects[panels_breadcrumbs][download][branch] = 7.x-2.x
 
-;projects[panelizer][version] = 3.x-dev
+projects[panelizer][version] = 3.0-rc1
 projects[panelizer][subdir] = contrib
 projects[panelizer][type] = module
-projects[panelizer][download][type] = git
-projects[panelizer][download][revision] = f276bfe
-;projects[panelizer][download][branch] = 7.x-3.x
-projects[panelizer][patch][1555194] = http://drupal.org/files/1387634-features-support-panelizer-unified.patch
 
 projects[fieldable_panels_panes][version] = 1.2
 projects[fieldable_panels_panes][subdir] = contrib
 projects[fieldable_panels_panes][type] = module
-;projects[fieldable_panels_panes][patch][1715918] = http://drupal.org/files/fieldable-panel-panes-load-vid.patch
 
 projects[pm_existing_pages][version] = 1.4
 projects[pm_existing_pages][type] = module
@@ -60,8 +47,7 @@ projects[token][version] = 1.2
 projects[token][type] = module
 projects[token][subdir] = contrib
 
-
-projects[layout][version] = 1.0-alpha2
+projects[layout][version] = 1.0-alpha3
 projects[layout][type] = module
 projects[layout][subdir] = contrib
 
@@ -94,12 +80,11 @@ projects[field_group][version] = 1.1
 projects[field_group][type] = module
 projects[field_group][subdir] = contrib
 
-;projects[file_entity][version] = 2.x-dev
 projects[file_entity][type] = module
 projects[file_entity][subdir] = contrib
 projects[file_entity][download][type] = git
-projects[file_entity][download][revision] = a8986e5
-;projects[file_entity][download][branch] = 7.x-2.x
+projects[file_entity][download][branch] = 7.x-2.x
+projects[file_entity][patch][1553094] = http://drupal.org/files/Alt-and-Title-support-for-Images-1553094-68.patch
 
 projects[entityreference][version] = 1.0-rc3
 projects[entityreference][type] = module
@@ -125,12 +110,11 @@ projects[search_api_db][type] = module
 projects[search_api_db][subdir] = contrib
 
 ; Panopoly - Contrib - Media
-;projects[media][version] = 2.x-dev
 projects[media][type] = module
 projects[media][subdir] = contrib
 projects[media][download][type] = git
-projects[media][download][revision] = 1a0304d
-;projects[media][download][branch] = 7.x-2.x
+projects[media][download][branch] = 7.x-2.x
+projects[media][patch][1307054] = http://drupal.org/files/1307054-d7-2.patch
 
 projects[media_youtube][version] = 1.0-beta3
 projects[media_youtube][type] = module
@@ -151,15 +135,12 @@ projects[menu_block][subdir] = contrib
 projects[menu_block][type] = module
 
 ; Panopoly - Contrib - User Experience
-
 projects[wysiwyg][subdir] = contrib
 projects[wysiwyg][type] = module
-;projects[wysiwyg][version] = 2.x-dev
 projects[wysiwyg][patch][1489096] = http://drupal.org/files/wysiwyg-table-format.patch
-;projects[wysiwyg][patch][356480] = http://drupal.org/files/lazy_wysiwyg-356480-150.patch
+projects[wysiwyg][patch][356480] = http://drupal.org/files/lazy_wysiwyg-356480-150.patch
 projects[wysiwyg][download][type] = git
-projects[wysiwyg][download][revision] = d17bf11
-;projects[wysiwyg][download][branch] = 7.x-2.x
+projects[wysiwyg][download][branch] = 7.x-2.x
 
 projects[wysiwyg_filter][version] = 1.6-rc2
 projects[wysiwyg_filter][subdir] = contrib
@@ -189,12 +170,12 @@ projects[views_bulk_operations][version] = 3.0-rc1
 projects[views_bulk_operations][type] = module
 projects[views_bulk_operations][subdir] = contrib
 
-;projects[views_autocomplete_filters][version] = 1.x-dev
+
 projects[views_autocomplete_filters][subdir] = contrib
 projects[views_autocomplete_filters][type] = module
 projects[views_autocomplete_filters][download][type] = git
-projects[views_autocomplete_filters][download][revision] = 7d85509
-;projects[views_autocomplete_filters][download][branch] = 7.x-1.x
+
+projects[views_autocomplete_filters][download][branch] = 7.x-1.x
 projects[views_autocomplete_filters][patch][1151292] = http://drupal.org/files/views_autocomplete_filters-1151292-10_0.patch
 
 projects[simplified_menu_admin][version] = 1.0-beta2
@@ -209,6 +190,10 @@ projects[backports][version] = 1.0-alpha1
 projects[backports][type] = module
 projects[backports][subdir] = contrib
 
+projects[jquery_update][version] = 2.2
+projects[jquery_update][type] = module
+projects[jquery_update][subdir] = contrib
+
 ; Panopoly - Contrib - Products
 projects[apps][version] = 1.0-beta7
 projects[apps][subdir] = contrib
@@ -222,19 +207,15 @@ projects[entity][version] = 1.0-rc3
 projects[entity][type] = module
 projects[entity][subdir] = contrib
 
-;projects[uuid][version] = 1.x-dev
 projects[uuid][type] = module
 projects[uuid][subdir] = contrib
 projects[uuid][download][type] = git
-projects[uuid][download][revision] = 806c301
-;projects[uuid][download][branch] = 7.x-1.x
+projects[uuid][download][branch] = 7.x-1.x
 
-;projects[defaultcontent][version] = 1.x-dev
 projects[defaultcontent][type] = module
 projects[defaultcontent][subdir] = contrib
 projects[defaultcontent][download][type] = git
-projects[defaultcontent][download][revision] = d8806d8
-;projects[defaultcontent][download][branch] = 7.x-1.x
+projects[defaultcontent][download][branch] = 7.x-1.x
 
 projects[strongarm][version] = 2.0
 projects[strongarm][type] = module
@@ -247,7 +228,6 @@ projects[libraries][subdir] = contrib
 projects[json2][type] = module
 projects[json2][version] = 1.0
 projects[json2][subdir] = contrib
-
 
 ; Panopoly - Contrib - Development
 projects[devel][version] = 1.3
@@ -262,6 +242,15 @@ projects[conditional_styles][type] = module
 projects[respondjs][version] = 1.1
 projects[respondjs][subdir] = contrib
 projects[respondjs][type] = module
+
+; Panopoly - Themes
+projects[responsive_bartik][version] = 1.x-dev
+projects[responsive_bartik][type] = theme
+projects[responsive_bartik][download][type] = git
+projects[responsive_bartik][download][branch] = 7.x-1.x
+
+projects[adaptivetheme][version] = 3.0
+projects[adaptivetheme][type] = theme
 
 ; Libraries
 libraries[tinymce][download][type] = get
