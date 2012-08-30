@@ -15,7 +15,7 @@ projects[examples][version] = 1.x-dev
 projects[examples][subdir] = contrib
 
 projects[context][subdir] = contrib
-projects[context][version] = 7.x-3.x
+;projects[context][version] = 7.x-3.x
 projects[context][download][type] = git
 projects[context][download][url] = http://git.drupal.org/project/context.git
 projects[context][download][revision] = 92d0c33bbe931e99b89f3137fd7eccc7143f337b
@@ -25,7 +25,7 @@ projects[boxes][subdir] = contrib
 projects[boxes][version] = 1.0
 
 projects[context_field][subdir] = contrib
-projects[context_field][version] = 7.x-1.x
+;projects[context_field][version] = 7.x-1.x
 projects[context_field][download][type] = git
 projects[context_field][download][url] = http://git.drupal.org/project/context_field.git
 projects[context_field][download][revision] = 32b86494fb715af627589a075e9c9da7c0f05616
