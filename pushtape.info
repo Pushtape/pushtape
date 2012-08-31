@@ -1,6 +1,7 @@
 name = Pushtape
 description = Music publishing profile.
 core = 7.x; Panopoly - Core
+; Drupal Core
 dependencies[] = menu
 dependencies[] = image
 dependencies[] = list
@@ -15,6 +16,21 @@ dependencies[] = file
 dependencies[] = block
 dependencies[] = dblog
 dependencies[] = update
+
+; Panopoly Foundation
+dependencies[] = panopoly_core
+dependencies[] = panopoly_images
+dependencies[] = panopoly_theme
+dependencies[] = panopoly_magic
+dependencies[] = panopoly_widgets
+dependencies[] = panopoly_admin
+dependencies[] = panopoly_users
+dependencies[] = panopoly_pages
+
+; Panopoly Toolset
+dependencies[] = panopoly_search
+dependencies[] = panopoly_wysiwyg
+
 
 ; Panopoly - Contrib - Foundation 
 dependencies[] = ctools
@@ -44,13 +60,6 @@ dependencies[] = field_group
 dependencies[] = file_entity
 dependencies[] = entityreference
 
-; Panopoly - Contrib - Media
-dependencies[] = media
-dependencies[] = media_internet
-dependencies[] = mediafield
-dependencies[] = media_youtube
-dependencies[] = media_vimeo
-
 ; Panopoly - Contrib - Menus and URLS
 dependencies[] = pathauto
 dependencies[] = menu_block
@@ -69,14 +78,6 @@ dependencies[] = simplified_menu_admin
 ;dependencies[] = references_dialog 
 dependencies[] = backports
 ; dependencies[] = jquery_update
-
-; Panopoly - Contrib - Search 
-dependencies[] = facetapi
-dependencies[] = search_api
-dependencies[] = search_api_solr
-dependencies[] = search_api_facetapi
-dependencies[] = search_api_views
-dependencies[] = search_api_db
 
 ; Panopoly - Contrib - Products
 dependencies[] = apps 
