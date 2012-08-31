@@ -20,6 +20,30 @@ function pushtape_install_tasks(&$install_state) {
   return $tasks;
 }
 
+ /**
+ * Implements hook_appstore_stores_info() (shall we also move this?)
+ */
+function pushtape_apps_servers_info() {
+  $profile = variable_get('install_profile', 'pushtape');
+  $info =  drupal_parse_info_file(drupal_get_path('profile', $profile) . '/' . $profile . '.info');
+  return array(
+    'pushtape' => array(
+      'title' => 'Pushtape',
+      'description' => "Apps for Pushtape",
+      'manifest' => 'http://www.apps.rosenstrauch.com/app/query/pushtape',
+      'profile' => $profile,
+      'profile_version' => isset($info['version']) ? $info['version'] : '7.x-1.x-panels',
+      'server_name' => $_SERVER['SERVER_NAME'],
+      'server_ip' => $_SERVER['SERVER_ADDR'],
+    ),
+    'panopoly' => array(
+      'title' => 'Panopoly',
+      'description' => 'Apps for Panopoly',
+      'manifest' => (empty($info['version']) || $info['version'] == '7.x-1.x-dev') ? 'http://apps.getpantheon.com/panopoly-dev' : 'http://apps.getpantheon.com/panopoly',
+    ),
+  );
+}
+
 /**
  * Implements hook_install_tasks_alter()
  */
