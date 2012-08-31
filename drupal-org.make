@@ -39,7 +39,7 @@ projects[pm_existing_pages][version] = 1.4
 projects[pm_existing_pages][type] = module
 projects[pm_existing_pages][subdir] = contrib
 
-projects[views][version] = 3.3
+projects[views][version] = 3.5
 projects[views][type] = module
 projects[views][subdir] = contrib
 
