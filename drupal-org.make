@@ -9,6 +9,7 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:
 
 ; getting apps anyway (in case theres no appserver or its an aegir install.
 
+projects[caption_filter][subdir] = contrib
 projects[caption_filter][version] = 1.2
 
 ;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
