@@ -6,7 +6,7 @@ function pushtape_install_tasks(&$install_state) {
 
   // Require specific code required for the install profile process
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  //require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
+  require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
 
   // Assemble and return the install tasks
   $tasks = array();
