@@ -60,24 +60,6 @@ dependencies[] = field_group
 dependencies[] = file_entity
 dependencies[] = entityreference
 
-; Panopoly - Contrib - Menus and URLS
-dependencies[] = pathauto
-;dependencies[] = menu_block
-
-; Panopoly - Contrib - User Experience
-dependencies[] = wysiwyg
-dependencies[] = wysiwyg_filter
-dependencies[] = caption_filter
-dependencies[] = image_resize_filter
-dependencies[] = date_popup_authored
-dependencies[] = admin
-dependencies[] = module_filter
-dependencies[] = views_bulk_operations
-dependencies[] = views_autocomplete_filters
-dependencies[] = simplified_menu_admin
-;dependencies[] = references_dialog 
-dependencies[] = backports
-; dependencies[] = jquery_update
 
 ; Panopoly - Contrib - Products
 dependencies[] = apps 
