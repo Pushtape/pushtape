@@ -248,6 +248,5 @@ function pushtape_final_setup(&$install_state) {
 // Allow anonymous and authenticated users to see and search content
 user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
 user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
-user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('search content'));
-user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('search content'));
+
 }
