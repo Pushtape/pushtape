@@ -25,7 +25,7 @@ function pushtape_install_tasks_alter(&$tasks, $install_state) {
   $tasks['install_load_profile']['function'] = 'pushtape_install_load_profile';
 
   // Since we only offer one language, define a callback to set this
-  $tasks['install_select_locale']['function'] = 'pushtape_locale_selection';
+  $tasks['install_select_locale']['function'] = 'pushtape_install_locale_selection';
 }
 
 /**
@@ -80,7 +80,7 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
  * Task handler to set the language to English since that is the only one
  * we have at the moment.
  */
-function pushtape_locale_selection(&$install_state) {
+function pushtape_install_locale_selection(&$install_state) {
   $install_state['parameters']['locale'] = 'en';
 }
 
