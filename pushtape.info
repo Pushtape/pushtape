@@ -26,56 +26,16 @@ dependencies[] = panopoly_widgets
 dependencies[] = panopoly_admin
 dependencies[] = panopoly_users
 dependencies[] = panopoly_pages
-
-; Panopoly Toolset
 dependencies[] = panopoly_search
 dependencies[] = panopoly_wysiwyg
 
-
-; Panopoly - Contrib - Foundation 
-dependencies[] = ctools
-dependencies[] = panels
-dependencies[] = panels_ipe
-dependencies[] = panels_breadcrumbs
-dependencies[] = pm_existing_pages
-dependencies[] = page_manager
-dependencies[] = fieldable_panels_panes
-dependencies[] = panelizer
-dependencies[] = views
-dependencies[] = views_content
-dependencies[] = views_ui
-dependencies[] = token
-; dependencies[] = layout
-; dependencies[] = gridbuilder
-
-; Panopoly - Contrib - Field UI and Content Types
-dependencies[] = tablefield
-dependencies[] = link
-dependencies[] = date
-dependencies[] = date_api
-dependencies[] = date_popup
-dependencies[] = date_views
-dependencies[] = simple_gmap
-dependencies[] = field_group
-dependencies[] = file_entity
-dependencies[] = entityreference
-
-
-; Panopoly - Contrib - Products
+; Panopoly - Contrib
 dependencies[] = apps 
 dependencies[] = features
 dependencies[] = entity
 dependencies[] = defaultcontent
 dependencies[] = strongarm
 dependencies[] = libraries
-dependencies[] = json2
-
-; Panopoly - Contrib - Development
-dependencies[] = devel
-
-; Panopoly - Contrib - Theme
-;dependencies[] = conditional_styles
-dependencies[] = respondjs
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
