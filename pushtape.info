@@ -62,7 +62,7 @@ dependencies[] = entityreference
 
 ; Panopoly - Contrib - Menus and URLS
 dependencies[] = pathauto
-dependencies[] = menu_block
+;dependencies[] = menu_block
 
 ; Panopoly - Contrib - User Experience
 dependencies[] = wysiwyg
