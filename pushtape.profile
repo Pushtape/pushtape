@@ -12,7 +12,7 @@ function pushtape_install_tasks(&$install_state) {
   $tasks = array();
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_discography')));
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_demo')));
-  $tasks = $tasks + pushtape_theme_profile_theme_selection_install_task($install_state);
+  $tasks = $tasks + panopoly_theme_profile_theme_selection_install_task($install_state);
   return $tasks;
 }
 
