@@ -25,7 +25,7 @@ function pushtape_install_tasks_alter(&$tasks, $install_state) {
   $tasks['install_load_profile']['function'] = 'pushtape_install_load_profile';
 
   // Since we only offer one language, define a callback to set this
-  $tasks['install_select_locale']['function'] = 'pushtape_install_locale_selection';
+  $tasks['install_select_locale']['function'] = 'pushtape_locale_selection';
 }
 
 /**
