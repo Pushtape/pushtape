@@ -115,7 +115,7 @@ function pushtape_install() {
   
   // Enable themes
   theme_enable(array('flux', 'seven', 'pushtape_wireframe'));
-  variable_set('admin_theme', 'seven');
+  variable_set('admin_theme', 'flux');
   variable_set('theme_default', 'flux');
   variable_set('site_frontpage', 'discography');
   // variable_set('clean_url', 1);
