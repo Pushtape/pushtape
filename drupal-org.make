@@ -12,6 +12,8 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:
 projects[caption_filter][subdir] = contrib
 projects[caption_filter][version] = 1.2
 
+projects[default_content][subdir] = contrib
+
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
 
