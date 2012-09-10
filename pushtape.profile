@@ -12,7 +12,7 @@ function pushtape_install_tasks(&$install_state) {
 
   // Assemble and return the install tasks
   $tasks = array();
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_demo')));
+  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_core', 'panopoly_images', 'panopoly_theme', 'panopoly_magic', 'panopoly_widgets', 'panopoly_admin', 'panopoly_users', 'panopoly_pages', 'panopoly_search', 'panopoly_wysiwyg')));
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_ui')));
   $tasks = $tasks + panopoly_theme_profile_theme_selection_install_task($install_state);
   return $tasks;
