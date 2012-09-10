@@ -17,6 +17,10 @@ dependencies[] = block
 dependencies[] = dblog
 dependencies[] = update
 
+dependencies[] = pushtape_ui
+dependencies[] = pushtape_discography
+
+
 ; Panopoly Foundation
 dependencies[] = panopoly_core
 dependencies[] = panopoly_images
