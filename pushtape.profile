@@ -13,7 +13,7 @@ function pushtape_install_tasks(&$install_state) {
   // Assemble and return the install tasks
   $tasks = array();
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_core', 'panopoly_images', 'panopoly_theme', 'panopoly_magic', 'panopoly_widgets', 'panopoly_admin', 'panopoly_users', 'panopoly_pages', 'panopoly_search', 'panopoly_wysiwyg')));
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_ui')));
+  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_ui', 'pushtape_discography', 'pushtape_front')));
   $tasks = $tasks + panopoly_theme_profile_theme_selection_install_task($install_state);
   return $tasks;
 }
@@ -43,8 +43,8 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
   // Set reasonable defaults for site configuration form
   $form['site_information']['site_name']['#default_value'] = 'Panopoly Pushtape';
   $form['admin_account']['account']['name']['#default_value'] = 'admin';
-  $form['server_settings']['site_default_country']['#default_value'] = 'AT';
-  $form['server_settings']['date_default_timezone']['#default_value'] = 'America/Los_Angeles'; // West coast, best coast
+  $form['server_settings']['site_default_country']['#default_value'] = '';
+  $form['server_settings']['date_default_timezone']['#default_value'] = '';
 
    // Define a default email address if we can guess a valid one
   if (valid_email_address('admin@' . $_SERVER['HTTP_HOST'])) {
