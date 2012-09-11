@@ -6,15 +6,17 @@
  */
 function pushtape_install_tasks(&$install_state) {
 
-  // Require specific code required for the install profile process
-  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
-
-  // Assemble and return the install tasks
   $tasks = array();
+
+  // Add the pushtape app selection to the installation process
+  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_core', 'panopoly_images', 'panopoly_theme', 'panopoly_magic', 'panopoly_widgets', 'panopoly_admin', 'panopoly_users', 'panopoly_pages', 'panopoly_search', 'panopoly_wysiwyg')));
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_ui', 'pushtape_discography', 'pushtape_front')));
+
+  // Add the panopoly theme selection to the installation process
+  require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
   $tasks = $tasks + panopoly_theme_profile_theme_selection_install_task($install_state);
+
   return $tasks;
 }
 
@@ -23,13 +25,14 @@ function pushtape_install_tasks(&$install_state) {
  */
 function pushtape_install_tasks_alter(&$tasks, $install_state) {
 
-  // Magically go one level deeper in solving years of dependency problems with install profiles
-  $tasks['install_load_profile']['function'] = 'pushtape_install_load_profile';
+  // Magically go one level deeper in solving years of dependency problems
+  require_once(drupal_get_path('module', 'panopoly_core') . '/panopoly_core.profile.inc');
+  $tasks['install_load_profile']['function'] = 'panopoly_core_install_load_profile';
 
   // Since we only offer one language, define a callback to set this
-  $tasks['install_select_locale']['function'] = 'pushtape_install_locale_selection';
+  require_once(drupal_get_path('module', 'panopoly_core') . '/panopoly_core.profile.inc');
+  $tasks['install_select_locale']['function'] = 'panopoly_core_install_locale_selection';
 }
-
 
 /**
  * Implements hook_form_FORM_ID_alter()
@@ -54,7 +57,6 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
 
 }
 
-
 /**
  * Implements hook_form_FORM_ID_alter()
  */
@@ -78,27 +80,3 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
   $form['default_content_fieldset']['#access'] = FALSE;
 }
 
-/**
- * Task handler to set the language to English since that is the only one
- * we have at the moment.
- */
-function pushtape_install_locale_selection(&$install_state) {
-  $install_state['parameters']['locale'] = 'en';
-}
-
-/**
- * Task handler to load our install profile and enhance the dependency information
- */
-function pushtape_install_load_profile(&$install_state) {
-
-  // Loading the install profile normally
-  install_load_profile($install_state);
-
-  // Include any dependencies that we might have missed...
-  foreach($install_state['profile_info']['dependencies'] as $module) {
-    $module_info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
-    if (!empty($module_info['dependencies'])) {
-      $install_state['profile_info']['dependencies'] = array_unique(array_merge($install_state['profile_info']['dependencies'], $module_info['dependencies']));
-    }
-  }
-}
