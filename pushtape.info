@@ -17,10 +17,9 @@ dependencies[] = block
 dependencies[] = dblog
 dependencies[] = update
 
-=======
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_discography
-
+dependencies[] = pushtape_front
 
 ; Panopoly Foundation
 dependencies[] = panopoly_core
@@ -32,7 +31,6 @@ dependencies[] = panopoly_admin
 dependencies[] = panopoly_users
 dependencies[] = panopoly_pages
 
-
 ; Panopoly - Contrib
 dependencies[] = apps 
 dependencies[] = features
@@ -40,7 +38,6 @@ dependencies[] = entity
 dependencies[] = defaultcontent
 dependencies[] = strongarm
 dependencies[] = libraries
-
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
