@@ -6,13 +6,8 @@ api = 2
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:/drupal-org.make
 ;include panopoly make instead of being behind ... this leads to https://github.com/Pushtape/pushtape/issues/4
-projects[panopoly_core][patch][] = http://drupal.org/files/pushtape_core-search-0.patch
+
 ; getting apps anyway (in case theres no appserver or its an aegir install.
-
-projects[caption_filter][subdir] = contrib
-projects[caption_filter][version] = 1.2
-
-projects[defaultcontent][subdir] = contrib
 
 projects[app_manifest][subdir] = contrib
 projects[app_manifest][version] = 1.x-dev
