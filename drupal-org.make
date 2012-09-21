@@ -64,12 +64,12 @@ projects[pushtape_discography][download][url] = "git://github.com/Pushtape/pusht
 projects[pushtape_discography][download][branch] = "7.x-1.x-panels"
 projects[pushtape_discography][subdir] = pushtape_apps
 
-;projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
-;projects[pushtape_mediaplayer][type] = "module"
-;projects[pushtape_mediaplayer][download][type] = "git"
-;projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pushtape_mediaplayer.git"
-;projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
-;projects[pushtape_mediaplayer][subdir] = pushtape_apps
+projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_mediaplayer][type] = "module"
+projects[pushtape_mediaplayer][download][type] = "git"
+projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pushtape_mediaplayer.git"
+projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
+projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
 projects[pushtape_events][type] = "module"
 projects[pushtape_events][download][type] = "git"
