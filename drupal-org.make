@@ -90,18 +90,18 @@ projects[pushtape_front][download][branch] = "7.x-1.x-panels"
 projects[pushtape_front][subdir] = pushtape_apps
 
 ;projects[pushtape_menus][location] = http://apps.rosenstrauch.com/fserver
-projects[pushtape_menus][type] = module
-projects[pushtape_menus][download][type] = git
-projects[pushtape_menus][download][url] = git://github.com/discipolo/pushtape_menus.git
-projects[pushtape_menus][download][branch] = master
-projects[pushtape_menus][subdir] = pushtape_apps
+;projects[pushtape_menus][type] = module
+;projects[pushtape_menus][download][type] = git
+;projects[pushtape_menus][download][url] = git://github.com/discipolo/pushtape_menus.git
+;projects[pushtape_menus][download][branch] = master
+;projects[pushtape_menus][subdir] = pushtape_apps
 
 ;projects[toolbar_megamenu][location] = http://apps.rosenstrauch.com/fserver
-projects[toolbar_megamenu][type] = module
-projects[toolbar_megamenu][download][type] = git
-projects[toolbar_megamenu][download][url] = git://github.com/discipolo/toolbar_megamenu.git
-projects[toolbar_megamenu][download][branch] = master
-projects[toolbar_megamenu][subdir] = pushtape_apps
+;projects[toolbar_megamenu][type] = module
+;projects[toolbar_megamenu][download][type] = git
+;projects[toolbar_megamenu][download][url] = git://github.com/discipolo/toolbar_megamenu.git
+;projects[toolbar_megamenu][download][branch] = master
+;projects[toolbar_megamenu][subdir] = pushtape_apps
 
 ; Panopoly - Themes
 
