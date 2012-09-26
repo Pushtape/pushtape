@@ -52,3 +52,4 @@ projects[pushtape_front][subdir] = pushtape_apps
 ; Panopoly - Themes
 
 projects[flux] = 1.x-dev
+projects[flux][patch][1796048] = http://drupal.org/files/flux-removing_extra_padding-1796048-0.patch
