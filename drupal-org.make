@@ -5,7 +5,6 @@ core = 7.15
 api = 2
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:/drupal-org.make
-;include panopoly make instead of being behind ... this leads to https://github.com/Pushtape/pushtape/issues/4
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
