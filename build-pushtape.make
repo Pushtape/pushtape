@@ -1,7 +1,5 @@
 ;******************************************************************************
-; Run this to get discipolos development version of Pushtape from github:
-; drush make https://raw.github.com/Pushtape/pushtape/7.x-1.x-panels/build-pushtape.make
-; to build alpha 3 run drush make https://github.com/Pushtape/pushtape/blob/0bc7c2bf67c87ba24c16e0bbc68f3f8509c2ac9d/build-pushtape.make
+; Run this to build alpha 4 (built on panopoly beta6)
 ;******************************************************************************
 api = 2
 core = 7.x
@@ -12,4 +10,4 @@ includes[] = https://raw.github.com/Pushtape/pushtape/7.x-1.x-panels/drupal-org-
 projects[pushtape][type] = "profile"
 projects[pushtape][download][type] = "git"
 projects[pushtape][download][url] = "git://github.com/Pushtape/pushtape.git"
-projects[pushtape][download][branch] = "7.x-1.x-panels"
+;projects[pushtape][download][tag] = "panels7.x-1.0-alpha4"
