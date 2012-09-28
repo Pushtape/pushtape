@@ -10,8 +10,9 @@ function pushtape_install_tasks(&$install_state) {
 
   // Add the pushtape app selection to the installation process
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  //$tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_news')));
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_ui', 'pushtape_discography', 'pushtape_front', 'pushtape_mediaplayer')));
+  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_news', 'pushtape_discography', 'pushtape_mediaplayer'))
+
+);
 
   // Add the panopoly theme selection to the installation process
   require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
@@ -68,9 +69,9 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
 
   // Improve style of apps selection form
   if (isset($form['apps_fieldset'])) {
-    $manifest = apps_manifest(apps_servers('pushtape'));
+    $manifest = apps_manifest(apps_servers('pushtape', 'panopoly'));
     foreach ($manifest['apps'] as $name => $app) {
-      if ($name != '#theme') {
+      if ($name != '#news') {
         $form['apps_fieldset']['apps']['#options'][$name] = '<strong>' . $app['name'] . '</strong><p><div class="admin-options"><div class="form-item">' . theme('image', array('path' => $app['logo']['path'], 'height' => '32', 'width' => '32')) . '</div>' . $app['description'] . '</div></p>';
       }
     }
