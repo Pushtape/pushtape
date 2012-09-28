@@ -4,9 +4,7 @@
 core = 7.15
 api = 2
 
-
-
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:/drupal-org.make
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
