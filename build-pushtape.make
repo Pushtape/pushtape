@@ -1,8 +1,3 @@
-;******************************************************************************
-; Run this to get discipolos development version of Pushtape from github:
-; drush make https://raw.github.com/Pushtape/pushtape/7.x-1.x-panels/build-pushtape.make
-; to build alpha 3 run drush make https://github.com/Pushtape/pushtape/blob/0bc7c2bf67c87ba24c16e0bbc68f3f8509c2ac9d/build-pushtape.make
-;******************************************************************************
 api = 2
 core = 7.x
 
