@@ -4,10 +4,22 @@
 core = 7.15
 api = 2
 
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:/drupal-org.make
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
+
+projects[pushtape_menus][type] = "module"
+projects[pushtape_menus][download][type] = "git"
+projects[pushtape_menus][download][url] = "git://github.com/discipolo/pushtape_menus.git"
+projects[pushtape_menus][download][branch] = "master"
+projects[pushtape_menus][subdir] = pushtape_apps
+
+projects[toolbar_megamenu][type] = "module"
+projects[toolbar_megamenu][download][type] = "git"
+projects[toolbar_megamenu][download][url] = "git://github.com/discipolo/toolbar_megamenu.git"
+projects[toolbar_megamenu][download][branch] = "master"
+projects[toolbar_megamenu][subdir] = pushtape_apps
 
 ;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_ui][type] = "module"
