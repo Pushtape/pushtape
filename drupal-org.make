@@ -4,8 +4,12 @@
 core = 7.15
 api = 2
 
+<<<<<<< HEAD
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/ac7662fb36c2600b086ab2792a4f442343ca5774:/drupal-org.make
 ;include panopoly make instead of being behind ... this leads to https://github.com/Pushtape/pushtape/issues/4
+=======
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/HEAD:/drupal-org.make
+>>>>>>> 8c154ba28e14b214faceed9cfc8f0b7fd663d277
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
