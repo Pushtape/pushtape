@@ -58,7 +58,6 @@ projects[pushtape_galleries][subdir] = pushtape_apps
 ;projects[pushtape_front][download][branch] = "7.x-1.x-panels"
 ;projects[pushtape_front][subdir] = pushtape_apps
 
-
 ; Pushtape - Themes
 
 projects[flux] = 1.x-dev
@@ -68,4 +67,3 @@ projects[flux][patch][1796048] = http://drupal.org/files/flux-removing_extra_pad
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
-
