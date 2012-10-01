@@ -54,7 +54,7 @@ projects[pushtape_galleries][subdir] = pushtape_apps
 
 projects[pushtape_front][type] = "module"
 projects[pushtape_front][download][type] = "git"
-projects[pushtape_front][download][url] = "git://github.com/Pushtape/;pushtape_front.git"
+projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_front.git"
 projects[pushtape_front][download][branch] = "7.x-1.x-panels"
 projects[pushtape_front][subdir] = pushtape_apps
 
