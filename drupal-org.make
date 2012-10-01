@@ -6,7 +6,6 @@ api = 2
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 
-
 ; Pushtape
 projects[pushtape_menus][type] = "module"
 projects[pushtape_menus][download][type] = "git"
@@ -69,6 +68,4 @@ projects[flux][patch][1796048] = http://drupal.org/files/flux-removing_extra_pad
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
-
-projects[panelizer][patch][] = http://drupal.org/files/panelizer-duplicates-1412022-18.patch
 
