@@ -6,12 +6,6 @@ api = 2
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 
-; Devtools Overrides and patches
-projects[panelizer][patch][1412022] = http://drupal.org/files/panelizer-duplicates-1412022-18.patch
-
-projects[diff][subdir] = contrib
-projects[diff][version] = 3.0-alpha1
-
 ; Pushtape
 projects[pushtape_menus][type] = "module"
 projects[pushtape_menus][download][type] = "git"
@@ -68,3 +62,8 @@ projects[pushtape_galleries][subdir] = pushtape_apps
 
 projects[flux] = 1.x-dev
 projects[flux][patch][1796048] = http://drupal.org/files/flux-removing_extra_padding-1796048-0.patch
+
+; Devtools Overrides and patches
+
+projects[diff][subdir] = contrib
+projects[diff][version] = 3.0-alpha1
