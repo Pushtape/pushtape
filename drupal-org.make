@@ -137,7 +137,7 @@ projects[pushtape_front][download][url] = git://github.com/Pushtape/pushtape_fro
 projects[pushtape_front][download][branch] = 7.x-1.x-upstream
 projects[pushtape_front][subdir] = pushtape_apps
 
-projects[omega] = 3.1
+projects[omega] = 4.0-alpha1
 
 ;projects[omega_pushtape][location] = http://apps.rosenstrauch.com/fserver
 projects[omega_pushtape][type] = theme
