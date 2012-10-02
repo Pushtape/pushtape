@@ -130,6 +130,12 @@ projects[pushtape_front][subdir] = pushtape_apps
 
 projects[omega] = 4.0-alpha1
 
+projects[logia][type] = module
+projects[logia][download][type] = git
+projects[logia][download][url] = git://github.com/rosenstrauch/logia.git
+projects[logia][download][branch] = 7.x-4.x
+
+
 ;projects[omega_pushtape][location] = http://apps.rosenstrauch.com/fserver
 projects[omega_pushtape][type] = theme
 projects[omega_pushtape][download][type] = git
