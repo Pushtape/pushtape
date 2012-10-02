@@ -2,8 +2,8 @@ api = 2
 core = 7.15
 
 ; Devel Tools
-projects[admin][version] = 2.0-beta3
-projects[admin][subdir] = contrib
+;projects[admin][version] = 2.0-beta3
+;projects[admin][subdir] = contrib
 
 projects[advanced_help][version] = 1.0
 projects[advanced_help][subdir] = contrib
