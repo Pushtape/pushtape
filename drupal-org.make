@@ -15,13 +15,13 @@ projects[examples][version] = 1.x-dev
 projects[examples][subdir] = contrib
 
 projects[context][subdir] = contrib
-projects[context][version] = 7.x-3.x
+projects[context][version] = 3.x-dev
 
 projects[boxes][subdir] = contrib
 projects[boxes][version] = 1.0
 
 projects[context_field][subdir] = contrib
-projects[context_field][version] = 1.x
+projects[context_field][version] = 1.x-dev
 projects[context_field][download][type] = git
 
 projects[views_boxes][subdir] = contrib
