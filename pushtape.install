@@ -152,14 +152,9 @@ function pushtape_install_additional_modules() {
   }
   else {
     $modules = array(
-      'pushtape_front',
       'pushtape_ui',
-      'pushtape_discography',
-      'pushtape_events',
-      'pushtape_news',
-      'pushtape_mediaplayer',
-      'pushtape_kickstart_menus',
-      'pushtape_kickstart_help',
+      'toolbar_megamenu',
+      'pushtape_kickstart_inline_help',
     );
     $selected_extras = variable_get('pushtape_selected_extras', array());
     if (!empty($selected_extras['Guide'])) {
