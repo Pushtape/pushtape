@@ -39,8 +39,11 @@ projects[devel][subdir] = contrib
 projects[coder][version] = 1.x-dev
 projects[coder][subdir] = contrib
 
-projects[omega_tools][version] = 4.x-dev
+projects[omega_tools][type] = module
 projects[omega_tools][subdir] = contrib
+;projects[omega_tools][download][type] = git
+;projects[omega_tools][download][branch] = 4.x-dev
+;projects[omega_tools][download][url] = http://git.drupal.org/project/omega_tools.git
 
 projects[delta][version] = 3.x-dev
 projects[delta][subdir] = contrib
