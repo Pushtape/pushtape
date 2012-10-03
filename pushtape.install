@@ -89,7 +89,7 @@ function pushtape_configure_site_form() {
 
   $options_selection = array(
     'Front' => 'A configurable frontpage view and context including a sticky landingpage block',
-    'Guide' => 'Help. and first steps guiding you through common post installation stuff',
+    'Guide' => 'Help and first steps guiding you through common post installation stuff',
     'News' => 'News <strong>App</strong>. for nisplaying notices on your site',
     'Events' => 'Event <strong>Calendar</strong>. to announce your gigs',
     'Menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
@@ -152,14 +152,9 @@ function pushtape_install_additional_modules() {
   }
   else {
     $modules = array(
-      'pushtape_front',
       'pushtape_ui',
-      'pushtape_discography',
-      'pushtape_events',
-      'pushtape_news',
-      'pushtape_mediaplayer',
-      'pushtape_kickstart_menus',
-      'pushtape_kickstart_help',
+      'toolbar_megamenu',
+      'pushtape_kickstart_inline_help',
     );
     $selected_extras = variable_get('pushtape_selected_extras', array());
     if (!empty($selected_extras['Guide'])) {
@@ -178,7 +173,7 @@ function pushtape_install_additional_modules() {
       $modules[] = 'pushtape_events';
     }
     if (!empty($selected_extras['Player'])) {
-      $modules[] = 'pushtape_events';
+      $modules[] = 'pushtape_mediaplayer';
     }
     if (!empty($selected_extras['Connect'])) {
       $modules[] = 'pushtape_connect';
