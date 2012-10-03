@@ -90,10 +90,10 @@ function pushtape_configure_site_form() {
   $options_selection = array(
     'Front' => 'A configurable frontpage view and context including a sticky landingpage block',
     'Guide' => 'Help and first steps guiding you through common post installation stuff',
-    'News' => 'News <strong>App</strong>. for nisplaying notices on your site',
+    'News' => 'News <strong>App</strong>. for displaying notices on your site',
     'Events' => 'Event <strong>Calendar</strong>. to announce your gigs',
     'Menus' => 'Custom <strong>admin menu</strong> designed for site owners.',
-    'Player' => '<strong>Blog</strong> functionality.',
+    'Player' => '<strong>Player</strong> functionality.',
     'Connect' => '<strong>Social</strong> logins and links for sharing products via social networks.',
     'Gallery' => '<strong>Galleries</strong> for Pictures and Videos.',
   );
