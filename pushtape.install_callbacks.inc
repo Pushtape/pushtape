@@ -66,9 +66,9 @@ function _pushtape_example_user($operation, &$context) {
 
   // Create a sample user.
   $user = array(
-    'name' => 'Sample Customer',
-    'mail' => 'customer@example.com',
-    'pass' => 'customer',
+    'name' => 'Sample Artist',
+    'mail' => 'artist@example.com',
+    'pass' => 'artist',
     'status' => 1,
   );
   $user = user_save(NULL, $user);
