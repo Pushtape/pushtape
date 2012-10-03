@@ -39,10 +39,10 @@ projects[devel][subdir] = contrib
 projects[coder][version] = 1.x-dev
 projects[coder][subdir] = contrib
 
-projects[omega_tools][version] = 3.0-rc4
+projects[omega_tools][version] = 4.x-dev
 projects[omega_tools][subdir] = contrib
 
-projects[delta][version] = 3.0-beta11
+projects[delta][version] = 3.x-dev
 projects[delta][subdir] = contrib
 
 projects[simpletest_automator[version] = 1.x-dev
