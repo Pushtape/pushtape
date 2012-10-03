@@ -176,7 +176,7 @@ function pushtape_install_additional_modules() {
       $modules[] = 'pushtape_mediaplayer';
     }
     if (!empty($selected_extras['Connect'])) {
-      $modules[] = 'pushtape_connect';
+      $modules[] = 'pushtape_mediaplayer';
     }
     if (!empty($selected_extras['Gallery'])) {
       $modules[] = 'pushtape_gallery';
@@ -383,7 +383,7 @@ function pushtape_install() {
   filter_format_save($full_html_format);
 
   // Enable themes and blocks.
-  $default_theme = 'pushtape_kickstart_theme';
+  $default_theme = 'logia';
   $admin_theme = 'pushtape_kickstart_admin';
   theme_enable(array($default_theme, $admin_theme));
   variable_set('theme_default', $default_theme);
