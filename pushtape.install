@@ -382,14 +382,8 @@ function pushtape_install() {
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
 
-  /* Enable themes and blocks.
-  $default_theme = 'logia';
-  $admin_theme = 'pushtape_kickstart_admin';
-  theme_enable(array($default_theme, $admin_theme));
-  variable_set('theme_default', $default_theme);
-  variable_set('admin_theme', $admin_theme);
-  variable_set('node_admin_theme', '1');
 
+  /*and blocks.
   $blocks = array(
     array(
       'module' => 'system',
@@ -550,14 +544,19 @@ function pushtape_install() {
   // Set Mimemail.
   variable_set('mimemail_format', 'full_html');
   // Set checkout progress.
-   // Enable themes
-  theme_enable(array('pushtape_kickstart_theme', 'logia', 'pushtape_kickstart_admin'));
-  variable_set('admin_theme', 'pushtape_kickstart_admin');
-  variable_set('theme_default', 'logia');
+
+    /* Enable themes
+  $default_theme = 'logia';
+  $admin_theme = 'pushtape_kickstart_admin';
+  theme_enable(array($default_theme, $admin_theme));
+  variable_set('theme_default', $default_theme);
+  variable_set('admin_theme', $admin_theme);
+  variable_set('node_admin_theme', '1');
+*/
   // variable_set('site_frontpage', 'releases');
   // variable_set('clean_url', 1);
   // variable_set('site_footer', 'Built with Pushtape');
-  // variable_set('node_admin_theme', '1');
+
 }
 
 

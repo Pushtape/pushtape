@@ -96,16 +96,12 @@ function _pushtape_post_import($operation, &$context) {
  * Configures blocks for the theme during base install (no demo site).
  */
 function _pushtape_setup_omega_theme() {
-  $default_theme = 'pushtape_kickstart_theme';
+  $default_theme = 'logia';
   $admin_theme = 'pushtape_kickstart_admin_theme';
   theme_enable(array($default_theme, $admin_theme));
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   variable_set('node_admin_theme', '1');
-  // Don't show the grid by default.
-  $omega_settings = array(
-    'alpha_debug_grid_active' => FALSE,
-  );
   variable_set('theme_omega_settings', $omega_settings);
 
   $blocks = array(
