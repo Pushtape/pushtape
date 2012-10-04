@@ -29,6 +29,7 @@ dependencies[] = panopoly_widgets
 dependencies[] = panopoly_admin
 dependencies[] = panopoly_users
 dependencies[] = panopoly_pages
+dependencies[] = panopoly_wysiwyg
 
 ; Panopoly - Contrib
 dependencies[] = apps 
