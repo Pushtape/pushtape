@@ -131,7 +131,18 @@ projects[pushtape_front][download][url] = git://github.com/Pushtape/pushtape_fro
 projects[pushtape_front][download][branch] = 7.x-1.x-upstream
 projects[pushtape_front][subdir] = pushtape_apps
 
-projects[omega] = 4.0-alpha1
+
+projects[omega][type] = module
+projects[omega][subdir] = contrib
+projects[omega][download][type] = git
+projects[omega][download][branch] = 4.x-dev
+projects[omega][download][url] = http://git.drupal.org/project/omega.git
+
+projects[omega_tools][type] = module
+projects[omega_tools][subdir] = contrib
+projects[omega_tools][download][type] = git
+projects[omega_tools][download][branch] = 4.x-dev
+projects[omega_tools][download][url] = http://git.drupal.org/project/omega_tools.git
 
 projects[logia][type] = theme
 projects[logia][download][type] = git
