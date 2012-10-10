@@ -46,6 +46,12 @@ projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_e
 projects[pushtape_events][download][branch] = "7.x-1.x-panels"
 projects[pushtape_events][subdir] = pushtape_apps
 
+projects[pushtape_news][type] = "module"
+projects[pushtape_news][download][type] = "git"
+projects[pushtape_news][download][url] = "git://github.com/Pushtape/pushtape_news.git"
+projects[pushtape_news][download][branch] = "7.x-1.x-panels"
+projects[pushtape_news][subdir] = pushtape_apps
+
 projects[pushtape_galleries][type] = "module"
 projects[pushtape_galleries][download][type] = "git"
 projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
