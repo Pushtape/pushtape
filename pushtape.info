@@ -20,6 +20,16 @@ dependencies[] = update
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_discography
 
+; Panopoly Foundation
+dependencies[] = panopoly_core
+dependencies[] = panopoly_images
+dependencies[] = panopoly_theme
+dependencies[] = panopoly_magic
+dependencies[] = panopoly_widgets
+dependencies[] = panopoly_admin
+dependencies[] = panopoly_users
+dependencies[] = panopoly_pages
+
 ; Panopoly - Contrib
 dependencies[] = apps
 dependencies[] = features
