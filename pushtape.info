@@ -46,7 +46,7 @@ dependencies[] = gridbuilder
 dependencies[] = admin_icons
 dependencies[] = layout
 dependencies[] = navbar
-dependencies[] = spark_demo
+;dependencies[] = spark_demo
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
