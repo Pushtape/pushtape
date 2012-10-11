@@ -50,6 +50,13 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
 
   // Set a default name for the dev site and change title's label.
   $form['site_information']['site_name']['#title'] = 'site name';
+
+     // Define a default email address if we can guess a valid one
+  if (valid_email_address('admin@' . $_SERVER['HTTP_HOST'])) {
+ $form['site_information']['site_mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
+ //$form['admin_account']['account']['mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
+ }
+
   $form['site_information']['site_mail']['#title'] = 'site email address';
   $form['site_information']['site_name']['#default_value'] = t('Pushtape Sparked');
 
