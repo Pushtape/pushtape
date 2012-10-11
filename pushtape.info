@@ -48,6 +48,9 @@ dependencies[] = layout
 dependencies[] = navbar
 ;dependencies[] = spark_demo
 
+dependencies[] = features
+dependencies[] = apps
+
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
 
