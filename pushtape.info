@@ -1,33 +1,52 @@
 name = Pushtape
 description = Music publishing profile.
 
-; Drupal Core
-dependencies[] = menu
+
+; The distribution_name property is used in the installer and other places as
+; a label for the software being installed.
+distribution_name = Pushtape
+
+; Required modules (Core)
+; Copy/pasted from standard.info
+dependencies[] = block
+dependencies[] = color
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = help
 dependencies[] = image
 dependencies[] = list
+dependencies[] = menu
 dependencies[] = number
 dependencies[] = options
 dependencies[] = path
-dependencies[] = taxonomy
+dependencies[] = rdf
 dependencies[] = search
-dependencies[] = field
-dependencies[] = field_ui
-dependencies[] = file
-dependencies[] = block
-dependencies[] = dblog
-dependencies[] = update
+dependencies[] = shortcut
+dependencies[] = taxonomy
 
-dependencies[] = pushtape_ui
-dependencies[] = pushtape_discography
-
-
-; Panopoly - Contrib
-dependencies[] = apps
-dependencies[] = features
+; Required modules (Contrib)
 dependencies[] = entity
-dependencies[] = defaultcontent
-dependencies[] = strongarm
+dependencies[] = fape
+dependencies[] = jquery_update
+dependencies[] = json2
 dependencies[] = libraries
+dependencies[] = module_filter
+dependencies[] = page_manager
+dependencies[] = panels
+dependencies[] = panels_ipe
+
+; Required projects (Sparkish)
+dependencies[] = aloha
+dependencies[] = caption
+dependencies[] = edit
+dependencies[] = gridbuilder
+dependencies[] = admin_icons
+dependencies[] = layout
+dependencies[] = navbar
+dependencies[] = spark_demo
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
