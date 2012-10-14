@@ -7,23 +7,12 @@ api = 2
 includes[spark] = http://drupalcode.org/project/spark.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 
 ; Pushtape
-projects[pushtape_menus][type] = "module"
-projects[pushtape_menus][download][type] = "git"
-projects[pushtape_menus][download][url] = "git://github.com/discipolo/pushtape_menus.git"
-projects[pushtape_menus][download][branch] = "master"
-projects[pushtape_menus][subdir] = pushtape_apps
-
-projects[toolbar_megamenu][type] = "module"
-projects[toolbar_megamenu][download][type] = "git"
-projects[toolbar_megamenu][download][url] = "git://github.com/discipolo/toolbar_megamenu.git"
-projects[toolbar_megamenu][download][branch] = "master"
-projects[toolbar_megamenu][subdir] = pushtape_apps
 
 ;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
-projects[pushtape_ui][type] = "module"
-projects[pushtape_ui][download][type] = "git"
-projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
-projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
+;projects[pushtape_ui][type] = "module"
+;projects[pushtape_ui][download][type] = "git"
+;projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
+;projects[pushtape_ui][download][branch] = "7.x-1.x"
 projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
@@ -45,18 +34,6 @@ projects[pushtape_events][download][type] = "git"
 projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_events.git"
 projects[pushtape_events][download][branch] = "7.x-1.x-panels"
 projects[pushtape_events][subdir] = pushtape_apps
-
-projects[pushtape_galleries][type] = "module"
-projects[pushtape_galleries][download][type] = "git"
-projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
-projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
-projects[pushtape_galleries][subdir] = pushtape_apps
-
-;projects[pushtape_front][type] = "module"
-;projects[pushtape_front][download][type] = "git"
-;projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_front.git"
-;projects[pushtape_front][download][branch] = "7.x-1.x-panels"
-;projects[pushtape_front][subdir] = pushtape_apps
 
 ; Pushtape - Themes
 
