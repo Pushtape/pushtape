@@ -5,7 +5,7 @@ core = 7.x
 ;includes[] = https://raw.github.com/Pushtape/pushtape/7.x-1.x-spark/drupal-org-core.make
 includes[] = http://drupalcode.org/project/spark.git/blob_plain/refs/tags/7.x-1.0-alpha6:/drupal-org-core.make
 
-projects[pushtape][type] = "profile"
-projects[pushtape][download][type] = "git"
-projects[pushtape][download][url] = "git://github.com/Pushtape/pushtape.git"
-projects[pushtape][download][tag] = "spark7.x-1.0-alpha1"
+projects[pushtape][type] = profile
+projects[pushtape][download][type] = git
+projects[pushtape][download][url] = git://github.com/Pushtape/pushtape.git
+projects[pushtape][download][tag] = spark7.x-1.0-alpha1
