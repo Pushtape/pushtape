@@ -2,17 +2,14 @@ api = 2
 core = 7.15
 
 ; Devel Tools
-;projects[admin][version] = 2.0-beta3
-;projects[admin][subdir] = contrib
-
 projects[advanced_help][version] = 1.0
 projects[advanced_help][subdir] = contrib
 
 projects[diff][version] = 2.0
 projects[diff][subdir] = contrib
 
-projects[examples][version] = 1.x-dev
-projects[examples][subdir] = contrib
+;projects[examples][version] = 1.x-dev
+;projects[examples][subdir] = contrib
 
 projects[context][subdir] = contrib
 projects[context][version] = 3.x-dev
@@ -39,11 +36,12 @@ projects[devel][subdir] = contrib
 projects[coder][version] = 1.x-dev
 projects[coder][subdir] = contrib
 
+
 projects[omega_tools][type] = module
 projects[omega_tools][subdir] = contrib
-;projects[omega_tools][download][type] = git
-;projects[omega_tools][download][branch] = 4.x-dev
-;projects[omega_tools][download][url] = http://git.drupal.org/project/omega_tools.git
+projects[omega_tools][download][type] = git
+projects[omega_tools][download][branch] =  4.x
+projects[omega_tools][download][url] = http://git.drupal.org/project/omega_tools.git
 
 projects[delta][version] = 3.x-dev
 projects[delta][subdir] = contrib
@@ -131,35 +129,22 @@ projects[pushtape_front][download][url] = git://github.com/Pushtape/pushtape_fro
 projects[pushtape_front][download][branch] = 7.x-1.x-upstream
 projects[pushtape_front][subdir] = pushtape_apps
 
-
 projects[omega][type] = module
 projects[omega][subdir] = contrib
 projects[omega][download][type] = git
-projects[omega][download][branch] =  7.x-4.x
+projects[omega][download][branch] =  4.x
 projects[omega][download][url] = http://git.drupal.org/project/omega.git
-
-projects[omega_tools][type] = module
-projects[omega_tools][subdir] = contrib
-projects[omega_tools][download][type] = git
-projects[omega_tools][download][branch] =  7.x-4.x
-projects[omega_tools][download][url] = http://git.drupal.org/project/omega_tools.git
 
 projects[logia][type] = theme
 projects[logia][download][type] = git
 projects[logia][download][url] = git://github.com/rosenstrauch/logia.git
 projects[logia][download][branch] = 7.x-4.x
 
-;projects[omega_pushtape][location] = http://apps.rosenstrauch.com/fserver
-projects[omega_pushtape][type] = theme
-projects[omega_pushtape][download][type] = git
-projects[omega_pushtape][download][url] = http://git.drupal.org/sandbox/discipolo/1474174.git
-projects[omega_pushtape][download][branch] = 7.x-1.x
-
 ;projects[pushtape_kickstart_theme][location] = http://apps.rosenstrauch.com/fserver
-projects[pushtape_kickstart_theme][type] = theme
-projects[pushtape_kickstart_theme][download][type] = git
-projects[pushtape_kickstart_theme][download][url] = http://git.drupal.org/sandbox/discipolo/1719258.git
-projects[pushtape_kickstart_theme][download][branch] = master
+;projects[pushtape_kickstart_theme][type] = theme
+;projects[pushtape_kickstart_theme][download][type] = git
+;projects[pushtape_kickstart_theme][download][url] = http://git.drupal.org/sandbox/discipolo/1719258.git
+;projects[pushtape_kickstart_theme][download][branch] = master
 
 ;projects[pushtape_kickstart_admin_theme][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_kickstart_admin_theme][type] = theme
