@@ -18,18 +18,12 @@ dependencies[] = file
 dependencies[] = rdf
 
 ;Contrib
-
-;dependencies[] = entity
 dependencies[] = views
 dependencies[] = features
 dependencies[] = pathauto
 dependencies[] = ctools
-;dependencies[] = token
-
-
 
 ;Devel
-
 dependencies[] = context
 dependencies[] = context_layouts
 dependencies[] = advanced_help
