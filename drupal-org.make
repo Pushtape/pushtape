@@ -14,13 +14,13 @@ projects[pushtape_discography][subdir] = pushtape_apps
 projects[pushtape_mediaplayer][type] = module
 projects[pushtape_mediaplayer][download][type] = git
 projects[pushtape_mediaplayer][download][url] = git://github.com/Pushtape/pushtape_mediaplayer.git
-projects[pushtape_mediaplayer][download][tag] = spark7.x-1.0-alpha1
+projects[pushtape_mediaplayer][download][branch] = 7.x-1.x-spark
 projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
 projects[pushtape_events][type] = module
 projects[pushtape_events][download][type] = git
 projects[pushtape_events][download][url] = git://github.com/Pushtape/pushtape_events.git
-projects[pushtape_events][download][tag] = spark7.x-1.0-alpha1
+projects[pushtape_events][download][tag] = 7.x-1.x-spark
 projects[pushtape_events][subdir] = pushtape_apps
 
 ; Pushtape - Themes
@@ -28,7 +28,10 @@ projects[pushtape_events][subdir] = pushtape_apps
 projects[flux] = 1.x-dev
 projects[flux][patch][1796048] = http://drupal.org/files/flux-removing_extra_padding-1796048-0.patch
 
-; Devtools Overrides and patches
+; Dependencies that should be in the features
 
+projects[token][subdir] = contrib
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
+
+ ;Overrides and patches

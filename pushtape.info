@@ -37,6 +37,7 @@ dependencies[] = module_filter
 dependencies[] = page_manager
 dependencies[] = panels
 dependencies[] = panels_ipe
+dependencies[] = token
 
 ; Required projects (Sparkish)
 dependencies[] = aloha
