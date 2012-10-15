@@ -8,4 +8,4 @@ includes[] = http://drupalcode.org/project/spark.git/blob_plain/refs/tags/7.x-1.
 projects[pushtape][type] = "profile"
 projects[pushtape][download][type] = "git"
 projects[pushtape][download][url] = "git://github.com/Pushtape/pushtape.git"
-projects[pushtape][download][tag] = "spark.x-1.0-alpha1"
+projects[pushtape][download][tag] = "spark7.x-1.0-alpha1"
