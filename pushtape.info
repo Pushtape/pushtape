@@ -1,6 +1,6 @@
 name = Pushtape
 description = Music publishing profile.
-
+core = 7.x
 
 ; The distribution_name property is used in the installer and other places as
 ; a label for the software being installed.
@@ -49,8 +49,6 @@ dependencies[] = navbar
 ;dependencies[] = spark_demo
 
 dependencies[] = features
-dependencies[] = apps
-
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
 
