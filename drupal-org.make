@@ -9,19 +9,18 @@ includes[spark] = http://drupalcode.org/project/spark.git/blob_plain/refs/tags/7
 ; Pushtape
 
 projects[pushtape_ui][subdir] = pushtape_apps
-
 projects[pushtape_discography][subdir] = pushtape_apps
 
-projects[pushtape_mediaplayer][type] = "module"
-projects[pushtape_mediaplayer][download][type] = "git"
-projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pushtape_mediaplayer.git"
-projects[pushtape_mediaplayer][download][tag] = "spark7.x-1.0-alpha1"
+projects[pushtape_mediaplayer][type] = module
+projects[pushtape_mediaplayer][download][type] = git
+projects[pushtape_mediaplayer][download][url] = git://github.com/Pushtape/pushtape_mediaplayer.git
+projects[pushtape_mediaplayer][download][tag] = spark7.x-1.0-alpha1
 projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
-projects[pushtape_events][type] = "module"
-projects[pushtape_events][download][type] = "git"
-projects[pushtape_events][download][url] = "git://github.com/Pushtape/pushtape_events.git"
-projects[pushtape_events][download][tag] = "spark7.x-1.0-alpha1"
+projects[pushtape_events][type] = module
+projects[pushtape_events][download][type] = git
+projects[pushtape_events][download][url] = git://github.com/Pushtape/pushtape_events.git
+projects[pushtape_events][download][tag] = spark7.x-1.0-alpha1
 projects[pushtape_events][subdir] = pushtape_apps
 
 ; Pushtape - Themes
