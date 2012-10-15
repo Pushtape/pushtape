@@ -43,7 +43,3 @@ projects[flux][patch][1796048] = http://drupal.org/files/flux-removing_extra_pad
 
 projects[diff][subdir] = contrib
 projects[diff][version] = 3.0-alpha1
-
-projects[apps][version] = 1.0-beta7
-projects[apps][type] = module
-projects[apps][subdir] = contrib
