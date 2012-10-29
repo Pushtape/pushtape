@@ -55,7 +55,7 @@ projects[pushtape_news][subdir] = pushtape_apps
 projects[pushtape_galleries][type] = "module"
 projects[pushtape_galleries][download][type] = "git"
 projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
-projects[pushtape_galleries][download][branch] = "7.x-1.x-spark"
+projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
 projects[pushtape_galleries][subdir] = pushtape_apps
 
 projects[pushtape_front][type] = "module"
