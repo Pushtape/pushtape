@@ -1,10 +1,10 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.15
+core = 7.16
 api = 2
 
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob/5b1b8f283e8526fd97caa2d536fd93080305828b:/drupal-org.make
+includes[panopoly] = drupal-org.make
 
 ; Pushtape
 projects[pushtape_menus][type] = "module"
