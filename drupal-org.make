@@ -4,7 +4,6 @@
 core = 7.15
 api = 2
 
-;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob/5b1b8f283e8526fd97caa2d536fd93080305828b:/drupal-org.make
 
 ; Pushtape
