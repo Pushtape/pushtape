@@ -4,7 +4,7 @@
 core = 7.16
 api = 2
 
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc1:/drupal-org.make
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc2:/drupal-org.make
 
 ; Pushtape
 projects[pushtape_menus][type] = "module"
