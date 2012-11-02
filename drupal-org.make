@@ -13,12 +13,6 @@ projects[pushtape_menus][download][url] = "git://github.com/discipolo/pushtape_m
 projects[pushtape_menus][download][branch] = "master"
 projects[pushtape_menus][subdir] = pushtape_apps
 
-projects[toolbar_megamenu][type] = "module"
-projects[toolbar_megamenu][download][type] = "git"
-projects[toolbar_megamenu][download][url] = "git://github.com/discipolo/toolbar_megamenu.git"
-projects[toolbar_megamenu][download][branch] = "master"
-projects[toolbar_megamenu][subdir] = pushtape_apps
-
 ;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
