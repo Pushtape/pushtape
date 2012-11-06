@@ -10,7 +10,7 @@ function pushtape_install_tasks(&$install_state) {
 
   // Add the pushtape app selection to the installation process
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer'))
+  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer', 'pushtape_front'))
 
 );
 
