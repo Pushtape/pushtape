@@ -10,15 +10,16 @@ dependencies[] = options
 dependencies[] = path
 dependencies[] = taxonomy
 dependencies[] = search
+dependencies[] = shortcut
 dependencies[] = field
 dependencies[] = field_ui
 dependencies[] = file
-dependencies[] = block
 dependencies[] = dblog
 dependencies[] = update
 
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_discography
+dependencies[] = pushtape_front
 
 ; Panopoly Foundation
 dependencies[] = panopoly_core
@@ -28,16 +29,16 @@ dependencies[] = panopoly_magic
 dependencies[] = panopoly_widgets
 dependencies[] = panopoly_admin
 dependencies[] = panopoly_users
+
+; Panopoly Toolset
 dependencies[] = panopoly_pages
+dependencies[] = panopoly_search
 dependencies[] = panopoly_wysiwyg
 
-; Panopoly - Contrib
-dependencies[] = apps
-dependencies[] = features
-dependencies[] = entity
-dependencies[] = defaultcontent
-dependencies[] = strongarm
-dependencies[] = libraries
+; Panopoly Recommended
+dependencies[] = navbar
+dependencies[] = devel
+dependencies[] = uuid
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
