@@ -114,7 +114,7 @@ function pushtape_install() {
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
   
   // Enable themes
-  theme_enable(array('flux', 'seven', 'pushtape_wireframe'));
+  theme_enable(array('flux'));
   variable_set('admin_theme', 'flux');
   variable_set('theme_default', 'flux');
   variable_set('site_frontpage', 'front');
