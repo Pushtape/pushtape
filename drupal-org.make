@@ -22,7 +22,7 @@ projects[pushtape_discography][download][url] = "git://github.com/Pushtape/pusht
 projects[pushtape_discography][download][branch] = "7.x-1.x-panels"
 projects[pushtape_discography][subdir] = pushtape_apps
 
-projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
+;projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_mediaplayer][type] = "module"
 projects[pushtape_mediaplayer][download][type] = "git"
 projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pushtape_mediaplayer.git"
@@ -41,11 +41,11 @@ projects[pushtape_news][download][url] = "git://github.com/Pushtape/pushtape_new
 projects[pushtape_news][download][branch] = "7.x-1.x-panels"
 projects[pushtape_news][subdir] = pushtape_apps
 
-projects[pushtape_galleries][type] = "module"
-projects[pushtape_galleries][download][type] = "git"
-projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
-projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
-projects[pushtape_galleries][subdir] = pushtape_apps
+;projects[pushtape_galleries][type] = "module"
+;projects[pushtape_galleries][download][type] = "git"
+;projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
+;projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
+;projects[pushtape_galleries][subdir] = pushtape_apps
 
 projects[pushtape_front][type] = "module"
 projects[pushtape_front][download][type] = "git"
