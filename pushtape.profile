@@ -4,6 +4,7 @@
 /**
  * Implements hook_install_tasks()
  */
+
 function pushtape_install_tasks(&$install_state) {
 
   $tasks = array();
@@ -79,5 +80,14 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
 
   // Remove the demo content selection option since this is handled through the pushtape demo module.
   $form['default_content_fieldset']['#access'] = FALSE;
+}
+
+/**
+ *  Implement a hook_FORMID_form_alter()
+ * Override panopoly theme form https://github.com/Pushtape/pushtape/issues/12
+ */
+
+function pushtape_form_panopoly_theme_selection_form_alter(&$form, &$form_state, $form_id) {
+  $form['theme_wrapper']['theme']['#default_value'] => 'responsive_bartik'
 }
 
