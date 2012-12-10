@@ -10,7 +10,7 @@ function pushtape_install_tasks(&$install_state) {
 
   // Add the pushtape app selection to the installation process
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer'))
+  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer', 'pushtape_front'))
 
 );
 
@@ -45,7 +45,7 @@ function pushtape_form_install_configure_form_alter(&$form, $form_state) {
   drupal_get_messages('warning');
 
   // Set reasonable defaults for site configuration form
-  $form['site_information']['site_name']['#default_value'] = 'Panopoly Pushtape';
+  $form['site_information']['site_name']['#default_value'] = 'Pushtape';
   $form['admin_account']['account']['name']['#default_value'] = 'admin';
   $form['server_settings']['site_default_country']['#default_value'] = '';
   $form['server_settings']['date_default_timezone']['#default_value'] = '';
