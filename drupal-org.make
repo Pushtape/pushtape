@@ -8,6 +8,13 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/
 
 ; Pushtape
 
+;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
+projects[pushtape_ui][type] = "module"
+projects[pushtape_ui][download][type] = "git"
+projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
+projects[pushtape_ui][download][tag] = "7.x-1.0-alpha5"
+projects[pushtape_ui][subdir] = pushtape_apps
+
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
 ;projects[pushtape_discography][type] = "module"
 ;projects[pushtape_discography][download][type] = "git"
@@ -45,13 +52,6 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/
 ;projects[pushtape_photos][download][url] = "git://github.com/Pushtape/pushtape_photos.git"
 ;projects[pushtape_photos][download][branch] = "7.x-1.x-panels"
 ;projects[pushtape_photos][subdir] = pushtape_apps
-
-;projects[pushtape_ui][location] = http://apps.rosenstrauch.com/fserver
-projects[pushtape_ui][type] = "module"
-projects[pushtape_ui][download][type] = "git"
-projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
-projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
-projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_video][type] = "module"
 ;projects[pushtape_video][download][type] = "git"
