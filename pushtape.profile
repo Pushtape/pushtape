@@ -4,13 +4,14 @@
 /**
  * Implements hook_install_tasks()
  */
+
 function pushtape_install_tasks(&$install_state) {
 
   $tasks = array();
 
   // Add the pushtape app selection to the installation process
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer', 'pushtape_front'))
+  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer', 'pushtape_front'))
 
 );
 
@@ -71,13 +72,20 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
   if (isset($form['apps_fieldset'])) {
     $manifest = apps_manifest(apps_servers('pushtape', 'panopoly'));
     foreach ($manifest['apps'] as $name => $app) {
-      if ($name != '#news') {
         $form['apps_fieldset']['apps']['#options'][$name] = '<strong>' . $app['name'] . '</strong><p><div class="admin-options"><div class="form-item">' . theme('image', array('path' => $app['logo']['path'], 'height' => '32', 'width' => '32')) . '</div>' . $app['description'] . '</div></p>';
-      }
     }
   }
 
   // Remove the demo content selection option since this is handled through the pushtape demo module.
   $form['default_content_fieldset']['#access'] = FALSE;
+}
+
+/**
+ *  Implement a hook_FORMID_form_alter()
+ * Override panopoly theme form https://github.com/Pushtape/pushtape/issues/12
+ */
+
+function pushtape_form_panopoly_theme_selection_form_alter(&$form, &$form_state, $form_id) {
+  $form['theme_wrapper']['theme']['#default_value'] => 'responsive_bartik'
 }
 
