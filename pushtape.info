@@ -20,7 +20,7 @@ dependencies[] = update
 ;dependencies[] = pushtape_discography
 ;dependencies[] = pushtape_front
 ;dependencies[] = pushtape_mediaplayer
-;dependencies[] = pushtape_ui
+dependencies[] = pushtape_ui
 
 ; Panopoly Foundation
 dependencies[] = panopoly_core
