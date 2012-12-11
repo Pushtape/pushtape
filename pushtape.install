@@ -114,8 +114,7 @@ function pushtape_install() {
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
   
   // Enable themes
-  // enabling our default theme https://github.com/Pushtape/pushtape/issues/12 --> http://drupal.org/node/1854542
-  system_rebuild_theme_data();
+
   theme_enable(array('flux'));
   variable_set('admin_theme', 'flux');
   variable_set('theme_default', 'flux');
