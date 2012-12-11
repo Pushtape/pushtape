@@ -12,7 +12,7 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
 projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
-projects[pushtape_ui][download][tag] = "7.x-1.0-alpha5"
+projects[pushtape_ui][download][tag] = "panels7.x-1.0-alpha5"
 projects[pushtape_ui][subdir] = pushtape_apps
 
 ;projects[pushtape_discography][location] = http://apps.rosenstrauch.com/fserver
