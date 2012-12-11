@@ -2,7 +2,7 @@ api = 2
 core = 7.x
 
 ;Include the definition for how to build Drupal core directly, including patches:
-includes[] = https://github.com/Pushtape/pushtape/blob/a7e4b2b6bc577c648fe817f86afbb2c06bbda478/drupal-org-core.make
+includes[] = https://raw.github.com/Pushtape/pushtape/a7e4b2b6bc577c648fe817f86afbb2c06bbda478/drupal-org-core.make
 
 projects[pushtape][type] = "profile"
 projects[pushtape][download][type] = "git"
