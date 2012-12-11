@@ -1,5 +1,6 @@
 api = 2
 core = 7.x
 
-;use same core as panopoly
-includes[] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org-core.make
+; Drupal Core (use same core as panopoly 7.x-1.0-rc3)
+projects[drupal][type] = core
+projects[drupal][version] = 7.17
