@@ -9,6 +9,10 @@ projects[apps][type] = "module"
 projects[apps][version] = 1.x-dev
 projects[apps][subdir] = contrib
 
+projects[app_manifest][type] = "module"
+projects[app_manifest][version] = 1.0-alpha2
+projects[app_manifest][subdir] = contrib
+
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make
 
 ; Pushtape
