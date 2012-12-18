@@ -29,6 +29,7 @@ projects[pushtape_front][download][type] = "git"
 projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_front.git"
 projects[pushtape_front][download][tag] = "panels7.x-1.0-alpha6"
 projects[pushtape_front][subdir] = pushtape_apps
+
 ; Pushtape - Themes
 
 projects[flux] = 1.x-dev
