@@ -18,7 +18,7 @@ dependencies[] = dblog
 dependencies[] = update
 
 ;dependencies[] = pushtape_discography
-dependencies[] = pushtape_front
+;dependencies[] = pushtape_front
 ;dependencies[] = pushtape_mediaplayer
 dependencies[] = pushtape_ui
 
