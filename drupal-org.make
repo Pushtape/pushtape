@@ -8,7 +8,7 @@
 
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work
-core = 7.15
+core = 7.18
 api = 2
 
 ; OPTIONAL ATTRIBUTES
@@ -32,21 +32,40 @@ api = 2
 ; version string. For example, if you wanted to specify Views 6.x-2.7,
 ; you would use:
 
+;Contrib
 projects[features] = 1.0
 projects[pathauto] = 1.2
+projects[entityreference] = 1.0
+projects[entity] = 1.0-rc3
 projects[ctools] = 1.2
 projects[token] = 1.4
 projects[views] = 3.5
-projects[media] = 1.2
+;Events
+projects[date] = 2.6
+projects[link] = 1.0
+;Photos
+projects[colorbox] = 2.0
+projects[libraries] = 2.0
+
+;Distribution
 projects[pushtape_ui] = 1.x-dev
 projects[pushtape_discography] = 1.x-dev
-projects[entityreference] = 1.0-rc5
-projects[entity] = 1.0-rc3
-projects[link] = 1.0
-projects[pushtape_discography] = 1.x-dev
+projects[pushtape_admin] = 1.x-dev
+projects[pushtape_news] = 1.x-dev
+projects[pushtape_events] = 1.x-dev
+projects[pushtape_photos] = 1.x-dev
+
+;Theme
 projects[flux] = 1.x-dev
 
-;projects[omega] = 3.1
+; To include a code library external to the Drupal project, such as
+; jQuery UI or TinyMCE, you can include them using the 'libraries'
+; attribute, specifying at least the download 'type' and 'url'.
+; Note that any referenced third-party libraries *must* be listed at
+; http://drupal.org/packaging-whitelist
+libraries[colorbox][download][type] = get
+libraries[colorbox][download][url] = http://jacklmoore.com/colorbox/colorbox.zip
+libraries[colorbox][destination] = libraries
 
 ;@todo - Move this to the libraries directory
 ;library[profiler] = 2.0-beta1
