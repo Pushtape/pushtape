@@ -49,7 +49,16 @@ projects[libraries] = 2.0
 
 ;Distribution
 projects[pushtape_ui] = 1.x-dev
-projects[pushtape_discography] = 1.x-dev
+
+;projects[pushtape_discography] = 1.x-dev
+
+projects[pushtape_discography][type] = "module"
+projects[pushtape_discography][download][type] = "git"
+projects[pushtape_discography][download][url] = "git://github.com/discipolo/pushtape_discography.git"
+projects[pushtape_discography][download][branch] = "7.x-1.x"
+projects[pushtape_discography][subdir] = pushtape_apps
+
+
 projects[pushtape_admin] = 1.x-dev
 projects[pushtape_news] = 1.x-dev
 projects[pushtape_events] = 1.x-dev
