@@ -6,6 +6,69 @@ api = 2
 
 includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make
 
+;Contrib
+projects[calendar][version] = 3.4
+projects[calendar][subdir] = contrib
+
+projects[colorbox][version] = 2.3
+projects[colorbox][subdir] = contrib
+
+projects[entity_view_mode][version] = 1.0-beta3
+projects[entity_view_mode][subdir] = contrib
+
+projects[eva][version] = 1.2
+projects[eva][subdir] = contrib
+
+projects[flexslider][version] = 1.0-rc3
+projects[flexslider][subdir] = contrib
+
+projects[html5_media][version] = 1.1
+projects[html5_media][subdir] = contrib
+
+projects[media_colorbox][version] = 1.0-rc3
+projects[media_colorbox][subdir] = contrib
+
+projects[media_soundcloud][version] = 1.x-dev
+projects[media_soundcloud][subdir] = contrib
+
+projects[mediafront][version] = 2.x-dev
+projects[mediafront][subdir] = contrib
+
+projects[multiform][version] = 1.0
+projects[multiform][subdir] = contrib
+
+projects[plupload][subdir] = 1.1
+projects[plupload][subdir] = contrib
+
+projects[soundmanager2][version] = 2.x-dev
+projects[soundmanager2][subdir] = contrib
+
+projects[views_slideshow][version] = 3.0
+projects[views_slideshow][subdir] = contrib
+
+libraries[colorbox][download][type] = get
+libraries[colorbox][download][url] = "http://www.jacklmoore.com/colorbox/colorbox.zip"
+libraries[colorbox][directory_name] = colorbox
+libraries[colorbox][type] = library
+
+libraries[flexslider][download][type] = get
+libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/archive/master.zip"
+libraries[flexslider][directory_name] = flexslider
+libraries[flexslider][type] = library
+
+libraries[soundmanager2][download][type] = get
+libraries[soundmanager2][download][url] = "http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20120624.zip"
+libraries[soundmanager2][directory_name] = soundmanager2
+libraries[soundmanager2][type] = library
+
+libraries[jquery.cycle][download][type] = get
+libraries[jquery.cycle][download][url] = "http://malsup.github.com/jquery.cycle.all.js"
+libraries[jquery.cycle][directory_name] = jquery.cycle
+libraries[jquery.cycle][type] = library
+
+libraries[plupload][download][type] = get
+libraries[plupload][download][url] = https://github.com/downloads/moxiecode/plupload/plupload_1_5_4.zip
+
 ; Pushtape
 
 projects[pushtape_admin][type] = "module"
@@ -51,11 +114,23 @@ projects[pushtape_news][download][url] = "git://github.com/gusaus/pushtape_news.
 projects[pushtape_news][download][branch] = "7.x-1.x-panels"
 projects[pushtape_news][subdir] = pushtape_apps
 
+projects[pushtape_newsletter][type] = "module"
+projects[pushtape_newsletter][download][type] = "git"
+projects[pushtape_newsletter][download][url] = "git://github.com/gusaus/pushtape_newsletter.git"
+projects[pushtape_newsletter][download][branch] = "7.x-1.x-panels"
+projects[pushtape_newsletter][subdir] = pushtape_apps
+
 projects[pushtape_photos][type] = "module"
 projects[pushtape_photos][download][type] = "git"
 projects[pushtape_photos][download][url] = "git://github.com/gusaus/pushtape_photos.git"
 projects[pushtape_photos][download][branch] = "7.x-1.x-panels"
 projects[pushtape_photos][subdir] = pushtape_apps
+
+projects[pushtape_social][type] = "module"
+projects[pushtape_social][download][type] = "git"
+projects[pushtape_social][download][url] = "git://github.com/gusaus/pushtape_social.git"
+projects[pushtape_social][download][branch] = "7.x-1.x-panels"
+projects[pushtape_social][subdir] = pushtape_apps
 
 projects[pushtape_video][type] = "module"
 projects[pushtape_video][download][type] = "git"
