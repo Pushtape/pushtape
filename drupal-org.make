@@ -49,18 +49,49 @@ projects[libraries] = 2.0
 ;Audio
 projects[soundmanager2] = 2.0-beta1
 
-
 ;Distribution
-projects[pushtape_ui] = 1.x-dev
-projects[pushtape_discography] = 1.x-dev
-projects[pushtape_admin] = 1.x-dev
-projects[pushtape_news] = 1.x-dev
-projects[pushtape_events] = 1.x-dev
-projects[pushtape_photos] = 1.x-dev
-projects[pushtape_audio] = 1.x-dev
 
-;Theme
-projects[flux] = 1.x-dev
+projects[pushtape_ui][type] = module
+projects[pushtape_ui][download][type] = git
+projects[pushtape_ui][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_ui][download][branch] = 7.x1.x
+
+projects[pushtape_discography][type] = module
+projects[pushtape_discography][download][type] = git
+projects[pushtape_discography][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_discography][download][branch] = 7.x1.x
+
+projects[pushtape_admin][type] = module
+projects[pushtape_admin][download][type] = git
+projects[pushtape_admin][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_admin][download][branch] = 7.x1.x
+
+projects[pushtape_news][type] = module
+projects[pushtape_news][download][type] = git
+projects[pushtape_news][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_news][download][branch] = 7.x1.x
+
+projects[pushtape_events][type] = module
+projects[pushtape_events][download][type] = git
+projects[pushtape_events][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_events][download][branch] = 7.x1.x
+
+projects[pushtape_photos][type] = module
+projects[pushtape_photos][download][type] = git
+projects[pushtape_photos][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_photos][download][branch] = 7.x1.x
+
+projects[pushtape_audio][type] = module
+projects[pushtape_audio][download][type] = git
+projects[pushtape_audio][download][url] = http://git.drupal.org/project/pushtape.git
+projects[pushtape_audio][download][branch] = 7.x1.x
+ 
+ ;Theme
+projects[flux] = 1.0alpha2
+projects[flux][type] = module
+projects[flux][download][type] = git
+projects[flux][download][url] = http://git.drupal.org/project/pushtape.git
+projects[flux][download][branch] = 7.x1.x
 
 ; To include a code library external to the Drupal project, such as
 ; jQuery UI or TinyMCE, you can include them using the 'libraries'
@@ -75,21 +106,33 @@ libraries[soundmanager2][download][url] = https://github.com/scottschiller/Sound
 libraries[soundmanager2][destination] = libraries
 
 
-;@todo - Move this to the libraries directory
-;library[profiler] = 2.0-beta1
+;Devtools
+projects[backup_migrate][version] = "2.4"
+projects[delta][version] = "3.0-beta11"
+projects[omega_tools][version] = "4.x-dev"
 
-; For pre-releases, like Image 6.x-1.0-beta3, use this format:
-;projects[image] = 1.0-beta3
+;projects[omega_ui][type] = profile
+;projects[omega_ui][download][type] = git
+;projects[omega_ui][download][url] = http://git.drupal.org/project/omega_ui.git
+;projects[omega_ui][download][branch] = master
 
+; Experiments
 
-; To define more attributes for a specific project than just the version,
-; create another layer of array keys. In the example below, both the
-; projects will be placed in a subdirectory of the modules folder.
-; Note that if the long form is used, the version key must be defined
-; for the project!
-; projects[cck][version] = 2.6
-; projects[cck][subdir] = cck_related_modules
-; projects[filefield][version] = 3.2
-; projects[filefield][subdir] = cck_related_modules
+projects[dynamic_background][version] = "2.x-dev"
+;More stuff
+projects[omega][version] = "4.0-alpha7"
 
-; Defining a theme is no different.
+projects[logia][type] = theme
+projects[logia][download][type] = git
+projects[logia][download][url] = https://github.com/rosenstrauch/logia.git
+projects[logia][download][branch] = 7.x-4.x
+
+; Patches
+
+projects[flux][patch][1885682] = http://drupal.org/files/flux-contextual_links-1885682-13.patch
+
+projects[pushtape_discography][patch][1887644] = http://drupal.org/files/pushtape_discography_artistpic.patch
+
+;projects[pushtape_discography][patch][1738528] = http://drupal.org/files/pushtape_discography-1738528-20.patch
+
+projects[pushtape_photos][patch][1912582] = http://drupal.org/files/pushtape_photos-references-0.patch
