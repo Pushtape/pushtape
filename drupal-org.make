@@ -51,40 +51,43 @@ projects[soundmanager2] = 2.0-beta1
 
 ;Distribution
 
+
+;Distribution
+
 projects[pushtape_ui][type] = module
 projects[pushtape_ui][download][type] = git
-projects[pushtape_ui][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_ui][download][branch] = 7.x1.x
+projects[pushtape_ui][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_ui][download][branch] = 7.x-1.x
 
 projects[pushtape_discography][type] = module
 projects[pushtape_discography][download][type] = git
-projects[pushtape_discography][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_discography][download][branch] = 7.x1.x
+projects[pushtape_discography][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_discography][download][branch] = 7.x-1.x
 
 projects[pushtape_admin][type] = module
 projects[pushtape_admin][download][type] = git
-projects[pushtape_admin][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_admin][download][branch] = 7.x1.x
+projects[pushtape_admin][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_admin][download][branch] = 7.x-1.x
 
 projects[pushtape_news][type] = module
 projects[pushtape_news][download][type] = git
-projects[pushtape_news][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_news][download][branch] = 7.x1.x
+projects[pushtape_news][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_news][download][branch] = 7.x-1.x
 
 projects[pushtape_events][type] = module
 projects[pushtape_events][download][type] = git
-projects[pushtape_events][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_events][download][branch] = 7.x1.x
+projects[pushtape_events][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_events][download][branch] = 7.x-1.x
 
 projects[pushtape_photos][type] = module
 projects[pushtape_photos][download][type] = git
-projects[pushtape_photos][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_photos][download][branch] = 7.x1.x
+projects[pushtape_photos][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_photos][download][branch] = 7.x-1.x
 
 projects[pushtape_audio][type] = module
 projects[pushtape_audio][download][type] = git
-projects[pushtape_audio][download][url] = http://git.drupal.org/project/pushtape.git
-projects[pushtape_audio][download][branch] = 7.x1.x
+projects[pushtape_audio][download][url] = https://github.com/discipolo/pushtape.git
+projects[pushtape_audio][download][branch] = 7.x-1.x
  
  ;Theme
 projects[flux] = 1.0alpha2
