@@ -1,10 +1,11 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.17
+core = 7.19
 api = 2
 
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
+
 
 ;Contrib
 projects[calendar][version] = 3.4
@@ -43,31 +44,14 @@ projects[plupload][subdir] = contrib
 projects[soundmanager2][version] = 2.x-dev
 projects[soundmanager2][subdir] = contrib
 
-projects[views_slideshow][version] = 3.0
-projects[views_slideshow][subdir] = contrib
+projects[apps][type] = "module"
+projects[apps][version] = 1.x-dev
+projects[apps][subdir] = contrib
 
-libraries[colorbox][download][type] = get
-libraries[colorbox][download][url] = "http://www.jacklmoore.com/colorbox/colorbox.zip"
-libraries[colorbox][directory_name] = colorbox
-libraries[colorbox][type] = library
+projects[app_manifest][type] = "module"
+projects[app_manifest][version] = 1.0-alpha2
+projects[app_manifest][subdir] = contrib
 
-libraries[flexslider][download][type] = get
-libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/archive/master.zip"
-libraries[flexslider][directory_name] = flexslider
-libraries[flexslider][type] = library
-
-libraries[soundmanager2][download][type] = get
-libraries[soundmanager2][download][url] = "http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20120624.zip"
-libraries[soundmanager2][directory_name] = soundmanager2
-libraries[soundmanager2][type] = library
-
-libraries[jquery.cycle][download][type] = get
-libraries[jquery.cycle][download][url] = "http://malsup.github.com/jquery.cycle.all.js"
-libraries[jquery.cycle][directory_name] = jquery.cycle
-libraries[jquery.cycle][type] = library
-
-libraries[plupload][download][type] = get
-libraries[plupload][download][url] = https://github.com/downloads/moxiecode/plupload/plupload_1_5_4.zip
 
 ; Pushtape
 
