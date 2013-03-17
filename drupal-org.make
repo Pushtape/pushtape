@@ -28,7 +28,7 @@ projects[eva][subdir] = contrib
 projects[flexslider][version] = 2.0-alpha1
 projects[flexslider][subdir] = contrib
 
-projects[folow][version] = 1.0-alpha1
+projects[follow][version] = 1.0-alpha1
 projects[follow][subdir] = contrib
 
 projects[media_colorbox][version] = 1.0-rc3
