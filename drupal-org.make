@@ -1,7 +1,7 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.17
+core = 7.21
 api = 2
 
 
@@ -14,7 +14,7 @@ projects[app_manifest][version] = 1.0-alpha2
 projects[app_manifest][subdir] = contrib
 
 ; build tags on tags and branches on branches
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
 
 ; Pushtape
 
