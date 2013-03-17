@@ -9,6 +9,10 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/
 
 
 ;Contrib
+
+projects[addthis][version] = 4.0-alpha2
+projects[addthis][subdir] = contrib
+
 projects[calendar][version] = 3.4
 projects[calendar][subdir] = contrib
 
@@ -21,11 +25,11 @@ projects[entity_view_mode][subdir] = contrib
 projects[eva][version] = 1.2
 projects[eva][subdir] = contrib
 
-projects[flexslider][version] = 1.0-rc3
+projects[flexslider][version] = 2.0-alpha1
 projects[flexslider][subdir] = contrib
 
-projects[html5_media][version] = 1.1
-projects[html5_media][subdir] = contrib
+projects[folow][version] = 1.0-alpha1
+projects[follow][subdir] = contrib
 
 projects[media_colorbox][version] = 1.0-rc3
 projects[media_colorbox][subdir] = contrib
@@ -39,19 +43,22 @@ projects[mediafront][subdir] = contrib
 projects[multiform][version] = 1.0
 projects[multiform][subdir] = contrib
 
-projects[plupload][subdir] = 1.1
+projects[plupload][subdir] = 1.x-dev
 projects[plupload][subdir] = contrib
+
+projects[simplenews][subdir] = 1.0
+projects[simplenews][subdir] = contrib
 
 projects[soundmanager2][version] = 2.x-dev
 projects[soundmanager2][subdir] = contrib
 
-projects[apps][type] = "module"
-projects[apps][version] = 1.x-dev
-projects[apps][subdir] = contrib
+;projects[apps][type] = "module"
+;projects[apps][version] = 1.x-dev
+;projects[apps][subdir] = contrib
 
-projects[app_manifest][type] = "module"
-projects[app_manifest][version] = 1.0-alpha2
-projects[app_manifest][subdir] = contrib
+;projects[app_manifest][type] = "module"
+;projects[app_manifest][version] = 1.0-alpha2
+;projects[app_manifest][subdir] = contrib
 
 
 ; Pushtape
