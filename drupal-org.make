@@ -111,11 +111,11 @@ projects[pushtape_photos][download][url] = "git://github.com/gusaus/pushtape_pho
 projects[pushtape_photos][download][branch] = "7.x-1.x-panels"
 projects[pushtape_photos][subdir] = pushtape_apps
 
-projects[pushtape_social][type] = "module"
-projects[pushtape_social][download][type] = "git"
-projects[pushtape_social][download][url] = "git://github.com/gusaus/pushtape_social.git"
-projects[pushtape_social][download][branch] = "7.x-1.x-panels"
-projects[pushtape_social][subdir] = pushtape_apps
+;projects[pushtape_social][type] = "module"
+;projects[pushtape_social][download][type] = "git"
+;projects[pushtape_social][download][url] = "git://github.com/gusaus/pushtape_social.git"
+;projects[pushtape_social][download][branch] = "7.x-1.x-panels"
+;projects[pushtape_social][subdir] = pushtape_apps
 
 projects[pushtape_video][type] = "module"
 projects[pushtape_video][download][type] = "git"
