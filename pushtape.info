@@ -18,14 +18,14 @@ dependencies[] = dblog
 dependencies[] = update
 
 ; Pushtape Foundation
-dependencies[] = pushtape_admin
+;dependencies[] = pushtape_admin
 dependencies[] = pushtape_audio
 dependencies[] = pushtape_discography
 dependencies[] = pushtape_events
 dependencies[] = pushtape_front
 ;dependencies[] = pushtape_mediaplayer
 dependencies[] = pushtape_news
-dependencies[] = pushtape_newsletter
+;dependencies[] = pushtape_newsletter
 dependencies[] = pushtape_photos
 ;dependencies[] = pushtape_social
 dependencies[] = pushtape_ui
@@ -55,3 +55,11 @@ dependencies[] = uuid
 stylesheets[all][] = pushtape.css
 
 files[] = pushtape.profile
+
+
+; Information added by drush on 2013-03-26
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape"
+datestamp = "1364283272"
+
