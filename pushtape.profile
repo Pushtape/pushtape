@@ -10,10 +10,10 @@ function pushtape_install_tasks(&$install_state) {
   $tasks = array();
 
   // Add the pushtape app selection to the installation process
-  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_discography', 'pushtape_front'))
-
-);
+//  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
+//  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => //'pushtape', 'default apps' => array('pushtape_discography', 'pushtape_front'))
+//
+//);
 
   // Add the panopoly theme selection to the installation process
   require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');

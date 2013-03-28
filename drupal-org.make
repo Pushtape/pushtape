@@ -4,14 +4,11 @@
 core = 7.21
 api = 2
 
-;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
-includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make 
+includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/heads/7.x-1.x:/drupal-org.make
+;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make 
 
 
 ;Contrib
-
-projects[addthis][version] = 4.0-alpha2
-projects[addthis][subdir] = contrib
 
 projects[calendar][version] = 3.4
 projects[calendar][subdir] = contrib
@@ -22,23 +19,15 @@ projects[colorbox][subdir] = contrib
 projects[entity_view_mode][version] = 1.0-beta3
 projects[entity_view_mode][subdir] = contrib
 
-projects[eva][version] = 1.2
-projects[eva][subdir] = contrib
-
 projects[flexslider][version] = 2.0-alpha1
 projects[flexslider][subdir] = contrib
 
-projects[follow][version] = 1.0-alpha1
-projects[follow][subdir] = contrib
-
-projects[media_colorbox][version] = 1.0-rc3
+projects[media_colorbox][version] = 1.x-dev
 projects[media_colorbox][subdir] = contrib
+projects[media_colorbox][patch][1730730] = http://drupal.org/files/1730730-6-file_access.patch
 
-projects[media_soundcloud][version] = 1.x-dev
+projects[media_soundcloud][version] = 1.0
 projects[media_soundcloud][subdir] = contrib
-
-projects[mediafront][version] = 2.x-dev
-projects[mediafront][subdir] = contrib
 
 projects[multiform][version] = 1.0
 projects[multiform][subdir] = contrib
@@ -49,8 +38,11 @@ projects[plupload][subdir] = contrib
 projects[simplenews][subdir] = 1.0
 projects[simplenews][subdir] = contrib
 
-projects[soundmanager2][version] = 2.x-dev
+projects[soundmanager2][version] = 2.0-beta1
 projects[soundmanager2][subdir] = contrib
+
+projects[views_slideshow][version] = 3.0
+projects[views_slideshow][subdir] = contrib
 
 ;projects[apps][type] = "module"
 ;projects[apps][version] = 1.x-dev
@@ -89,16 +81,9 @@ projects[pushtape_events][subdir] = pushtape_apps
 
 projects[pushtape_front][type] = "module"
 projects[pushtape_front][download][type] = "git"
-projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_front.git"
+projects[pushtape_front][download][url] = "git://github.com/gusaus/pushtape_front.git"
 projects[pushtape_front][download][branch] = "7.x-1.x-panels"
 projects[pushtape_front][subdir] = pushtape_apps
-
-;projects[pushtape_mediaplayer][location] = http://apps.rosenstrauch.com/fserver
-;projects[pushtape_mediaplayer][type] = "module"
-;projects[pushtape_mediaplayer][download][type] = "git"
-;projects[pushtape_mediaplayer][download][url] = "git://github.com/Pushtape/pushtape_mediaplayer.git"
-;projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
-;projects[pushtape_mediaplayer][subdir] = pushtape_apps
 
 projects[pushtape_news][type] = "module"
 projects[pushtape_news][download][type] = "git"
@@ -139,3 +124,15 @@ projects[pushtape_ui][subdir] = pushtape_apps
 ; Pushtape - Themes
 
 projects[flux] = 1.x-dev
+
+; Libraries.
+
+libraries[colorbox][download][type] = get
+libraries[colorbox][download][url] = https://github.com/jackmoore/colorbox/tarball/master
+libraries[colorbox][destination] = libraries
+libraries[flexslider][download][type] = get
+libraries[flexslider][download][url] = https://github.com/woothemes/FlexSlider/tarball/master
+libraries[flexslider][destination] = libraries
+libraries[soundmanager2][download][type] = get
+libraries[soundmanager2][download][url] = https://github.com/scottschiller/SoundManager2/tarball/master
+libraries[soundmanager2][destination] = libraries
