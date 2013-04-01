@@ -27,7 +27,7 @@ dependencies[] = pushtape_front
 dependencies[] = pushtape_news
 ;dependencies[] = pushtape_newsletter
 dependencies[] = pushtape_photos
-;dependencies[] = pushtape_social
+dependencies[] = pushtape_social
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_video
 
