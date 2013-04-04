@@ -128,6 +128,7 @@ projects[flux] = 1.x-dev
 
 libraries[colorbox][download][type] = get
 libraries[colorbox][download][url] = https://github.com/jackmoore/colorbox/tarball/master
+libraries[colorbox][patch][] = "http://drupal.org/files/colorbox-master_library_pattern-1955982-1.patch"
 libraries[colorbox][destination] = libraries
 libraries[flexslider][download][type] = get
 libraries[flexslider][download][url] = https://github.com/woothemes/FlexSlider/tarball/master
