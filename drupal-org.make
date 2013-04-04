@@ -12,7 +12,7 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/
 projects[calendar][version] = 3.4
 projects[calendar][subdir] = contrib
 
-projects[colorbox][version] = 2.3
+projects[colorbox][version] = 2.x-dev
 projects[colorbox][subdir] = contrib
 
 projects[entity_view_mode][version] = 1.0-beta3
@@ -128,7 +128,6 @@ projects[flux] = 1.x-dev
 
 libraries[colorbox][download][type] = get
 libraries[colorbox][download][url] = https://github.com/jackmoore/colorbox/tarball/master
-libraries[colorbox][patch][] = "http://drupal.org/files/colorbox-master_library_pattern-1955982-1.patch"
 libraries[colorbox][destination] = libraries
 libraries[flexslider][download][type] = get
 libraries[flexslider][download][url] = https://github.com/woothemes/FlexSlider/tarball/master
