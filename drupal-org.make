@@ -9,11 +9,17 @@ includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/
 
 ;Contrib
 
+projects[backstretch][version] = 2.x-dev
+projects[backstretch][subdir] = contrib
+
 projects[calendar][version] = 3.4
 projects[calendar][subdir] = contrib
 
 projects[colorbox][version] = 2.x-dev
 projects[colorbox][subdir] = contrib
+
+projects[context][version] = 3.0-beta6
+projects[context][subdir] = contrib
 
 projects[entity_view_mode][version] = 1.0-beta3
 projects[entity_view_mode][subdir] = contrib
