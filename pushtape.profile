@@ -86,6 +86,6 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
  */
 
 function pushtape_form_panopoly_theme_selection_form_alter(&$form, &$form_state, $form_id) {
-  $form['theme_wrapper']['theme']['#default_value'] = 'flux';
+  $form['theme_wrapper']['theme']['#default_value'] = 'flux_panels';
 }
 
