@@ -122,7 +122,10 @@ projects[pushtape_ui][subdir] = pushtape_apps
 
 ; Pushtape - Themes
 
-projects[flux] = 1.x-dev
+projects[flux_panels][type] = "theme"
+projects[flux_panels][download][type] = "git"
+projects[flux_panels][download][url] = "git://github.com/gusaus/flux_panels.git"
+projects[flux_panels][download][branch] = "7.x-1.x-panels"
 
 ; Libraries.
 
