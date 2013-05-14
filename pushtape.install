@@ -115,9 +115,9 @@ function pushtape_install() {
   
   // Enable themes
 
-  theme_enable(array('flux'));
-  variable_set('admin_theme', 'flux');
-  variable_set('theme_default', 'flux');
+  theme_enable(array('flux_panels'));
+  variable_set('admin_theme', 'flux_panels');
+  variable_set('theme_default', 'flux_panels');
   variable_set('site_frontpage', 'front');
   // variable_set('clean_url', 1);
   //variable_set('site_footer', 'Built with Pushtape');

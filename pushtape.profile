@@ -10,10 +10,10 @@ function pushtape_install_tasks(&$install_state) {
   $tasks = array();
 
   // Add the pushtape app selection to the installation process
-  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'pushtape', 'default apps' => array('pushtape_discography', 'pushtape_mediaplayer', 'pushtape_front'))
-
-);
+//  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
+//  $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => //'pushtape', 'default apps' => array('pushtape_discography', 'pushtape_front'))
+//
+//);
 
   // Add the panopoly theme selection to the installation process
   require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
@@ -86,6 +86,6 @@ function pushtape_form_apps_profile_apps_select_form_alter(&$form, $form_state) 
  */
 
 function pushtape_form_panopoly_theme_selection_form_alter(&$form, &$form_state, $form_id) {
-  $form['theme_wrapper']['theme']['#default_value'] = 'flux';
+  $form['theme_wrapper']['theme']['#default_value'] = 'flux_panels';
 }
 
