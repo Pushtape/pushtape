@@ -17,7 +17,6 @@ dependencies[] = file
 dependencies[] = dblog
 dependencies[] = update
 
-<<<<<<< HEAD
 ; Pushtape Foundation
 ;dependencies[] = pushtape_admin
 dependencies[] = pushtape_audio
@@ -28,11 +27,6 @@ dependencies[] = pushtape_news
 dependencies[] = pushtape_newsletter
 dependencies[] = pushtape_photos
 ;dependencies[] = pushtape_social
-=======
-;dependencies[] = pushtape_discography
-;dependencies[] = pushtape_front
-;dependencies[] = pushtape_mediaplayer
->>>>>>> 85bd11a737c818c83865229984f52bfe6e3f9e27
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_video
 
