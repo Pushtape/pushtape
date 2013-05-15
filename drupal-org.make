@@ -96,11 +96,11 @@ projects[views_slideshow][subdir] = contrib
 
 ; Pushtape
 
-;projects[pushtape_admin][type] = "module"
-;projects[pushtape_admin][download][type] = "git"
-;projects[pushtape_admin][download][url] = "git://github.com/gusaus/pushtape_admin.git"
-;projects[pushtape_admin][download][branch] = "7.x-1.x-panels"
-;projects[pushtape_admin][subdir] = pushtape_apps
+projects[pushtape_admin][type] = "module"
+projects[pushtape_admin][download][type] = "git"
+projects[pushtape_admin][download][url] = "git://github.com/Pushtape/pushtape_admin.git"
+projects[pushtape_admin][download][branch] = "7.x-1.x-panels"
+projects[pushtape_admin][subdir] = pushtape_apps
 
 projects[pushtape_audio][type] = "module"
 projects[pushtape_audio][download][type] = "git"
