@@ -162,6 +162,13 @@ projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.gi
 projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
 projects[pushtape_ui][subdir] = pushtape_apps
 
+projects[pushtape_commerce][type] = "module"
+projects[pushtape_commerce][download][type] = "git"
+projects[pushtape_commerce][download][url] = "http://git.drupal.org/sandbox/discipolo/1919326.git"
+projects[pushtape_commerce][download][revision] = f82f911943ed40e671daad39b4e6bd373dd91ed5
+projects[pushtape_commerce][download][branch] = "7.x-1.x"
+projects[pushtape_commerce][subdir] = pushtape_apps
+
 ; Pushtape - Themes
 
 projects[flux_panels][type] = "theme"
