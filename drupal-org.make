@@ -169,6 +169,12 @@ projects[pushtape_commerce][download][revision] = f82f911943ed40e671daad39b4e6bd
 projects[pushtape_commerce][download][branch] = "7.x-1.x"
 projects[pushtape_commerce][subdir] = pushtape_apps
 
+projects[pushtape_mediaplayer][type] = "module"
+projects[pushtape_mediaplayer][download][type] = "git"
+projects[pushtape_mediaplayer][download][url] = "git://github.com/gusaus/pushtape_mediaplayer.git"
+projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
+projects[pushtape_mediaplayer][subdir] = pushtape_apps
+
 ; Pushtape - Themes
 
 projects[flux_panels][type] = "theme"
