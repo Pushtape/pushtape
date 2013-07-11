@@ -70,6 +70,9 @@ projects[media_colorbox][patch][1730730] = http://drupal.org/files/1730730-6-fil
 projects[media_soundcloud][version] = 1.0
 projects[media_soundcloud][subdir] = contrib
 
+projects[mediafront][version] = 2.x-dev
+projects[mediafront][subdir] = contrib
+
 projects[multiform][version] = 1.0
 projects[multiform][subdir] = contrib
 
