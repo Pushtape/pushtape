@@ -57,6 +57,12 @@ projects[colorbox][subdir] = contrib
 projects[context][version] = 3.0-beta6
 projects[context][subdir] = contrib
 
+projects[discogs][version] = 1.0-beta3
+projects[discogs][subdir] = contrib
+
+projects[pushtape_discography_adpt][version] = 1.0-alpha1
+projects[pushtape_discography_adpt][subdir] = contrib
+
 projects[entity_view_mode][version] = 1.0-beta3
 projects[entity_view_mode][subdir] = contrib
 
