@@ -167,7 +167,7 @@ projects[pushtape_video][subdir] = pushtape_apps
 
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
-projects[pushtape_ui][download][url] = "git://github.com/Pushtape/pushtape_ui.git"
+projects[pushtape_ui][download][url] = "git://github.com/gusaus/pushtape_ui.git"
 projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
 projects[pushtape_ui][subdir] = pushtape_apps
 
