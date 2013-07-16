@@ -119,7 +119,7 @@ projects[pushtape_audio][subdir] = pushtape_apps
 
 projects[pushtape_discography][type] = "module"
 projects[pushtape_discography][download][type] = "git"
-projects[pushtape_discography][download][url] = "git://github.com/Pushtape/pushtape_discography.git"
+projects[pushtape_discography][download][url] = "git://github.com/gusaus/pushtape_discography.git"
 projects[pushtape_discography][download][branch] = "7.x-1.x-panels"
 projects[pushtape_discography][subdir] = pushtape_apps
 
