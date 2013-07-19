@@ -60,7 +60,13 @@ projects[context][subdir] = contrib
 projects[discogs][version] = 1.x-dev
 projects[discogs][subdir] = contrib
 
-projects[pushtape_discography_adpt][version] = 1.0-alpha1
+;projects[pushtape_discography_adpt][version] = 1.0-alpha1
+;projects[pushtape_discography_adpt][subdir] = contrib
+
+projects[pushtape_discography_adpt][type] = "module"
+projects[pushtape_discography_adpt][download][type] = "git"
+projects[pushtape_discography_adpt][download][url] = "git://github.com/gusaus/pushtape_discography_adpt.git"
+projects[pushtape_discography_adpt][download][branch] = "7.x-1.x-panels"
 projects[pushtape_discography_adpt][subdir] = contrib
 
 projects[entity_view_mode][version] = 1.0-beta3
