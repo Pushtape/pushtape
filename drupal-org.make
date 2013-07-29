@@ -77,7 +77,6 @@ projects[flexslider][subdir] = contrib
 
 projects[media_colorbox][version] = 1.x-dev
 projects[media_colorbox][subdir] = contrib
-projects[media_colorbox][patch][1730730] = http://drupal.org/files/1730730-6-file_access.patch
 
 projects[media_soundcloud][version] = 1.0
 projects[media_soundcloud][subdir] = contrib
