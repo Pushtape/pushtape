@@ -56,3 +56,11 @@ stylesheets[all][] = pushtape.css
 files[] = pushtape.profile
 
 
+
+
+; Information added by drush on 2013-08-12
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape"
+datestamp = "1376349316"
+
