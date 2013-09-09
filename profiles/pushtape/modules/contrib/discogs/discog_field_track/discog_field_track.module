@@ -1,0 +1,923 @@
+<?php
+/**
+ * @file
+ * Track field.
+ */
+
+/**
+ * Implements hook_field_info().
+ */
+function discog_field_track_field_info() {
+  return array(
+    // We name our field as the associative name of the array.
+    'field_track' => array(
+      'label' => t('Discography Track'),
+      'description' => t('Field representing a Track.'),
+      'instance_settings' => array('mult_artist' => TRUE),
+      'default_widget' => 'track_table_widget',
+      'default_formatter' => 'track_template',
+    ),
+  );
+}
+
+/**
+ * Implements hook_help().
+ */
+function discog_field_track_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#discog_field_track':
+      return '<h3>' . t('About') . '</h3>'
+        . '<p>'  . t('The Track Field module supplies a custom field representing a music track, which can be attached to any content type.') . '</p>'
+        . '<p>'  . t('For more information, see the <a href="!url">online documentation</a> for the Track Field.', array('!url' => 'https://drupal.org/node/2031959')) . '</p>'
+        . '<h3>' . t('Uses') . '</h3>'
+        . '<p>'  . t('You can add a Track Field to any other content type, by going to the <a href="@link">Content types</a> section of the site.', array('@link' => url('admin/structure/types'))) . '</p>'
+        . '<p>'  . t('The Track Field has several different widgets and formatters, so that it may be used in a variety of situations.') . '</p>'
+        . '<dl>'
+        . '<dt>' . t('Widgets') . '</dt>'
+        . '<dd>' . t('Widgets are ways that the field can be presented to the user when editing the field. The Track Field provides these widgets:')
+        . '<ul>'
+        . '<li>'
+        . '<strong>' . t('Form fields') . '</strong>'
+        . ': '       . t('Presents plain ol\' Drupal form fields.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Table') . '</strong>'
+        . ': '       . t('The track fields are presented in a table format.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Form fields, single track') . '</strong>'
+        . ': '       . t('Same as the Form Fields widget, but provides additional fields that are unnecessary when entering tracks on a release. Used by the Track Node module.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Table, single track') . '</strong>'
+        . ': '       . t('Same as the Table widget, but provides additional fields. Used by the Track Node module.')
+        . '</li>'
+        . '</ul>'
+        . '</dd>'
+        . '<dt>' . t('Formatters') . '</dt>'
+        . '<dd>' . t('Formatters are ways that the field can be presented to the user when viewing the field. Formatters are also integrated with the Views module. The Track Field provides these formatters:')
+        . '<ul>'
+        . '<li>'
+        . '<strong>' . t('Theme Template') . '</strong> (' . t('default') . ')'
+        . ': '       . t(' Uses a theme template to display the tracks. The theme template is called discog-field-track.tpl.php, and may be overridden by any theme developer.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Formatted Text') . '</strong>'
+        . ': '       . t('Displays tracks as text, wrapped in HTML tags. Empty fields are not displayed.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Formatted Text, Compact') . '</strong>'
+        . ': '       . t('Displays tracks as text, wrapped in HTML tags, but it only displays the position, track name, and duration.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Table') . '</strong>'
+        . ': '       . t('Displays tracks in table format. Empty fields are not displayed.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Table, Compact') . '</strong>'
+        . ': '       . t('Displays tracks in table format, but it only displays the position, track name, and duration.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Lyrics') . '</strong>'
+        . ': '        . t('Only displays the lyrics (or nothing if the track has no lyrics). This is useful if you want to set up a View that displays the lyrics for a particular artist, album, etc.')
+        . '</li>'
+        . '<li>'
+        . '<strong>' . t('Single Track') . '</strong>'
+        . ': '       . t('This formatter displays information in "one track per node" format: it displays the "Track release" field, and does not display the position. Used by the Track Node module.')
+        . '</li>'
+        . '</ul>'
+        . '</dd>'
+        . '</dl>';
+  }
+}
+
+/**
+ * Implements hook_field_settings_form().
+ */
+function discog_field_track_field_settings_form($field, $instance, $has_data) {
+  if ($field['type'] == 'field_track') {
+    $settings = $field['settings'];
+    $form['mult_artist'] = array(
+      '#type' => 'select',
+      '#title' => t('Multiple Artists'),
+      '#options' => array(
+        FALSE => t('No'),
+        TRUE => t('Yes'),
+      ),
+      '#default_value' => TRUE,
+      '#required' => FALSE,
+      '#description' => t('Does this content type support multiple artists, as with compilations or split releases?'),
+    );
+    return $form;
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function discog_field_track_theme() {
+  return array(
+    'discog_field_track' => array(
+      'template' => 'discog-field-track',
+      'arguments' => array(
+        'tracks' => array(),
+        'teaser' => FALSE,
+        'page'   => FALSE,
+      )
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_validate().
+ *
+ * @see discog_field_track_field_widget_error()
+ */
+function discog_field_track_field_validate($entity_type, $entity, $field,
+    $instance, $langcode, $items, &$errors) {
+  // TODO No validation for now...
+  return;
+}
+
+/**
+ * Implements hook_field_is_empty().
+ */
+function discog_field_track_field_is_empty($item, $field) {
+  return empty($item['track_title']);
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ *
+ * @see discog_field_track_field_formatter_view()
+ */
+function discog_field_track_field_formatter_info() {
+  return array(
+    'track_template' => array(
+      'label' => t('Theme Template'),
+      'field types' => array('field_track'),
+    ),
+    'track_text' => array(
+      'label' => t('Formatted Text'),
+      'field types' => array('field_track'),
+    ),
+    'track_text_compact' => array(
+      'label' => t('Formatted Text, Compact'),
+      'field types' => array('field_track'),
+    ),
+    'track_table' => array(
+      'label' => t('Table'),
+      'field types' => array('field_track'),
+    ),
+    'track_table_compact' => array(
+      'label' => t('Table, Compact'),
+      'field types' => array('field_track'),
+    ),
+    'track_lyrics' => array(
+      'label' => t('Lyrics'),
+      'field types' => array('field_track'),
+    ),
+    'track_single' => array(
+      'label' => t('Single Track'),
+      'field types' => array('field_track'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function discog_field_track_field_formatter_view($entity_type, $entity, $field,
+    $instance, $langcode, $items, $display) {
+  // Declare the element to return, and let formatters define it
+  $element = array('#formatter' => $display['type']);
+  // Fetch setting for multiple artists
+  $has_mult_artists = isset($field['settings']['mult_artist'])
+      ? $field['settings']['mult_artist'] : TRUE;
+
+  switch ($display['type']) {
+
+    // This formatter simply punts to a theme template
+    case 'track_template':
+      //* Set up an empty array to merge with $items, so all keys will be set
+      $tracks = array();
+      $track_fields = array(
+        'track_position' => NULL,
+        'track_title'    => NULL,
+        'track_duration' => NULL,
+        'track_releases' => NULL,
+        'track_artist'   => NULL,
+        'track_notes'    => NULL,
+        'track_lyrics'   => NULL,
+      );
+      foreach ($items as $delta => $item) {
+        $track = array_merge($track_fields, $item);
+        // Merge the details fields too
+        /* TODO remove after adding fieldset
+        if (!empty($item['track_details'])) {
+          unset($track['track_details']);
+          $track = array_merge($track, $item['track_details']);
+        }
+        //*/
+        $tracks[$delta] = $track;
+      }
+      $variables = array('tracks' => $tracks);
+      $output = theme('discog_field_track', $variables);
+      $element[] = array('#markup' => $output);
+      break;
+
+    // This formatter displays the track as marked up text
+    case 'track_text':
+      // Build the elements to display
+      $view = array(
+        'track_position',
+        'track_title',
+        'track_duration',
+        // 'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      if ($has_mult_artists) {
+        $view[] = 'track_artist';
+      }
+      $element += _discog_field_track_formatter_text($items, $view);
+      break;
+
+    // This formatter displays the track as marked up text, in a compact format -
+    // no notes or lyrics
+    case 'track_text_compact':
+      // Build the elements to display
+      $view = array(
+        'track_position',
+        'track_title',
+        'track_duration',
+        // 'track_releases',
+        // 'track_notes',
+        // 'track_lyrics',
+      );
+      if ($has_mult_artists) {
+        $view[] = 'track_artist';
+      }
+      $element += _discog_field_track_formatter_text($items, $view);
+      break;
+
+    // This formatter displays the tracks in a table
+    case 'track_table':
+      // Build the elements to display
+      $view = array(
+        'track_position',
+        'track_title',
+        'track_duration',
+        // 'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      if ($has_mult_artists) {
+        $view[] = 'track_artist';
+      }
+      $element += _discog_field_track_formatter_table($items, $view);
+      break;
+
+    // This formatter displays the tracks in a table, in a compact format -
+    // no notes or lyrics
+    case 'track_table_compact':
+      // Build the elements to display
+      $view = array(
+        'track_position',
+        'track_title',
+        'track_duration',
+        // 'track_releases',
+        // 'track_notes',
+        // 'track_lyrics',
+      );
+      if ($has_mult_artists) {
+        // $view[] = 'track_artist';
+      }
+      $element += _discog_field_track_formatter_table($items, $view);
+      break;
+
+    // This formatter displays only the title and lyrics, for lyrics pages
+    case 'track_lyrics':
+      // Build the elements to display
+      $view = array(
+        // 'track_position',
+        'track_title',
+        // 'track_duration',
+        // 'track_releases',
+        // 'track_notes',
+        'track_lyrics',
+      );
+      if ($has_mult_artists) {
+        $view[] = 'track_artist';
+      }
+      $element += _discog_field_track_formatter_text($items, $view);
+      break;
+
+    // This formatter displays information in "one track per node" format -
+    // displays release field, no track#
+    case 'track_single':
+      // Build the elements to display
+      $view = array(
+        // 'track_position',
+        'track_title',
+        'track_artist',
+        'track_duration',
+        'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      if ($has_mult_artists) {
+        $view[] = 'track_artist';
+      }
+      $element += _discog_field_track_formatter_text($items, $view);
+      break;
+  }
+  return $element;
+}
+
+/**
+ * Helper function for rendering discog_field_track_tbl and
+ * discog_field_track_tbl_compact.
+ */
+function _discog_field_track_formatter_table($items, $view = array()) {
+  // See if the track artist field is to be displayed
+  $has_mul_artists = in_array('track_artist', $view);
+  // See if we are in "compace mode" - if details are viewed
+  if ($has_mult_artists) {
+    $header = array(
+      array('data'=>t('Track'), 'width' => '5%'),
+      array('data'=>t('Artist')),
+      array('data'=>t('Title')),
+      array('data'=>t('Duration'), 'width' => '5%'),
+    );
+  }
+  else {
+    $header = array(
+      array('data'=>t('Track'), 'width' => '5%'),
+      array('data'=>t('Title')),
+      array('data'=>t('Duration'), 'width' => '5%'),
+    );
+  }
+  $rows = array();
+  foreach ($items as $delta => $item) {
+    // We're handling striping ourselves.
+    $striping = ($delta % 2 == 0 ? 'even' : 'odd');
+    // If the track title is empty, we're only showing details.
+    if (!empty($item['track_title'])) {
+      if ($has_mult_artists) {
+        $data = array(
+          array(
+            'data' => $item['track_position'],
+            'class' => 'track-position',
+          ),
+          array(
+            'data' => $item['track_artist'],
+            'class' => 'track-artist',
+          ),
+          array(
+            'data' => $item['track_title'],
+            'class' => 'track-title',
+          ),
+          array(
+            'data' => $item['track_duration'],
+            'class' => 'track-duration',
+          ),
+        );
+      }
+      else {
+        $data = array(
+          array(
+            'data' => $item['track_position'],
+            'class' => 'track-position',
+          ),
+          array(
+            'data' => $item['track_title'],
+            'class' => 'track-title',
+          ),
+          array(
+            'data' => $item['track_duration'],
+            'class' => 'track-duration',
+          ),
+        );
+      }
+      $rows[] = array(
+        'no_striping' => TRUE,
+        'class' => $striping,
+        'data' => $data,
+      );
+    }
+    if (!empty($item['track_release']) && in_array('track_release', $view)) {
+    $rows[] = array(
+        'no_striping' => TRUE,
+        'class' => $striping,
+        'data' => array(
+          array(
+            'data' => t('On Release(s)'),
+            'class' => 'track-release-label',
+          ),
+          array(
+            'data' => $item['track_release'],
+            'colspan' => $has_mult_artists ? 3 : 2,
+            'class' => 'track-release',
+          ),
+        ),
+      );
+    }
+    if (!empty($item['track_notes']) && in_array('track_notes', $view)) {
+    $rows[] = array(
+        'no_striping' => TRUE,
+        'class' => $striping,
+        'data' => array(
+          array(
+            'data' => t('Notes'),
+            'class' => 'track-notes-label',
+          ),
+          array(
+            'data' => $item['track_notes'],
+            'colspan' => $has_mult_artists ? 3 : 2,
+            'class' => 'track-notes',
+          ),
+        ),
+      );
+    }
+    if (!empty($item['track_lyrics']) && in_array('track_lyrics', $view)) {
+      $rows[] = array(
+        'no_striping' => TRUE,
+        'class' => $striping,
+        'data' => array(
+          array(
+            'data' => t('Lyrics'),
+            'class' => 'track-lyrics-label',
+          ),
+          array(
+            'data' => $item['track_lyrics'],
+            'colspan' => $has_mult_artists ? 3 : 2,
+            'class' => 'track-lyrics',
+          ),
+        ),
+      );
+    }
+  }
+  $element = array(
+    '#theme' => 'table',
+    '#rows' => $rows,
+    '#header' => $header,
+  );
+  return $element;
+}
+
+/**
+ * Helper function for rendering discog_field_track_txt and
+ * discog_field_track_lyrics.
+ */
+function _discog_field_track_formatter_text($items,
+    $view = array('track_position', 'track_title')) {
+  $element = array();
+  foreach ($items as $delta => $item) {
+    // Build the #value string
+    $value = '';
+    if (!empty($item['track_position']) && in_array('track_position', $view)) {
+      $v = array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => array('class' => 'track-position'),
+          '#value' => $item['track_position'],
+        )
+      );
+      $value .= theme_html_tag($v);
+    }
+    if (!empty($item['track_artist']) && in_array('track_artist', $view)) {
+      $v = array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => array('class' => 'track-artist'),
+          '#value' => $item['track_artist'],
+        )
+      );
+      $value .= theme_html_tag($v);
+    }
+    if (!empty($item['track_title']) && in_array('track_title', $view)) {
+      $v = array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => array('class' => 'track-title'),
+          '#value' => $item['track_title'],
+        )
+      );
+      $value .= theme_html_tag($v);
+    }
+    if (!empty($item['track_duration']) && in_array('track_duration', $view)) {
+      $v = array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => array('class' => 'track-duration'),
+          '#value' => $item['track_duration'],
+        )
+      );
+      $value .= theme_html_tag($v);
+    }
+    if (!empty($item['track_releases']) && in_array('track_releases', $view)) {
+      // Need to wrap label and data in div tag
+        $v = array(
+          'element' => array(
+            '#tag' => 'span',
+            '#attributes' => array('class' => 'track-release-label'),
+            '#value' => t('Released On: '),
+          )
+        );
+        $label = theme_html_tag($v);
+        $v = array(
+          'element' => array(
+            '#tag' => 'span',
+            '#attributes' => array('class' => 'track-release'),
+            '#value' => $item['track_releases'],
+          )
+        );
+        $data = theme_html_tag($v);
+        $v = array(
+          'element' => array(
+            '#tag' => 'div',
+            '#attributes' => array('class' => 'track-release-block'),
+            '#value' => $label . $data,
+          )
+        );
+        $value .= theme_html_tag($v);
+    }
+    if (!empty($item['track_notes']) && in_array('track_notes', $view)) {
+      // Need to wrap label and data in div tag
+      $v = array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => array('class' => 'track-notes-label'),
+          '#value' => t('Notes'),
+        )
+      );
+      $label = theme_html_tag($v);
+      $v = array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => array('class' => 'track-notes'),
+          '#value' => $item['track_notes'],
+        )
+      );
+      $data = theme_html_tag($v);
+      $v = array(
+        'element' => array(
+          '#tag' => 'div',
+          '#attributes' => array('class' => 'track-notes-block'),
+          '#value' => $label . $data,
+        )
+      );
+      $value .= theme_html_tag($v);
+    }
+    if (!empty($item['track_lyrics']) && in_array('track_lyrics', $view)) {
+      // Don't display label if only printing lyrics
+      if (count($view) > 3) {
+        $v = array(
+          'element' => array(
+            '#tag' => 'span',
+            '#attributes' => array('class' => 'track-lyrics-label'),
+            '#value' => t('Lyrics'),
+          )
+        );
+        $label = theme_html_tag($v);
+      }
+      else {
+        $label = '';
+      }
+      $v = array(
+        'element' => array(
+          '#tag' => 'div',
+          '#attributes' => array('class' => 'track-lyrics'),
+          '#value' => $item['track_lyrics'],
+        )
+      );
+      $data = theme_html_tag($v);
+      $v = array(
+        'element' => array(
+          '#tag' => 'div',
+          '#attributes' => array('class' => 'track-lyrics-block'),
+          '#value' => $label . $data,
+        )
+      );
+      $value .= theme_html_tag($v);
+    }
+    $element[$delta] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#value' => $value,
+      '#attributes' => array('class' => 'track-block'),
+    );
+  }
+  return $element;
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function discog_field_track_field_widget_info() {
+  return array(
+    'track_text_widget' => array(
+       'label' => t('Form fields'),
+       'field types' => array('field_track'),
+    ),
+    'track_table_widget' => array(
+       'label' => t('Table'),
+       'field types' => array('field_track'),
+    ),
+    'track_text_single_widget' => array(
+       'label' => t('Form fields, single track'),
+       'field types' => array('field_track'),
+    ),
+    'track_table_single_widget' => array(
+       'label' => t('Table, single track'),
+       'field types' => array('field_track'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function discog_field_track_field_widget_form(&$form, &$form_state, $field,
+    $instance, $langcode, $items, $delta, $element) {
+  // Fetch setting for multiple artists
+  $has_mult = isset($field['settings']['mult_artist']) ?
+      $field['settings']['mult_artist'] : TRUE;
+  switch ($instance['widget']['type']) {
+    case 'track_text_widget':
+      $tbl = FALSE;
+      // Build the elements to display
+      $view = array(
+        'track_position',
+        'track_title',
+        'track_duration',
+        // 'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      if ($has_mult) {
+        $view[] = 'track_artist';
+      }
+      break;
+    case 'track_table_widget':
+      $tbl = TRUE;
+      // Build the elements to display
+      $view = array(
+        'track_position',
+        'track_title',
+        'track_duration',
+        // 'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      if ($has_mult) {
+        $view[] = 'track_artist';
+      }
+      break;
+    case 'track_text_single_widget':
+      $tbl = FALSE;
+      // Build the elements to display
+      $view = array(
+        // 'track_position',
+        'track_artist',
+        'track_title',
+        'track_duration',
+        'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      break;
+    case 'track_table_single_widget':
+      $tbl = TRUE;
+      // Build the elements to display
+      $view = array(
+        // 'track_position',
+        'track_artist',
+        'track_title',
+        'track_duration',
+        'track_releases',
+        'track_notes',
+        'track_lyrics',
+      );
+      break;
+    default:
+      // Error! Return nothing
+      return array();
+  }
+  $element += _discog_field_track_widget_helper($items, $delta, $tbl, $view);
+  $element['#widget_type'] = $instance['widget']['type'];
+  return $element;
+}
+
+/**
+* Helper function to generate the form info for the widget.
+* @param $items: $items array
+* @param $delta: which element it is
+* @param $is_table: whether to add table markup (default TRUE)
+* @param $view: an array whose values are fields to show
+* @see discog_field_track_field_widget_form
+*/
+function _discog_field_track_widget_helper($items, $delta, $is_table = TRUE,
+    $view = array('track_position', 'track_title')) {
+  // Define and initialize variables
+  $cols    = 0;
+  $first   = '';
+  $end     = '';
+  $show    = array();
+  $widget  = array();
+  $details = array(
+    'track_artist',
+    'track_releases',
+    'track_notes',
+    'track_lyrics',
+  );
+
+  // Create a textfield for each field
+  $widget['track_position'] = array(
+    '#type' => in_array('track_position', $view) ? 'textfield' : 'hidden',
+    '#title' => t('Track'),
+    '#weight' => 0,
+    '#size' => '4',
+    '#default_value' => isset($items[$delta]['track_position']) ?
+        strip_tags($items[$delta]['track_position']) : $delta + 1,
+    '#description' => t('Track number on the album'),
+    '#attributes' => array('class' => array('track-position')),
+  );
+  $widget['track_title'] = array(
+    '#type' => in_array('track_title', $view) ? 'textfield' : 'hidden',
+    '#title' => t('Title'),
+    '#weight' => 1,
+    '#default_value' => isset($items[$delta]['track_title'])
+        ? strip_tags($items[$delta]['track_title']) : "",
+    '#description' => t('What the track is called'),
+    '#attributes' => array('class' => array('track-title')),
+  );
+  $widget['track_duration'] = array(
+    '#type' => in_array('track_duration', $view) ? 'textfield' : 'hidden',
+    '#title' => t('Title'),
+    '#title' => t('Duration'),
+    '#weight' => 2,
+    '#size' => 6,
+    '#default_value' => isset($items[$delta]['track_duration'])
+        ? strip_tags($items[$delta]['track_duration']) : "",
+    '#description' => t('How long the track lasts, MM:SS'),
+    '#attributes' => array('class' => array('track-duration')),
+  );
+  // Add prefixes and suffixes for table styling
+  if ($is_table) {
+    // By checking in reverse order of importance, we can set $first
+    if (in_array('track_duration', $view)) {
+      $cols++;
+      $widget['track_duration']['#prefix'] = '<td>';
+      $widget['track_duration']['#suffix'] = '</td></tr>';
+      $first = 'track_duration';
+    }
+    if (in_array('track_title', $view)) {
+      $cols++;
+      $widget['track_title']['#prefix'] = '<td>';
+      $widget['track_title']['#suffix'] = '</td>';
+      $first = 'track_title';
+    }
+    if (in_array('track_position', $view)) {
+      $cols++;
+      $widget['track_position']['#prefix'] = '<td>';
+      $widget['track_position']['#suffix'] = '</td>';
+      $first = 'track_position';
+    }
+    $widget[$first]['#prefix'] = '<table><tr>' . $widget[$first]['#prefix'];
+  }
+
+  // Details fields - wrap in fieldset
+  // If no details fields are showing, hide the fieldset
+  /* TODO Placing other fields in the fieldset destroys them on save/edit!
+  $show = array_intersect($details, $view);
+  $widget['track_details'] = array(
+    '#type' => empty($show) ? 'hidden' : 'fieldset',
+    '#title' => t('Details'),
+    '#weight' => 3,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  //*/
+  $widget['track_artist'] = array(
+    '#type' => in_array('track_artist', $view) ? 'textfield': 'hidden',
+    '#title' => t('Track artist'),
+    '#weight' => 3,
+    '#default_value' => isset($items[$delta]['track_artist'])
+        ? strip_tags($items[$delta]['track_artist']) : "",
+    '#description' => t('Track artist, for compilations'),
+    '#attributes' => array('class' => array('track-artist')),
+  );
+  $widget['track_releases'] = array(
+    '#type' => in_array('track_releases', $view) ? 'textfield': 'hidden',
+    '#title' => t('Track Release(s)'),
+    '#weight' => 3,
+    '#default_value' => isset($items[$delta]['track_releases'])
+        ? strip_tags($items[$delta]['track_releases']) : "",
+    '#description' => t('Release(s) that this track appears on, if any'),
+    '#attributes' => array('class' => array('track-release')),
+  );
+  $widget['track_notes'] = array(
+    '#type' => in_array('track_notes', $view) ? 'textarea': 'hidden',
+    '#title' => t('Notes'),
+    '#weight' => 4,
+    '#default_value' => isset($items[$delta]['track_notes'])
+        ? strip_tags($items[$delta]['track_notes']) : "",
+    '#description' => t('Track notes'),
+    '#attributes' => array('class' => array('track-notes')),
+  );
+  $widget['track_lyrics'] = array(
+    '#type' => in_array('track_notes', $view) ? 'textarea': 'hidden',
+    '#title' => t('Lyrics'),
+    '#weight' => 5,
+    '#default_value' => isset($items[$delta]['track_lyrics'])
+        ? strip_tags($items[$delta]['track_lyrics']) : "",
+    '#description' => t('Track lyrics'),
+    '#attributes' => array('class' => array('track-lyrics')),
+  );
+  if ($is_table) {
+    /* Add prefixes and suffixes to track details field
+    $widget['track_details']['#prefix'] = "<tr><td colspan=\"$cols\">";
+    $widget['track_details']['#suffix'] = '</td></tr></table>';
+    //*/
+    $widget['track_artist']['#prefix'] = "<tr><td colspan=\"$cols\">";
+    $widget['track_artist']['#suffix'] = '</td></tr>';
+    $widget['track_releases']['#prefix'] = "<tr><td colspan=\"$cols\">";
+    $widget['track_releases']['#suffix'] = '</td></tr>';
+    $widget['track_notes']['#prefix'] = "<tr><td colspan=\"$cols\">";
+    $widget['track_notes']['#suffix'] = '</td></tr>';
+    $widget['track_lyrics']['#prefix'] = "<tr><td colspan=\"$cols\">";
+    $widget['track_lyrics']['#suffix'] = '</td></tr></table>';
+  }
+  // Add on "global" widget form values
+  $widget['#element_validate']
+      = array('discog_field_track_text_widget_validate');
+  $widget['#delta'] = $delta;
+  if (!$is_table) {
+    $widget['#type'] = 'fieldset';
+  }
+  return $widget;
+}
+
+/**
+ * Validate the text widget for the Track.
+ */
+function discog_field_track_text_widget_validate($element, &$form_state) {
+  // No need to validate field configuration form
+  if ($form_state['complete form']['#form_id'] == 'field_ui_field_edit_form') {
+    return;
+  }
+
+  $delta = $element['#delta']; // TODO: Better way to find delta?
+  $lang  = $element['#language'];
+  $field = $form_state['field'][$element['#field_name']][$lang]['field'];
+  $field_name = $field['field_name'];
+  $type = isset($values['#widget_type']) ? $values['#widget_type'] : '';
+  $atomic = $type == 'track_text_single_widget'
+      || $type == 'track_table_single_widget';
+  if (isset($form_state['values'][$field_name][$lang][$delta])) {
+    $values = $form_state['values'][$field_name][$lang][$delta];
+    // Validate Lyrics and Notes text areas
+    if (isset($values['track_notes'])) {
+      $values['track_notes'] =
+          _discog_field_track_textarea_validate(
+              $values['track_notes']);
+    }
+    if (isset($values['track_lyrics'])) {
+      $values['track_lyrics'] =
+          _discog_field_track_textarea_validate(
+              $values['track_lyrics']);
+    }
+    form_set_value($element, $values, $form_state);
+  }
+
+  // TODO Possibly fix the problem with the fieldset here
+  return;
+}
+
+/**
+ * Helper function to "validate" textarea form fields. In fact, what it
+ * actually does is strip HTML tags, and replace line feeds with br/p tags.
+ */
+function _discog_field_track_textarea_validate($textarea) {
+   $textarea = trim($textarea);
+   $textarea = strip_tags($textarea);
+   $textarea = check_markup($textarea);
+   return $textarea;
+}
+
+/**
+ * Implements hook_field_widget_error().
+ *
+ * @see discog_field_track_field_validate()
+ * @see form_error()
+ */
+function discog_field_track_field_widget_error($element, $error, $form,
+    &$form_state) {
+  switch ($error['error']) {
+    case 'discog_field_track_invalid':
+      form_error($element, $error['message']);
+      break;
+  }
+}
+

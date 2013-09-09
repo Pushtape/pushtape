@@ -1,0 +1,68 @@
+/* For Table */
+td.track-position {
+  font-weight: bold;
+}
+td.track-artist {
+  font-style: italic;
+}
+td.track-title {
+  font-weight: bold;
+}
+td.track-lyrics-label, td.track-notes-label {
+  font-style: italic;
+  vertical-align: top;
+}
+td.track-lyrics-label:after, td.track-notes-label:after {
+  content: ":";
+}
+
+/* For Formatted Text */
+div.track-block {
+  /* placeholder */
+}
+span.track-position {
+  font-weight: bold;
+}
+span.track-position:after {
+  content: ".";
+}
+span.track-artist {
+  font-style: italic;
+}
+span.track-artist:after {
+  content: " - ";
+}
+span.track-title {
+  font-weight: bold;
+}
+span.track-duration:before {
+  content: "[";
+}
+span.track-duration:after{
+  content: "]";
+}
+div.track-lyrics p, span.track-notes p {
+  padding-left: 3em;
+}
+span.track-lyrics-label, span.track-notes-label {
+  font-style: italic;
+  padding-left: 1.25em;
+}
+span.track-lyrics-label:after, span.track-notes-label:after {
+  content: ":";
+}
+
+/* For discog-track.tpl.php */
+table#discog-tracks, table#discog-tracks tr, table#discog-tracks td {
+  border: none;
+}
+table#discog-tracks thead {
+  font-weight: bold;
+}
+tr.track-data {
+  border-bottom: 1px;
+}
+td.label {
+  text-align: right;
+  vertical-align: top;
+}

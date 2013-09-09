@@ -1,0 +1,14 @@
+name = Discography Release Node
+description = Provides a Release content type for the Discography package.
+package = Discography
+core = 7.x
+files[] = discog_node_release.module
+files[] = discog_node_release.install
+stylesheets[screen][] = discog_node_release.css
+dependencies[] = discog_field_track
+; Information added by drupal.org packaging script on 2013-07-31
+version = "7.x-1.0-beta3+20-dev"
+core = "7.x"
+project = "discogs"
+datestamp = "1375229680"
+

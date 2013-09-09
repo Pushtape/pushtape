@@ -1,0 +1,52 @@
+name = Pushtape Social
+description = Social features for Pushtape.
+core = 7.x
+package = Pushtape
+php = 5.2.4
+version = 7.x-1.0-alpha3
+project = pushtape_social
+dependencies[] = block
+dependencies[] = connector_action_default_register_form
+dependencies[] = ctools
+dependencies[] = defaultconfig
+dependencies[] = features
+dependencies[] = http_client
+dependencies[] = menu
+dependencies[] = oauth_common
+dependencies[] = oauthconnector
+dependencies[] = service_links
+dependencies[] = strongarm
+dependencies[] = twitter
+dependencies[] = views
+dependencies[] = views_content
+dependencies[] = widget_services
+datestamp = 1376349353
+features[ctools][] = oauthconnector:oauthconnector:1
+features[ctools][] = strongarm:strongarm:1
+features[ctools][] = views:views_default:3.0
+features[defaultconfig][] = strongarm:twitter_consumer_key
+features[defaultconfig][] = strongarm:twitter_consumer_secret
+features[defaultconfig][] = views_default_views:tweets
+features[features_api][] = api:2
+features[menu_custom][] = menu-social-connection
+features[menu_links][] = menu-social-connection:https://twitter.com/pushtape
+features[menu_links][] = menu-social-connection:https://www.facebook.com/pushtape
+features[oauthconnector_provider][] = facebook
+features[oauthconnector_provider][] = google
+features[oauthconnector_provider][] = twitter
+features[variable][] = service_links_category_types
+features[variable][] = service_links_in_links
+features[variable][] = service_links_in_node
+features[variable][] = service_links_label_in_node
+features[variable][] = service_links_node_types
+features[variable][] = service_links_show
+features[variable][] = service_links_style
+features[variable][] = service_links_visibility_for_node
+
+
+; Information added by drush on 2013-09-09
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_social"
+datestamp = "1378747657"
+

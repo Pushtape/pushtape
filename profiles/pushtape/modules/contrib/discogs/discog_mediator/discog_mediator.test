@@ -1,0 +1,454 @@
+<?php
+/**
+ * @file
+ * Tests for the Discography Mediator module
+ */
+
+/**
+ * Base Web Test class for the Discography Mediator module.
+ *
+ * Because the Mediator won't function without either a Provider or Entity
+ * Adapter enabled, I've set up these in setUp().
+ */
+class DiscogMediatorBaseWebTestCase extends DrupalWebTestCase {
+  protected $form_state;
+  protected $form;
+  protected $search_term_artist;
+  protected $search_term_release;
+  protected $release_id;
+  protected $form_id;
+  protected $provider_module;
+  protected $entity_module;
+
+  public function setUp() {
+    $this->provider_module = 'discogs_prov';
+    $this->entity_module = 'discog_release_adpt';
+    $modules = array('discog_mediator', $this->provider_module,
+        $this->entity_module, 'devel');
+    parent::setUp($modules);
+    // I'm using The Vanity Set, 'cause it has a lot of information on Discogs
+    // (I should know, I wrote it...)
+    $this->search_term_artist = 'Vanity Set';
+    $this->search_term_release = 'The Vanity Set';
+    $this->release_id = '434604';
+    $this->form_id = 'discog_mediator_import_form';
+    if (!isset($this->form) || !is_array($this->form)) {
+      $this->form = array();
+    }
+    if (!isset($this->form_state) || !is_array($this->form_state)) {
+      $this->form_state = array();
+    }
+  }
+
+  /**
+   * Tests the base test class itself.
+   */
+  protected function doTestDiscogMediatorBaseWebTestCase() {
+    $this->assertTrue(function_exists($this->form_id),
+        $this->form_id . ' found by PHP');
+  }
+
+  /**
+   * Helper function to assert things about fields that should exist on most
+   * form steps.
+   */
+  protected function assertActionFields($prefix = 'Form ', $submit = 'Submit') {
+    $this->assertTrue(isset($this->form['actions']['submit']),
+        $prefix . 'contains submit field');
+    if (isset($this->form['actions']['submit']['#value'])) {
+      $this->assertEqual($submit,
+          $this->form['actions']['submit']['#value'],
+          $prefix . "submit field is named \"$submit\"");
+    }
+    $this->assertTrue(isset($this->form['actions']['cancel']),
+        $prefix . 'contains cancel field');
+    if (isset($this->form['actions']['cancel']['#value'])) {
+      $this->assertEqual(t('Cancel'),
+          $this->form['actions']['cancel']['#value'],
+          $prefix . 'cancel field is named "Cancel"');
+    }
+  }
+
+  /**
+   * Helper function to test form submission
+   */
+  protected function submitForm($prefix = 'Form ', $submit = 'Submit') {
+    // Set up the form operation
+    $op = '';
+    if (isset($this->form['actions']['submit']['#value'])) {
+      $op = $this->form['actions']['submit']['#value'];
+    }
+    $this->form_state['values']['op'] = $op;
+    // Test form operation before submission
+    $this->assertEqual($this->form_state['values']['op'], $submit,
+        $prefix . "\$form state['values']['op'] = \"$submit\"");
+    if ($op == '') {
+      $op = $submit;
+    }
+    drupal_form_submit($this->form_id, $this->form_state);
+  }
+}
+
+/**
+ * Custom SimpleTest class for the Discography Mediator module.
+ */
+class DiscogMediatorFormZeroTestCase extends DiscogMediatorBaseWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Mediator form state 0',
+      'description' => 'Tests form state 0 in the Discography Mediator.',
+      'group' => 'Discography',
+    );
+  }
+
+  /**
+   * Override setUp() to test the base class itself.
+   */
+  public function setUp() {
+    parent::setUp();
+    $this->doTestDiscogMediatorBaseWebTestCase();
+  }
+
+  /**
+   * Tests Form State 0.
+   *
+   * Creates an empty $this->form_state for Step Zero, and passes it to
+   * drupal_build_form.
+   */
+  public function testFormZeroBuild() {
+    $prefix = 'Step 0 form build ';
+    // Build the form.
+    $this->form = drupal_build_form($this->form_id, $this->form_state);
+
+    // Test the returned form
+    $this->assertTrue(isset($this->form['search_term']),
+        $prefix . 'contains search_term field');
+    $this->assertTrue(isset($this->form['search_type']),
+        $prefix . 'contains search_type field');
+    $this->assertTrue(isset($this->form['provider_module']),
+        $prefix . 'contains provider_module field');
+    $this->assertTrue(isset($this->form['entity_module']),
+        $prefix . 'contains entity_module field');
+    $this->assertActionFields($prefix, t('Search'));
+
+    // Test the form state
+    $this->assertFalse(empty($this->form_state),
+        $prefix . 'form_state is not empty');
+    $this->assertTrue(isset($this->form_state['storage']['step']),
+        $prefix . '$form_state[\'storage\'][\'step\'] is set');
+    if (isset($this->form_state['storage']['step'])) {
+      $this->assertEqual(0, $this->form_state['storage']['step'],
+          $prefix . '$form_state[\'storage\'][\'step\'] is 0');
+    }
+  }
+
+  /**
+   * Tests submission of Step 0 form, with $form and $form_state from previous
+   * function.
+   */
+  public function testFormZeroSubmit() {
+    $prefix = 'Step 0 post-submit ';
+
+    // Generate values and submit
+    $this->form_state['values']['search_term'] = $this->search_term_artist;
+    $this->form_state['values']['search_type'] = 'artist';
+    $this->form_state['values']['provider_module'] = $this->provider_module;
+    $this->form_state['values']['entity_module'] = $this->entity_module;
+    $this->form_state['storage']['step'] = 0;
+    // Make sure we get something by invoking the provider module
+    $return = module_invoke(
+      $this->form_state['values']['provider_module'],
+      'discog_search',
+      $this->form_state['values']['search_term'],
+      $this->form_state['values']['search_type'],
+      10, // number of results to return
+      0   // offset
+    );
+    $this->assertFalse(empty($return), $prefix . 'module_invoke successful');
+    // Finally, submit
+    $this->submitForm('Step 0 pre-submit ', t('Search'));
+
+    // Test the form state
+    $this->assertFalse(empty($this->form_state),
+        $prefix . 'form_state is not empty');
+    $this->assertFalse(empty($this->form_state['storage']),
+        $prefix . 'form_state storage is not empty');
+    $this->assertTrue(isset($this->form_state['storage']['data']),
+        $prefix . 'form_state data is set');
+    $this->assertFalse(empty($this->form_state['storage']['data']),
+        $prefix . 'form_state data is not empty');
+
+    $this->assertTrue(
+        isset($this->form_state['storage']['data']['total_results']),
+        $prefix . 'form_state total_results is set');
+    $this->assertFalse(
+        empty($this->form_state['storage']['data']['total_results']),
+        $prefix . 'form_state total_results is not empty');
+
+    $this->assertTrue(isset($this->form_state['storage']['data']['results']),
+        $prefix . 'form_state results is set');
+    if (isset($this->form_state['storage']['data']['results'])) {
+      $this->assertFalse(empty($this->form_state['storage']['data']['results']),
+          $prefix . 'form_state results is not empty');
+      if (count($this->form_state['storage']['data']['results']) > 0) {
+        // Test ALL the releases. ALL OF THEM
+        foreach ($this->form_state['storage']['data']['results']
+            as $delta => $result) {
+          $this->assertFalse(empty($result),
+              $prefix . $delta . ' result is not empty');
+          $this->assertTrue(isset($result['id']),
+              $prefix . $delta . ' result\'s ID field set');
+          $this->assertFalse(empty($result['id']),
+              $prefix . $delta . ' result\'s ID is not empty');
+          $this->assertTrue(isset($result['title']),
+              $prefix . $delta . ' result\'s title field set');
+          $this->assertFalse(empty($result['title']),
+              $prefix . $delta . ' result\'s title is not empty');
+          // Other fields are not required, so don't test for them.
+        }
+      }
+    }
+
+    // Make sure step was saved properly
+    $this->assertTrue(isset($this->form_state['storage']['step']),
+        $prefix . '$form_state[\'storage\'][\'step\'] is set');
+    if (isset($this->form_state['storage']['step'])) {
+      $this->assertEqual(1, $this->form_state['storage']['step'],
+          $prefix . '$form_state[\'storage\'][\'step\'] is 1');
+    }
+  }
+}
+
+/**
+ * Custom SimpleTest class for the Discography Mediator module.
+ */
+class DiscogMediatorFormOneTestCase extends DiscogMediatorBaseWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Mediator form state 1',
+      'description' => 'Tests form state 1 in the Discography Mediator.',
+      'group' => 'Discography',
+    );
+  }
+
+  /**
+   * Override setUp() to test the base class itself.
+   */
+  public function setUp() {
+    parent::setUp();
+    $this->doTestDiscogMediatorBaseWebTestCase();
+  }
+
+  /**
+   * Tests Form State 1, with form state carried over from Step 0.
+   *
+   */
+  public function testFormOneBuild() {
+    $prefix = 'Step 1 form build ';
+    // In case the form step is wrong, set it now.
+    $this->form_state['storage']['step'] = 1;
+    // Build the form.
+    $this->form = drupal_build_form($this->form_id, $this->form_state);
+
+    // Test the new form
+    $this->assertTrue(isset($this->form['title']),
+        $prefix . 'contains title field');
+    $this->assertTrue(isset($this->form['pagination_info']),
+        $prefix . 'contains pagination_info field');
+    $this->assertTrue(isset($this->form['data']),
+        $prefix . 'contains data field');
+    $this->assertTrue(isset($this->form['data']['#type']),
+        $prefix . 'data field has "#type" attribute');
+    $this->assertTrue(isset($this->form['data']['#options']),
+        $prefix . 'data field has "#options" attribute');
+
+    // Common form fields
+    $this->assertActionFields($prefix, t('Next'));
+  }
+
+  /**
+   * Tests submission of Step 1 form, with $form and $form_state from previous
+   * function.
+   */
+  public function testFormOneSubmit() {
+    $prefix = 'Step 1 post-processed ';
+
+    // Generate values
+    $this->form_state['values']['data'] = 326271;
+    $this->form_state['storage']['search_type'] = 'artist';
+    $this->form_state['storage']['provider_module'] = $this->provider_module;
+    $this->form_state['storage']['entity_module'] = $this->entity_module;
+    $this->form_state['storage']['step'] = 1;
+    // Make sure we get something by invoking the provider module
+    $return = module_invoke(
+      $this->form_state['storage']['provider_module'],
+      'discog_fetch_releases',
+      $this->form_state['storage']['search_type'],
+      $this->form_state['values']['data'],
+      10, // number of results to return
+      0   // offset
+    );
+    $this->assertFalse(empty($return), $prefix . 'module_invoke successful');
+    // Finally, submit
+    $this->submitForm('Step 1 pre-submit ', t('Next'));
+
+    // Test the form state
+    $this->assertFalse(empty($this->form_state),
+        $prefix . 'form_state is not empty');
+    $this->assertFalse(empty($this->form_state['storage']),
+        $prefix . 'form_state storage is not empty');
+    /* TODO These tests always fail. Obviously, we have to make better tests!
+    $this->assertTrue(isset($this->form_state['storage']['data']),
+        $prefix . 'form_state data is set');
+    $this->assertFalse(empty($this->form_state['storage']['data']),
+        $prefix . 'form_state data is not empty');
+    $this->assertTrue(
+        isset($this->form_state['storage']['data']['total_results']),
+        $prefix . 'form_state total_results is set');
+    $this->assertFalse(
+        empty($this->form_state['storage']['data']['total_results']),
+        $prefix . 'form_state total_results is not empty');
+
+    $this->assertTrue(isset($this->form_state['storage']['data']['results']),
+        $prefix . 'form_state results is set');
+    // Only assert if #results > 0
+    if (isset($this->form_state['storage']['data']['total_results'])
+        && $this->form_state['storage']['data']['total_results'] > 0) {
+      $this->assertFalse(empty($this->form_state['data']['results']),
+          $prefix . 'form_state results is not empty');
+      // Test ALL the releases. ALL OF THEM
+      foreach ($this->form_state['storage']['data']['results']
+          as $delta => $result) {
+        $this->assertFalse(empty($result),
+            $prefix . $delta . ' result is not empty');
+        $this->assertTrue(isset($result['id']),
+            $prefix . $delta . ' result\'s ID field set');
+        $this->assertFalse(empty($result['id']),
+            $prefix . $delta . ' result\'s ID is not empty');
+        $this->assertTrue(isset($result['title']),
+            $prefix . $delta . ' result\'s title field set');
+        $this->assertFalse(empty($result['title']),
+            $prefix . $delta . ' result\'s title is not empty');
+        // Other fields are not required, so don't test for them.
+      }
+    }
+
+    // Make sure step was saved properly
+    $this->assertTrue(isset($this->form_state['storage']['step']),
+        $prefix . '$form_state[\'storage\'][\'step\'] is set');
+    if (isset($this->form_state['storage']['step'])) {
+      $this->assertEqual(2, $this->form_state['storage']['step'],
+          $prefix . '$form_state[\'storage\'][\'step\'] is 2');
+    }
+    //*/
+  }
+}
+
+/**
+ * Custom SimpleTest class for the Discography Mediator module.
+ */
+class DiscogMediatorFormTwoTestCase extends DiscogMediatorBaseWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Mediator form state 2',
+      'description' => 'Tests form state 2 in the Discography Mediator.',
+      'group' => 'Discography',
+    );
+  }
+
+  /**
+   * Override setUp() to test the base class itself.
+   */
+  public function setUp() {
+    parent::setUp();
+    $this->doTestDiscogMediatorBaseWebTestCase();
+  }
+
+  /**
+   * Tests Form State 2, with form state carried over from Step 0.
+   *
+   */
+  public function testFormTwoBuild() {
+    $prefix = 'Step 2 form build ';
+    // In case the form step is wrong, set it now.
+    $this->form_state['storage']['step'] = 2;
+    // Build the form.
+    $this->form = drupal_build_form($this->form_id, $this->form_state);
+
+    // Test the new form
+    $this->assertTrue(isset($this->form['title']),
+        $prefix . 'contains title field');
+    $this->assertTrue(isset($this->form['pagination_info']),
+        $prefix . 'contains pagination_info field');
+    $this->assertTrue(isset($this->form['data']),
+        $prefix . 'contains data field');
+    $this->assertTrue(isset($this->form['data']['#type']),
+        $prefix . 'data field has "#type" attribute');
+    $this->assertTrue(isset($this->form['data']['#options']),
+        $prefix . 'data field has "#options" attribute');
+
+    // Common form fields
+    $this->assertActionFields($prefix, t('Next'));
+  }
+
+}
+
+/**
+ * Theme testing class for the Discography Mediator module.
+ */
+class DiscogMediatorThemeTestCase extends DiscogMediatorBaseWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Mediator theme tests',
+      'description' => 'Tests to see if the theme functions are working and registered.',
+      'group' => 'Discography',
+    );
+  }
+
+  /**
+   * Override setUp() to test the base class itself.
+   */
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * Test the theme functions.
+   */
+  function testThemeFunctions() {
+    // Set up some dummy values
+    $option = array(
+      'title'          => $this->randomName(),
+      'release_artist' => $this->randomName(),
+    );
+    $results = array(
+      'multiple' => FALSE,
+      'results' => array(
+        0 => array(
+          'id' => 1,
+          'title' => $this->randomName(),
+        ),
+        1 => array(
+          'id' => 2,
+          'title' => $this->randomName(),
+        ),
+      ),
+    );
+
+    // Test theme_discog_selections
+    $result = theme_discog_selections($results);
+    $this->assertFalse(empty($result), 'Result of theme_discog_selections() call is not empty');
+    $result = theme('discog_selections', $results);
+    $this->assertFalse(empty($result), 'Result of theme(\'discog_selections\', $results) call is not empty');
+
+    // Test theme_discog_info_text
+    $result = theme_discog_info_text($option);
+    $this->assertFalse(empty($result), 'Result of theme_discog_info_text() call is not empty');
+    $result = theme('discog_info_text', $option);
+    $this->assertFalse(empty($result), 'Result of theme(\'discog_info_text\', $option) call is not empty');
+  }
+}

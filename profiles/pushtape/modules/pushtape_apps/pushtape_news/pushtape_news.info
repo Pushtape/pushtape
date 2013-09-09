@@ -1,0 +1,80 @@
+name = Pushtape News
+description = Creates a news content type and associated views.
+core = 7.x
+package = Pushtape
+php = 5.2.4
+version = 7.x-1.0-alpha3
+project = pushtape_news
+dependencies[] = flexslider_views
+dependencies[] = views
+dependencies[] = views_slideshow_cycle
+  = ======
+<<<<<<< HEAD
+dependencies[] = flexslider_views
+<<<<<<< HEAD
+dependencies[] = views_content
+<<<<<<< HEAD
+features[field][] = node-news-body
+<<<<<<< HEAD
+version = 7.x-1.0-alpha3
+>>>>>>> c759c856b78b4546a7f196b564b2f4a756b99626
+dependencies[] = options
+>>>>>>> c759c856b78b4546a7f196b564b2f4a756b99626
+features[ctools][] = page_manager:pages_default:1
+>>>>>>> c759c856b78b4546a7f196b564b2f4a756b99626
+project = pushtape_news
+apps[server] = http://apps.pushtape.openlearninglabs.org/app/query/pushtape
+datestamp = 1376349382
+features[ctools][] = page_manager:pages_default:1
+features[ctools][] = panelizer:panelizer:1
+features[ctools][] = strongarm:strongarm:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[field_base][] = field_featured_image
+features[field_instance][] = node-news-body
+features[field_instance][] = node-news-field_featured_image
+features[field_instance][] = node-news-field_featured_status
+features[node][] = news
+features[page_manager_pages][] = news
+features[panelizer_defaults][] = node:news:default
+features[variable][] = field_bundle_settings_node__news
+features[variable][] = menu_options_news
+features[variable][] = menu_parent_news
+features[variable][] = node_options_news
+features[variable][] = node_preview_news
+features[variable][] = node_submitted_news
+features[variable][] = panelizer_defaults_node_news
+features[variable][] = pathauto_node_news_pattern
+features[views_view][] = news
+features_exclude[dependencies][pushtape_discography] = pushtape_discography
+features_exclude[dependencies][pushtape_newsletter] = pushtape_newsletter
+features_exclude[dependencies][views_content] = views_content
+project status url = project status url = http://updates.drupal.org/release-history/pushtape_news/7.x
+ape_news-field_featured_status
+features[node][] = pushtape_news
+features[page_manager_pages][] = pushtape_news
+features[panelizer_defaults][] = node:pushtape_news:default
+features[variable][] = additional_settings__active_tab_pushtape_news
+features[variable][] = date_popup_authored_enabled_pushtape_news
+features[variable][] = date_popup_authored_format_pushtape_news
+features[variable][] = date_popup_authored_year_range_pushtape_news
+features[variable][] = field_bundle_settings_node__pushtape_news
+features[variable][] = menu_options_pushtape_news
+features[variable][] = menu_parent_pushtape_news
+features[variable][] = node_options_pushtape_news
+features[variable][] = node_preview_pushtape_news
+features[variable][] = node_submitted_pushtape_news
+features[variable][] = panelizer_defaults_node_pushtape_news
+features[variable][] = pathauto_node_pushtape_news_pattern
+features[views_view][] = pushtape_news
+project status url = project status url = http://updates.drupal.org/release-history/pushtape_news/7.x
+apps[server] = http://apps.pushtape.openlearninglabs.org/app/query/pushtape
+>>>>>>> c759c856b78b4546a7f196b564b2f4a756b99626
+
+
+; Information added by drush on 2013-09-09
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_news"
+datestamp = "1378747685"
+

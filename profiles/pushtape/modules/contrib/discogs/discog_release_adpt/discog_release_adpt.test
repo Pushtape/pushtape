@@ -1,0 +1,259 @@
+<?php
+
+/**
+ * Changed to base case.
+ */
+class DiscogReleaseAdptBaseWebTestCase extends DrupalWebTestCase {
+  protected $release;
+
+  public function setUp() {
+    parent::setUp('discog_release_adpt');
+  }
+
+  /**
+   * Helper function to set up the $release array with random values.
+   */
+  protected function initReleaseRandom() {
+    // Set up release data
+    $this->release = array(
+      'title' => $this->randomName(),
+      'release_artist' => $this->randomName(),
+      'release_label' => $this->randomName(),
+      'release_catno' => $this->randomName(),
+      'release_format' => $this->randomName(),
+      'release_country' => $this->randomName(),
+      'release_date' => rand(1945, 2013),
+      'release_credits' => $this->randomName(),
+      'release_notes' => $this->randomName(),
+      'release_images' => array(
+        'image_urls' => array(
+          'http://s.pixogs.com/image/R-434604-1195432949.jpeg',
+          'http://s.pixogs.com/image/R-2419241-1283038299.jpeg',
+        ),
+        'primary' => 0,
+      ),
+      'release_categories' => array(
+        $this->randomName(),
+        $this->randomName(),
+        $this->randomName(),
+      ),
+    );
+    // Add some tracks
+    $rnd = rand(2, 10);
+    for ($i = 0; $i < $rnd; $i++) {
+      $this->release['release_tracks'][$i] = array(
+        'track_position' => $i,
+        'track_title' => $this->randomName(),
+        'track_duration' => '4:33',
+        'track_artist' => $this->randomName(),
+        'track_notes' => $this->randomName(),
+        'track_lyrics' => $this->randomName(),
+      );
+    }
+    // Let the tester know it's done
+    $this->pass('$release initialized with random values', 'info');
+  }
+
+  /**
+   * Helper function to set up the $release array with known good values.
+   */
+  protected function initReleaseGood() {
+    // Set up release data
+    $this->release = array(
+      'title' => 'The Vanity Set',
+      'release_artist' => 'Vanity Set, The (2)',
+      'release_label' => 'Naked Spur Prod.',
+      'release_catno' => 'nsp00CD',
+      'release_format' => 'LP',
+      'release_country' => 'US',
+      'release_date' => '2006',
+      // Include markup to test stripping of tags
+      'release_credits' => "<p>Contra-bass, Trumpet, Enveloped Balalaika: Pete Shore</br>
+                            Drums, Tambourine, Vocal: Thomas Wydler</br>
+                            Lead Vocal, Keyboards, Percussion: Jim Sclavunos</p>",
+      'release_notes' => 'Release notes',
+      'release_images' => array(
+        'image_urls' => array(
+          'http://www.large-icons.com/stock-icons/free-social-media/drupal.jpg',
+          'http://icons.iconarchive.com/icons/danleech/simple/512/drupal-icon.png',
+        ),
+        'primary' => 0,
+      ),
+      'release_categories' => array(
+        'Rock',
+        'Alternative Rock',
+      ),
+    );
+    // Add some tracks (these aren't the real tracks, obviously)
+    $rnd = rand(2, 10);
+    for ($i = 0; $i < $rnd; $i++) {
+      $this->release['release_tracks'][$i] = array(
+        'track_position' => $i,
+        'track_title' => 'Track ' . $i,
+        'track_duration' => '4:33',
+        'track_artist' => 'The Vanity Set',
+        'track_notes' => "Fuzz Bass: Chris Pravdica\nGuitar: Peter Andrus\nVocal: Sally Norvell",
+        'track_lyrics' => "I have\nSome lyrics\nFor you...",
+      );
+    }
+    // Let the tester know it's done
+    $this->pass('$release initialized with known good values', 'info');
+  }
+}
+
+/**
+ * This class tests the Discography Release Adapter.
+ */
+class DiscogReleaseAdptTestCase extends DiscogReleaseAdptBaseWebTestCase {
+  protected $release;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Release Adapter',
+      'description' => 'Tests the Discography Release Adapter\'s single hook override.',
+      'group' => 'Discography',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('discog_release_adpt');
+    // Set up the test data here.
+    if (!isset($this->release) || !is_array($this->release)) {
+      $this->initReleaseGood();
+    }
+  }
+
+  /**
+   * This method tests saving a release with modules enabled, and a release
+   * containing known good values
+   */
+  public function testSaveRelease() {
+    $this->assertTrue(module_exists('image'), 'Images enabled', 'info');
+    $this->assertTrue(module_exists('taxonomy'), 'Taxonomy enabled', 'info');
+    $result = discog_release_adpt_discog_save_release($this->release);
+    $this->assertFalse(empty($result), 'Result from saving release is not empty');
+    $this->assertTrue(isset($result['success']), "\$result['success'] is set");
+    $this->assertTrue($result['success'], "\$result['success'] is TRUE");
+    $this->assertTrue(isset($result['message']), "\$result['message'] is set");
+    $this->assertFalse(empty($result['message']), "\$result['message'] is not empty");
+    // Let's see that message
+    if (!empty($result['message'])) {
+      $this->pass($result['message'], "\$result['message']");
+    }
+  }
+
+/**
+   * This method tests delting a release with modules enabled, and a release
+   * containing known good values
+   */
+  public function testDeleteRelease() {
+    $this->pass("\tTesting release deletion...", 'info');
+    $this->assertTrue(module_exists('image'), 'Images enabled', 'info');
+    $this->assertTrue(module_exists('taxonomy'), 'Taxonomy enabled', 'info');
+    $result = discog_release_adpt_discog_save_release($this->release);
+    $this->assertFalse(empty($result['success']), 'Result from saving release is not empty/FALSE');
+    $this->assertTrue(isset($result['nid']), 'Node ID is set');
+    // If OK, move on to deletion
+    if (isset($result['nid'])) {
+      node_delete($result['nid']);
+    }
+  }
+
+  /**
+   * This method tests saving a release when the Taxonomy module is disabled.
+   */
+  public function testSaveReleaseNoTerms() {
+    module_disable(array('taxonomy'));
+    $this->assertFalse(module_exists('taxonomy'), 'Taxonomy disabled');
+    $result = discog_release_adpt_discog_save_release($this->release);
+    $this->assertFalse(empty($result), 'Taxonomy disabled: result from saving release is not empty');
+    $this->assertTrue(isset($result['success']), "Taxonomy disabled: \$result['success'] is set");
+    $this->assertTrue($result['success'], "Taxonomy disabled: \$result['success'] is TRUE");
+    $this->assertTrue(isset($result['message']), "Taxonomy disabled: \$result['message'] is set");
+    $this->assertFalse(empty($result['message']), "Taxonomy disabled: \$result['message'] is not empty");
+    if (!empty($result['message'])) {
+      $this->pass($result['message'], "Taxonomy disabled: \$result['message']");
+    }
+  }
+
+  /**
+   * This method tests saving a release when the Image module is disabled.
+   */
+  public function testSaveReleaseNoImages() {
+    module_disable(array('image'));
+    $this->assertFalse(module_exists('image'), 'Images disabled');
+    $result = discog_release_adpt_discog_save_release($this->release);
+    $this->assertFalse(empty($result), 'Images disabled: result from saving release is not empty');
+    $this->assertTrue(isset($result['success']), "Images disabled: \$result['success'] is set");
+    $this->assertTrue($result['success'], "Images disabled: \$result['success'] is TRUE");
+    $this->assertTrue(isset($result['message']), "Images disabled: \$result['message'] is set");
+    $this->assertFalse(empty($result['message']), "Images disabled: \$result['message'] is not empty");
+    if (!empty($result['message'])) {
+      $this->pass($result['message'], "Images disabled: \$result['message']");
+    }
+  }
+
+  /**
+   * This method tests saving a release with random values
+   */
+  public function testSaveReleaseRandom() {
+    $this->initReleaseRandom();
+    $this->assertTrue(module_exists('image'), 'Images enabled', 'info');
+    $this->assertTrue(module_exists('taxonomy'), 'Taxonomy enabled', 'info');
+    $result = discog_release_adpt_discog_save_release($this->release);
+    $this->assertFalse(empty($result), 'Result from saving release is not empty');
+    $this->assertTrue(isset($result['success']), "\$result['success'] is set");
+    $this->assertTrue($result['success'], "\$result['success'] is TRUE");
+    $this->assertTrue(isset($result['message']), "\$result['message'] is set");
+    $this->assertFalse(empty($result['message']), "\$result['message'] is not empty");
+    // Let's see that message
+    if (!empty($result['message'])) {
+      $this->pass($result['message'], "\$result['message']");
+    }
+  }
+
+}
+
+/**
+ * This class only tests to see if tags are stripped.
+ */
+class DiscogReleaseAdptTagCase extends DiscogReleaseAdptBaseWebTestCase {
+  private $privileged_user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Release Adapter Tags',
+      'description' => 'Tests whether the Discography Release Adapter successfully stripped tags.',
+      'group' => 'Discography',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->initReleaseGood();
+    // We have to actually set up a user with the correct permissions.
+    $this->privileged_user = $this->drupalCreateUser(array('create release', 'edit own release'));
+    $this->drupalLogin($this->privileged_user);
+  }
+
+  /**
+   * This method tests to see whether the page can be viewed as a node, and
+   * whether the save process stripped all tags from the fields (the
+   * release_credits field in our test case).
+   */
+  public function testStrippedTags() {
+    $result = discog_release_adpt_discog_save_release($this->release);
+    $this->assertFalse(empty($result), 'Result from saving release is not empty');
+    $this->assertTrue(isset($result['success']), "\$result['success'] is set");
+    $this->assertTrue($result['success'], "\$result['success'] is TRUE");
+    $this->assertTrue(isset($result['nid']), "\$result['nid'] is set");
+    $this->assertFalse(empty($result['nid']), "\$result['nid'] is not empty");
+    if (!empty($result['nid'])) {
+      // Now, go to page and see if the tags are stripped
+      $path = 'node/' . $result['nid'];
+      $page = $this->drupalGet($path);
+      $this->assertFalse(empty($page), "Page from drupalGet() is not empty");
+    }
+  }
+
+}

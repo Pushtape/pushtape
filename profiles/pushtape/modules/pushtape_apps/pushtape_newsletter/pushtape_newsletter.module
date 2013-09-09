@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Pushtape Newsletter feature.
+ */
+
+include_once 'pushtape_newsletter.features.inc';

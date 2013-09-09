@@ -1,0 +1,148 @@
+<?php
+/**
+ * @file
+ * Provides a custom Discography node type.
+ */
+
+/**
+ * Implements hook_node_info().
+ */
+function discog_node_track_node_info() {
+  return array(
+    'track' => array(
+      'name' => t('Track'),
+      'base' => 'track',
+      'description' => t('A music track.'),
+      'has_title' => TRUE,
+      'title_label' => t('Track Title'),
+      'has_body' => FALSE,
+      'help' => t('The Track content type holds information about a single music track.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_help().
+ */
+function discog_node_track_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#discog_node_track':
+      return '<h3>' . t('About') . '</h3>'
+        . '<p>'  . t('The Track Node module provides a Track content type for the Discography package.') . '</p>'
+        . '<p>'  . t('For more information, see the <a href="!url">online documentation</a> for the Discography Framework.', array('!url' => 'https://drupal.org/node/2031953')) . '</p>'
+        . '<h3>' . t('Uses') . '</h3>'
+        . '<p>'  . t('You can create a Track like any other content type, by <a href="@link">adding a Track</a> in the Add Content section of the site.', array('@link' => url('node/add/track'))) . '</p>'
+        . '<p>'  . t('This module uses a Track Field to store track data. For information on the Track Field widgets and formatters, visit the <a href="@link">Track Field help page</a>.', array('@link' => url('admin/help/discog_field_track')))
+        . '</p>';
+  }
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function discog_node_track_perm() {
+  return array(
+    'create track' => array(
+      'title' => t('Create a track'),
+      'description' => t('Create a track'),
+    ),
+    'edit own track'=> array(
+      'title' => t('Edit own track'),
+      'description' => t('Edit a track that you created'),
+    ),
+    'edit any track'=> array(
+      'title' => t('Edit any track'),
+      'description' => t('Edit any track'),
+    ),
+    'delete own track'=> array(
+      'title' => t('Delete own track'),
+      'description' => t('Delete a track that you created'),
+    ),
+    'delete any track'=> array(
+      'title' => t('Delete any track'),
+      'description' => t('Delete any track'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function discog_node_track_node_access($op, $node, $account) {
+  switch ($op) {
+    case 'create':
+      if (user_access('create release', $account)) {
+        return NODE_ACCESS_ALLOW;
+      }
+      return NODE_ACCESS_DENY;
+    case 'update':
+      // Deliberate fall-through
+    case 'delete':
+      // $node should always be an object in these cases
+      $is_auth = ($account->uid == $node->uid);
+      $own     = user_access($op . ' own release', $account) && $is_auth;
+      $any     = user_access($op . ' any release', $account);
+      if ($own || $any) {
+        return NODE_ACCESS_ALLOW;
+      }
+      return NODE_ACCESS_DENY;
+    default:
+      return NODE_ACCESS_IGNORE;
+  }
+}
+
+/**
+ * Implements hook_form().
+ */
+function track_form($node, &$form_state) {
+  // Return the standard default form.
+  return node_content_form($node, $form_state);
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * This implementation creates a 'tracks' menu item that lists all of the
+ * track nodes. Sites that use Views will probably want to override this.
+ */
+function discog_node_track_node_menu() {
+  $items['tracks'] = array(
+    'title' => 'Tracks',
+    'page callback' => '_discog_node_track_display_nodes',
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Menu callback; generates a listing of promoted discography nodes. This code
+ * is mostly copied from node_page_default() in node.module.
+ *
+ * @return
+ *   Rendered output of Discography nodes
+ * @see node_page_default()
+ */
+function _discog_node_track_display_nodes() {
+  $result = pager_query(
+    db_rewrite_sql('SELECT * FROM {node} n '
+      . 'WHERE n.promote = 1 AND n.status = 1 AND n.type = "track" '
+      . 'ORDER BY n.sticky DESC, n.created DESC'
+    ), variable_get('default_nodes_main', 10));
+
+  $output = '';
+  $has_rows = FALSE;
+  while ($node = db_fetch_object($result)) {
+    $output .= node_view(node_load($node->nid), 1);
+    $has_rows = TRUE;
+  }
+  if (!$num_rows) {
+    $output = t('No tracks have been created. If you would like to add some, you can <a href="@nurl">create a track here</a>.',
+      array(
+        '@nurl' => url('node/add/track'),
+      )
+    );
+  }
+  drupal_set_title('');
+  return $output;
+}

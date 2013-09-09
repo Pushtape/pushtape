@@ -1,0 +1,76 @@
+name = Flux Panels
+description = Flux is a simple, style agnostic base theme used in the Pushtape distribution.
+core = 7.x
+engine = phptemplate
+stylesheets[all][] = style.css
+
+regions[top]            = Top
+regions[header]         = Header
+regions[navigation]     = Navigation
+regions[highlighted]    = Highlighted
+regions[help]           = Help
+regions[content]        = Content
+regions[sidebar_first]  = First Sidebar
+regions[sidebar_second] = Second Sidebar
+regions[footer]         = Footer
+regions[bottom]         = Bottom
+
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = comment_user_verification
+features[] = favicon
+features[] = main_menu
+
+; Theme settings
+settings[default_cover_photo] = 1
+settings[toggle_cover_photo] = 1
+settings[toggle_logo] = 0
+
+
+; Information added by drupal.org packaging script on 2011-11-02
+version = "7.x-3.6"
+core = "7.x"
+project = "Flux"
+datestamp = "1320214533"
+
+
+; Information added by drupal.org packaging script on 2012-08-22
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "flux"
+datestamp = "1345638485"
+
+
+; Information added by drupal.org packaging script on 2012-09-23
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "flux"
+datestamp = "1348361286"
+
+
+; Information added by drupal.org packaging script on 2013-03-21
+version = "7.x-1.0-alpha2+6-dev"
+core = "7.x"
+project = "flux"
+datestamp = "1363870712"
+
+
+
+; Information added by drush on 2013-08-12
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "flux_panels"
+datestamp = "1376349345"
+
+
+
+; Information added by drush on 2013-09-09
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "flux_panels"
+datestamp = "1378747653"
+

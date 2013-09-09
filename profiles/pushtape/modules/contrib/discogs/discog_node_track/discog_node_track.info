@@ -1,0 +1,13 @@
+name = Discography Track Node
+description = Provides a Track content type for the Discography package. Note that Track information is completely independent of Release information.
+package = Discography
+core = 7.x
+files[] = discog_node_track.module
+files[] = discog_node_track.install
+dependencies[] = discog_field_track
+; Information added by drupal.org packaging script on 2013-07-31
+version = "7.x-1.0-beta3+20-dev"
+core = "7.x"
+project = "discogs"
+datestamp = "1375229680"
+

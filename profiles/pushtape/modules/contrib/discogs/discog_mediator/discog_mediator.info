@@ -1,0 +1,15 @@
+name = "Discography Mediator"
+description = "Acts as a mediator between Discography Provider Adapters and Discography Entity Adapters." 
+package = Discography
+core = 7.x 
+files[] = discog_mediator.module
+files[] = discog_mediator.admin.inc
+; files[] = discog_mediator.form.inc
+files[] = discog_mediator.test
+stylesheets[screen][] = discog_mediator.css
+; Information added by drupal.org packaging script on 2013-07-31
+version = "7.x-1.0-beta3+20-dev"
+core = "7.x"
+project = "discogs"
+datestamp = "1375229680"
+

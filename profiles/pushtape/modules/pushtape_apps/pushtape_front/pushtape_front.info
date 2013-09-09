@@ -1,0 +1,35 @@
+name = Pushtape Front
+core = 7.x
+package = Pushtape
+php = 5.2.4
+version = 7.x-1.0-alpha3
+project = pushtape_front
+dependencies[] = backstretch
+dependencies[] = block
+dependencies[] = context
+dependencies[] = context_ui
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = flexslider
+dependencies[] = flexslider_views
+dependencies[] = page_manager
+dependencies[] = views_slideshow
+datestamp = 1376349384
+features[context][] = background_events
+features[context][] = background_music
+features[context][] = background_news
+features[context][] = background_photos
+features[context][] = background_video
+features[context][] = footer
+features[ctools][] = context:context:3
+features[ctools][] = page_manager:pages_default:1
+features[features_api][] = api:2
+features[page_manager_pages][] = pushtape_front
+
+
+; Information added by drush on 2013-09-09
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_front"
+datestamp = "1378747700"
+

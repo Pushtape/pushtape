@@ -1,0 +1,387 @@
+<?php
+/**
+ * @file:
+ * This module implements the Discography Entity Adapter for Pushtape
+ * Discography module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function pushtape_discography_adpt_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#pushtape_discography_adpt':
+      return '<h3>' . t('About') . '</h3>'
+        . '<p>'  . t('This module is the Discography Entity Adapter for the Pushtape Discography module. Its job is to take release data from the Discography Mediator, and save it as Pushtape Album and Track content.') . '</p>'
+        . '<p>'  . t('For more information, see the <a href="!url">online documentation</a> for the Discography Framework.', array('!url' => 'https://drupal.org/node/2031953')) . '</p>'
+        . '<h3>' . t('Uses') . '</h3>'
+        . '<p>'  . t('This module implements hooks that are called by the Discography Mediator. Visit the <a href="@link">help page for the Discography Mediator</a> for details.', array('@link' => url('admin/help/discog_mediator')))
+        . '</p>';
+  }
+}
+
+/**
+ * Implements hook_discog_type_info().
+ *
+ * @return array of information. Array must have this structure:
+ * - name [REQUIRED]: short, human-readable name of the entity or node type.
+ * - description: brief description of the entity or node type.
+ *
+ */
+function pushtape_discography_adpt_discog_type_info() {
+  return array(
+   'name' => t('Pushtape Discography Adapter'),
+   'description' => t('The Discography Entity Adapter for the Pushtape Discography module.'),
+  );
+}
+
+/**
+ * Implements hook_discog_save_release().
+ *
+ * @param $release Array of release data.
+ * The $release array should have fields with the following keys:
+ * - title [REQUIRED]: plain text (named for consistency with node title)
+ * - release_artist [REQUIRED]: plain text
+ * - release_label: plain text
+ * - release_catno (catalog #): plain text
+ * - release_format: plain text
+ * - release_country: plain text
+ * - release_date: plain text (use format_date() if necessary)
+ * - release_credits: HTML markup string
+ * - release_notes: HTML markup string
+ * - release_images: array of URL's to images on provider's site:
+ *   - image_urls: array of index => URL
+ *   - primary: index of primary image URL (for types with one image per album)
+ * - release_categories: array of plain textrelease categories (genres, styles,
+ *    etc). These may optionally be turned into taxonomy terms by the Entity
+ *    Adapter.
+ * - release_tracks [REQUIRED]: an associative array of track values. Each track
+ *   should be a 0-indexed array, and each index should be an array with these
+ *   fields:
+ *   - track_position [REQUIRED]: plain text
+ *     Note that this should be a field; you should NOT use the key as the
+ *     track position.
+ *   - track_title [REQUIRED]: plain text
+ *   - track_duration: plain text (in MM:SS format)
+ *   - track_artist: plain text
+ *   - track_notes: HTML markup string
+ *   - track_lyrics: plain text
+ *
+ * @return Array containing information about the creation process.
+ * The array should have these fields:
+ * - success [REQUIRED]: boolean
+ * - message: Success/failure message, e.g. "Release was created successfully"
+ * - nid: The ID of the inserted node (or other entity)
+ */
+function pushtape_discography_adpt_discog_save_release($release) {
+  // Define and initialize variables
+  $ok      = TRUE;
+  $message = '';
+  $title   = '';
+  $body    = '';
+  $nid     = 0;
+  $lang    = LANGUAGE_NONE;
+  $format  = NULL;
+  $album   = NULL;
+  $tnode   = NULL;
+
+  // We need to include node.pages.inc to have access to node hooks
+  module_load_include('inc', 'node', 'node.pages');
+
+  // PART I: Create the Album node
+  $album = new stdClass;
+
+  // Save title
+  $album->title = $release['title'];
+
+  // Release notes go into body field
+  if (!empty($release['release_notes'])) {
+    $body .= $release['release_notes'];
+  }
+  // Put values into the node according to available filter
+  if (_pushtape_discography_adpt_html_avail('body', 'album')) {
+    $album->body[$lang][0]['value']  = $body;
+    $album->body[$lang][0]['format'] = 'filtered_html';
+  }
+  else {
+    $album->body[$lang][0]['value']  = strip_tags($body);
+  }
+  
+   // Release credits go into credits field
+  if (!empty($release['release_credits'])) {
+    $field_credits .= $release['release_credits'];
+  }
+  // Put values into the node according to available filter
+  if (_pushtape_discography_adpt_html_avail('field_credits', 'album')) {
+    $album->field_credits[$lang][0]['value']  = $field_credits;
+    $album->field_credits[$lang][0]['format'] = 'filtered_html';
+  }
+  else {
+    $album->field_credits[$lang][0]['value']  = strip_tags($field_credits);
+  }
+
+
+  // Handle artist - taxonomy term in 'artists' vocabulary
+  $album->field_artist[$lang][0] = _pushtape_discography_adpt_taxonomy(
+      strip_tags($release['release_artist']), 'artists');
+
+  // Handle categories - taxonomy terms in 'tags' vocabulary
+  foreach($release['release_categories'] as $delta => $term) {
+    $album->field_tags[$lang][$delta] = _pushtape_discography_adpt_taxonomy(
+      strip_tags($term), 'tags');
+  }
+
+  // Handle image - Pushtape only stores one
+  $album->field_artwork[$lang][0] = _pushtape_discography_adpt_images(
+      $release['release_images']);
+
+  // Handle date - needs to be in datetime format
+  // TODO Doesn't always work...
+  if (!empty($release['release_date'])) {
+    $album->field_release_date[$lang][0]['value'] = date('Y-m-d H:i:s',
+        strtotime($release['release_date']));
+  }
+
+  // Pushtape doesn't save this info:
+  // $release['release_label']
+  // $release['release_catno']
+  // $release['release_format']
+  // $release['release_country']
+
+  // Set meta-info
+  $album->language = $lang;
+  $album->type     = 'album';
+  $album->op       = t('Save');
+
+  // Prepare and save album node
+  node_object_prepare($album);
+  node_save($album);
+
+  // See if there were any errors saving the album node
+  if ($album->nid) {
+    $nid = $album->nid;
+    $message = t('Release "@title" was created successfully.',
+        array('@title' => $album->title));
+    watchdog('pushtape_discography_adpt', $message);
+  }
+  else {
+    $ok = FALSE;
+    $message = t(
+      'Pushtape Discography Adapter error creating album "@title".',
+      array('@title' => $album->title)
+    );
+    watchdog('pushtape_discography_adpt', $message, NULL, WATCHDOG_ERROR);
+  }
+
+  // PART II: Create the track nodes
+  if ($ok) {
+    // Sort the tracks by position (PHP < 5.3 compatible)
+    usort($release['release_tracks'], '_pushtape_discography_adpt_cmp');
+
+    // Cycle through the track data, and create nodes for all of them
+    foreach($release['release_tracks'] as $delta => $track) {
+      // Re-initialize variables
+      $tnode  = new stdClass;
+      $artist = '';
+
+      // Convert $track data to something we can put into track node
+      $tnode->title = strip_tags($track['track_title']);
+      if (!empty($track['track_notes'])) {
+        // Put values into the node according to available filter
+        if (_pushtape_discography_adpt_html_avail('body', 'track')) {
+          $tnode->body[$lang][0]['value']  = $track['track_notes'];
+          $tnode->body[$lang][0]['format'] = 'filtered_html';
+        }
+        else {
+          $tnode->body[$lang][0]['value'] = strip_tags($track['track_notes']);
+        }
+      }
+      if (!empty($track['track_lyrics'])) {
+        // Put values into the node according to available filter
+        if (_pushtape_discography_adpt_html_avail('field_lyrics', 'track')) {
+          $tnode->field_lyrics[$lang][0]['value'] = $track['track_lyrics'];
+          $tnode->field_lyrics[$lang][0]['format'] = 'filtered_html';
+        }
+        else {
+          $tnode->field_lyrics[$lang][0]['value']
+              = strip_tags($track['track_lyrics']);
+        }
+      }
+
+      // If there is a track artist, use that; otherwise use album artist
+      if (!empty($track['track_artist'])) {
+        $tnode->field_artist[$lang][0] = _pushtape_discography_adpt_taxonomy(
+          strip_tags($track['track_artist']), 'artists');
+      }
+      else {
+        $tnode->field_artist = $album->field_artist;
+      }
+
+      // Get this information from the album
+      $tnode->language           = $album->language;
+      $tnode->field_artwork      = $album->field_artwork;
+      $tnode->field_release_date = $album->field_release_date;
+      $tnode->field_tags         = $album->field_tags;
+
+      // Pushtape doesn't save this info:
+      // $track['track_duration']
+      // $track['track_position']
+
+      // Associate this track with the album
+      $tnode->field_album[$lang][0]['target_id'] = $nid;
+
+      // Set meta-info
+      $tnode->type = 'track';
+      $tnode->op   = t('Save');
+
+      // Prepare and save track node
+      node_object_prepare($tnode);
+      node_save($tnode);
+
+      // If there were no errors, save the track with the album
+      if ($tnode->nid) {
+        $album->field_tracklist[$lang][$delta]['target_id'] = $tnode->nid;
+      }
+      // Track not saved, so set error and break out of loop
+      else {
+        $ok = FALSE;
+        $message = t(
+          'Pushtape Discography Adapter error creating track "@title".',
+          array('@title' => $tnode->title)
+        );
+        watchdog('pushtape_discography_adpt', $message, NULL, WATCHDOG_ERROR);
+        break;
+      }
+    }
+
+    // Because we now have track information for the album, we have to prepare
+    // and save the album node again - assuming everything went OK
+    if ($ok) {
+      node_object_prepare($album);
+      node_save($album);
+    }
+    // But if something isn't OK, then we have to roll back the transaction
+    else {
+      // Delete whatever tracks we created
+      foreach ($album->field_tracklist[$lang] as $target) {
+        node_delete($target['target_id']);
+      }
+      // Delete the album node itself
+      node_delete($album->nid);
+      $nid = 0;
+    }
+  }
+
+  // Finally, return a status array to the Discography Mediator
+  return array(
+    'success' => $ok,
+    'message' => $message,
+    'nid'     => $nid,
+  );
+}
+
+/**
+ * Helper function to handle images
+ *
+ * @param $data Array data from $release['release_images']
+ * @return Array representing a file object. If there was a problem retreiving
+ * or saving the file, or if the image module is not enabled, an empty array is
+ * returned.
+ */
+function _pushtape_discography_adpt_images($data) {
+  if (!module_exists('image')) {
+    return array();
+  }
+  if (empty($data['primary'])) {
+    $primary = 0;
+  }
+  else {
+    $primary = $data['primary'];
+  }
+  $url      = $data['image_urls'][$primary];
+  $filename = basename($url);
+  $image    = file_get_contents($url);
+  if ($image) {
+    $file = file_save_data($image, 'public://' . $filename, FILE_EXISTS_REPLACE);
+    return (array) $file;
+  }
+  // If image failed, return blank array
+  return array();
+}
+
+/**
+ * Helper function to handle taxonomy terms.
+ *
+ * @param $term_name Name of the taxonomy term
+ * @param $vocab Machine name of taxonomy vocabulary
+ * @return Taxonomy information to insert into the node.
+ */
+function _pushtape_discography_adpt_taxonomy($term_name, $vocab) {
+  if (!module_exists('taxonomy')) {
+    return array();
+  }
+  // Define and initialize variables
+  $terms = array();
+  $term  = array();
+  $vobj  = NULL;
+  $vid   = 0;
+
+  // See if there is already a taxonomy term for this category
+  $terms = taxonomy_get_term_by_name($term_name, $vocab);
+  if (!empty($terms)) {
+    // Get the term
+    $term = (array) reset($terms);
+  }
+  else {
+    // Get the vocabulary ID
+    $vobj = taxonomy_vocabulary_machine_name_load($vocab);
+    if ($vobj) {
+      $vid = $vobj->vid;
+    }
+    // Create the term array, set the 'tid' to 'autocreate'
+    $term = array(
+      'tid'                     => 'autocreate',
+      'vid'                     => $vid,
+      'name'                    => $term_name,
+      'vocabulary_machine_name' => $vocab,
+    );
+    // Save it
+    // $term = (object) $term;
+    // taxonomy_term_save($term);
+  }
+  // Return term info
+  return (array) $term;
+}
+
+/**
+ * Helper function to sort tracks. This is for usort with PHP < 5.3.
+ */
+function _pushtape_discography_adpt_cmp($a, $b) {
+  return strcasecmp($a['track_position'], $b['track_position']);
+}
+
+/**
+ * Helper function to determine if the HTML text processing is available for a
+ * particular field, on a particular node type.
+ *
+ * @param $field_name Name of the field
+ * @param $type Node type
+ * @return TRUE if text processing is available, FALSE otherwise.
+ */
+function _pushtape_discography_adpt_html_avail($field_name, $type) {
+  // Declare and initialize variables
+  $format   = NULL;
+  $instance = NULL;
+
+  // Find out if the filter is available for the current user
+  $format = filter_format_load('filtered_html');
+  if (!filter_access($format)) {
+    return FALSE;
+  }
+  // Find out if the filter is available on the field
+  $instance = field_info_instance('node', $field_name, $type);
+  if (empty($instance['settings']['text_processing'])) {
+    return FALSE;
+  }
+  return $instance['settings']['text_processing'] == 1;
+}

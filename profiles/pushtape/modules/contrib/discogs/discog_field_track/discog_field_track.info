@@ -1,0 +1,13 @@
+name = Discography Track Field
+description = A custom Field representing a music track, which can be attached to any content type.
+package = Discography
+core = 7.x
+stylesheets[screen][] = discog_field_track.css
+; Apparently, no need to specify .module or .install files for custom Fields
+
+; Information added by drupal.org packaging script on 2013-07-31
+version = "7.x-1.0-beta3+20-dev"
+core = "7.x"
+project = "discogs"
+datestamp = "1375229680"
+

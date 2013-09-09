@@ -1,0 +1,69 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for the discog_field_track field.
+ */
+
+/**
+ * Implements hook_field_schema().
+ *
+ * Note: The discog_field_track field schema is exactly the same as the discog_field_tracks
+ * schema from the D6 version of Discogs.
+ */
+function discog_field_track_field_schema($field) {
+  // Set the primary key as a variable; makes things easier
+  $primary_key = 'dftid';
+
+  $columns = array(
+    $primary_key => array(
+      'type' => 'serial',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+    'track_position' => array(
+      'type' => 'varchar',
+      'length' => 8,
+      'not null' => FALSE,
+    ),
+    'track_title' => array(
+      'type' => 'text',
+      'not null' => FALSE,
+    ),
+    'track_duration' => array(
+      'type' => 'varchar',
+      'length' => 12,
+      'not null' => FALSE,
+    ),
+    // NEW: Track Release - for Track Node use only at the moment
+    'track_releases' => array(
+      'type' => 'text',
+      'not null' => FALSE,
+    ),
+    'track_artist' => array(
+      'type' => 'text',
+      'not null' => FALSE,
+    ),
+    'track_notes' => array(
+      'type' => 'text',
+      'size' => 'big',
+      'not null' => FALSE,
+    ),
+    'track_lyrics' => array(
+      'type' => 'text',
+      'size' => 'big',
+      'not null' => FALSE,
+    ),
+  );
+  $indexes = array(
+    $primary_key => array($primary_key),
+    'track_position' => array('track_position'),
+  );
+  return array(
+    'columns' => $columns,
+    'indexes' => $indexes,
+    'unique keys' => array(
+      $primary_key => array($primary_key),
+    ),
+    'primary key' => array($primary_key),
+  );
+}

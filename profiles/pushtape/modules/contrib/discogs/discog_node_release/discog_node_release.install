@@ -1,0 +1,309 @@
+<?php
+/**
+ * @file
+ * This is the installation file for the Discography Node.
+ *
+ * Because the D7 version uses the Fields API, we no longer provide a schema or
+ * mess with the database.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function discog_node_release_install() {
+  // NEW: Create a taxonomy vocabulary for this node type
+  $id = variable_get('discog_genres_vid', 0);
+  $vocabulary = taxonomy_vocabulary_load($id);
+  if (!$vocabulary) {
+    $vocabulary = (object) array(
+      'name'         => t('Genres'),
+      'machine_name' => 'discog_genres',
+      'description'  => t('Musical genres for Discography Release types'),
+      'module'       => 'release',
+    );
+    taxonomy_vocabulary_save($vocabulary);
+    variable_set('discog_genres_vid', $vocabulary->vid);
+  }
+
+  // Create all the fields we are adding to our content types.
+  foreach (_discog_node_release_installed_fields() as $field) {
+    field_create_field($field);
+  }
+  // Create all the instances of our fields.
+  foreach (_discog_node_release_installed_instances() as $instance) {
+    $instance['entity_type'] = 'node';
+    $instance['bundle']      = 'release';
+    field_create_instance($instance);
+  }
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function discog_node_release_uninstall() {
+  // Hold the type in a variable, so we can just change it when we reuse code
+  // This should match the key of the array returned from hook_node_info()
+  $type = 'release';
+
+  // Delete all the node data
+  $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
+  $result = db_query($sql, array(':type' => $type));
+  $nids = array();
+  foreach ($result as $row) {
+    $nids[] = $row->nid;
+  }
+  node_delete_multiple($nids);
+
+  // Delete the custom fields
+  foreach (array_keys(_discog_node_release_installed_fields()) as $field) {
+    field_delete_field($field);
+  }
+  // Delete all field instances
+  $instances = field_info_instances('node', $type);
+  foreach ($instances as $instance_name => $instance) {
+    field_delete_instance($instance);
+  }
+
+  // Delete the taxonomy vocabulary
+  $vid = variable_get('discog_genres_vid', -1);
+  if ($vid > -1) {
+    taxonomy_vocabulary_delete($vid);
+  }
+  variable_del('discog_genres_vid');
+
+  // Delete our content type
+  node_type_delete($type);
+
+  // Purge all field infromation
+  field_purge_batch(1000);
+}
+
+/**
+ * Helper function that returns all installed field types.
+ *
+ * Note: Cardinality is set per field, not per instance, so it should be set
+ * here.
+ */
+function _discog_node_release_installed_fields() {
+  $t = get_t();
+  $fields = array(
+    // "Atomic" fields, using Drupal's built-in field types
+    'release_artist' => array(
+      'field_name' => 'release_artist',
+      'label'      => $t('Artist'),
+      'type'       => 'text',
+    ),
+    'release_label' => array(
+      'field_name' => 'release_label',
+      'label'      => $t('Label'),
+      'type'       => 'text',
+    ),
+    'release_catno' => array(
+      'field_name' => 'release_catno',
+      'label'      => $t('Catalog#'),
+      'type'       => 'text',
+    ),
+    'release_format' => array(
+      'field_name' => 'release_format',
+      'label'      => $t('Format'),
+      'type'       => 'text',
+    ),
+    'release_country' => array(
+      'field_name' => 'release_country',
+      'label'      => $t('Country'),
+      'type'       => 'text',
+    ),
+    'release_date' => array(
+      'field_name' => 'release_date',
+      'label'      => $t('Release Date'),
+      'type'       => 'text',
+    ),
+    'release_credits' => array(
+      'field_name' => 'release_credits',
+      'label'      => $t('Credits'),
+      'type'       => 'text_long',
+    ),
+    'release_notes' => array(
+      'field_name' => 'release_notes',
+      'label'      => $t('Notes'),
+      'type'       => 'text_long',
+    ),
+    // Image
+    'release_image' => array(
+      'field_name' => 'release_image',
+      'label'      => $t('Image'),
+      'type'       => 'image',
+    ),
+    // Custom track field type from discog_track
+    'release_tracks' => array(
+      'field_name'  => 'release_tracks',
+      'label'       => $t('Tracks'),
+      'type'        => 'field_track',
+      'cardinality' => -1, // = FIELD_CARDINALITY_UNLIMITED
+    ),
+    // NEW - Genres (taxonomy terms)
+    'release_genres' => array(
+      'field_name'  => 'release_genres',
+      'label'       => $t('Genres'),
+      'type'        => 'taxonomy_term_reference',
+      'cardinality' => -1, // = FIELD_CARDINALITY_UNLIMITED
+      // Put taxonomy name into allowed_values to avoid critical PDO errors
+      'settings' => array(
+        'allowed_values' => array(
+          array(
+            'vocabulary' => 'discog_genres',
+            'parent'     => 0,
+          ),
+        ),
+      ),
+      //*/
+    ),
+  );
+  return $fields;
+}
+
+/**
+ * Helper function that returns all installed field instances.
+ *
+ * Note: If you don't set a label here, it should use the title from the field
+ * type. However, it doesn't do this - it uses field_name instead.
+ *
+ * Also note that the above implementation of hook_install() has added the
+ * 'entity_type' and 'bundle' keys, so there's no need to set them here.
+ *
+ * However, apparently 'type' DOES have to be set here.
+ */
+function _discog_node_release_installed_instances() {
+  $t = get_t();
+  $instances = array(
+    // Single-instance fields, using Drupal's built-in field types
+    // Image
+    'release_image' => array(
+      'field_name'  => 'release_image',
+      'type'        => 'image',
+      'label'       => $t('Cover'),
+      'description' => $t('Cover art'),
+      'weight'      => 1,
+      // Display settings based on Article's settings
+      // see profiles/standard/standard.install line 379+
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'type' => 'image',
+          'settings' => array(
+            'image_style' => 'medium',
+            'image_link' => 'file',
+          ),
+          'weight' => -1,
+        ),
+        'teaser' => array(
+          'label' => 'hidden',
+          'type' => 'image',
+          'settings' => array(
+            'image_style' => 'thumbnail',
+            'image_link' => 'content',
+          ),
+          'weight' => -1,
+        ),
+      ),
+    ),
+    'release_artist' => array(
+      'field_name'  => 'release_artist',
+      'type'        => 'text',
+      'label'       => $t('Artist'),
+      'description' => $t('Release artist(s)'),
+      'widget'      => array('type' => 'text_textfield'),
+      'weight'      => 2,
+    ),
+    'release_label' => array(
+      'field_name'  => 'release_label',
+      'type'        => 'text',
+      'label'       => $t('Label'),
+      'description' => $t('Record label'),
+      'widget'      => array('type' => 'text_textfield'),
+      'weight'      => 3,
+    ),
+    'release_catno' => array(
+      'field_name'  => 'release_catno',
+      'label'       => $t('Catalog#'),
+      'description' => $t('Record label catalog number'),
+      'type'        => 'text',
+      'widget'      => array('type' => 'text_textfield'),
+      'weight'      => 4,
+    ),
+    'release_format' => array(
+      'field_name'  => 'release_format',
+      'label'       => $t('Format'),
+      'description' => $t('Release format (CD, LP, Download, etc.)'),
+      'type'        => 'text',
+      'widget'      => array('type' => 'text_textfield'),
+      'weight'      => 5,
+    ),
+    'release_country' => array(
+      'field_name'  => 'release_country',
+      'type'        => 'text',
+      'label'       => $t('Country'),
+      'description' => $t('Country where album was released'),
+      'type'        => 'text',
+      'widget'      => array('type' => 'text_textfield'),
+      'weight'      => 6,
+    ),
+    'release_date' => array(
+      'field_name'  => 'release_date',
+      'type'        => 'text',
+      'label'       => $t('Date'),
+      'description' => $t('Release date'),
+      'type'        => 'text',
+      'widget'      => array('type' => 'text_textfield'),
+      'weight'      => 7,
+    ),
+    'release_credits' => array(
+      'field_name'  => 'release_credits',
+      'type'        => 'text_long',
+      'label'       => $t('Credits'),
+      'description' => $t('Release credits (e.g. guest artists)'),
+      'widget'      => array('type' => 'text_textarea'),
+      'settings'    => array('text_processing' => 1), // Allow text processing
+      'format'      => 'filter_html', // Set the filter to Filtered HTML
+      'weight'      => 8,
+    ),
+    'release_notes' => array(
+      'field_name'  => 'release_notes',
+      'type'        => 'text_long',
+      'label'       => $t('Notes'),
+      'description' => $t('Release notes (e.g. liner notes)'),
+      'widget'      => array('type' => 'text_textarea'),
+      'settings'    => array('text_processing' => 1),
+      'format'      => 'filter_html',
+      'weight'      => 9,
+    ),
+    // Custom track field type from release_track
+    'release_tracks' => array(
+      'field_name'  => 'release_tracks',
+      'type'        => 'field_track',
+      'label'       => $t('Tracks'),
+      'description' => $t('Tracks on the release'),
+      'weight'      => 10,
+    ),
+    // NEW - Genres (taxonomy terms)
+    'release_genres' => array(
+      'field_name'  => 'release_genres',
+      'type'        => 'taxonomy_term_reference',
+      'label'       => $t('Genres'),
+      'description' => $t('Musical genres'),
+      'widget'      => array(
+        'type' => 'taxonomy_autocomplete',
+      ),
+      'weight' => 11,
+      // Don't display in teasers by default
+      'display' => array(
+        'teaser' => array(
+          'label'      => 'hidden',
+          'type'       => 'hidden',
+        ),
+      ),
+    ),
+  );
+  return $instances;
+}

@@ -1,0 +1,51 @@
+name = Pushtape News Demo Content
+description = The magic that allows for demo content for news.
+core = 7.x
+package = Pushtape Demo Content
+php = 5.2.4
+version = 7.x-1.x-alpha6
+project = pushtape_news_democontent
+dependencies[] = defaultcontent
+features[content][] = pushtape-news-defaultcontent-1
+features[content][] = pushtape-news-defaultcontent-2
+features[content][] = pushtape-news-defaultcontent-3
+features[content][] = pushtape-news-defaultcontent-4
+features[content][] = pushtape-news-defaultcontent-5
+features[content][] = pushtape-news-defaultcontent-6
+features[features_api][] = api:1
+<<<<<<< HEAD:pushtape_news_democontent/pushtape_news_democontent.info
+project status url = apps.rosenstrauch.com/fserver
+
+
+; Information added by drush on 2013-03-28
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_news"
+datestamp = "1364538864"
+
+=======
+>>>>>>> c759c856b78b4546a7f196b564b2f4a756b99626:pushtape_news_democontent.info
+
+
+; Information added by drush on 2013-08-12
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_news"
+datestamp = "1376349382"
+
+
+
+; Information added by drush on 2013-09-06
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_news"
+datestamp = "1378512684"
+
+
+
+; Information added by drush on 2013-09-09
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_news"
+datestamp = "1378747685"
+

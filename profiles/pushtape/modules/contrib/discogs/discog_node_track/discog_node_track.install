@@ -1,0 +1,135 @@
+<?php
+/**
+ * @file
+ * This is the installation file for the Discography Node.
+ *
+ * Because the D7 version uses the Fields API, we no longer provide a schema or
+ * mess with the database.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function discog_node_track_install() {
+  // Create all the fields we are adding to our content types.
+  foreach (_discog_node_track_installed_fields() as $field) {
+    field_create_field($field);
+  }
+  // Create all the instances of our fields.
+  foreach (_discog_node_track_installed_instances() as $instance) {
+    $instance['entity_type'] = 'node';
+    $instance['bundle'] = 'track';
+    field_create_instance($instance);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function discog_node_track_uninstall() {
+  // Hold the type in a variable, so we can just change it when we reuse code
+  // This should match the key of the array returned from hook_node_info()
+  $type = 'track';
+
+  // Okay, let's try this again...
+  // _discog_node_track_comment_fields_delete($type);
+
+  // Delete all the node data
+  $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
+  $result = db_query($sql, array(':type' => $type));
+  $nids = array();
+  foreach ($result as $row) {
+    $nids[] = $row->nid;
+  }
+  node_delete_multiple($nids);
+
+  // Delete the custom fields
+  foreach (array_keys(_discog_node_track_installed_fields()) as $field) {
+    field_delete_field($field);
+  }
+  // Delete all field instances
+  $instances = field_info_instances('node', $type);
+  foreach ($instances as $instance_name => $instance) {
+    field_delete_instance($instance);
+  }
+
+  // Delete our content type
+  node_type_delete($type);
+
+  // Purge all field infromation
+  field_purge_batch(1000);
+}
+
+/**
+ * Helper function to replace comment_node_type_delete().
+ *
+ * This is necessary due to the infamous "Notice: Trying to get property of
+ * non-object in comment_node_type_delete()" bug in Drupal core.
+ *
+ * TODO: Nope, doesn't work.
+ *
+ * @see https://drupal.org/node/1327114
+ */
+function _discog_node_track_comment_fields_delete($type) {
+  field_attach_delete_bundle('comment', 'comment_node_' . $type);
+  $settings = array(
+    'comment',
+    'comment_default_mode',
+    'comment_default_per_page',
+    'comment_anonymous',
+    'comment_subject_field',
+    'comment_preview',
+    'comment_form_location',
+  );
+  foreach ($settings as $setting) {
+    variable_del($setting . '_' . $type);
+  }
+}
+//*/
+
+/**
+ * Helper function that returns all installed field types.
+ *
+ * I'm using a helper function, even though we only have one instance, for
+ * forward compatibility in case we need to add more fields.
+ */
+function _discog_node_track_installed_fields() {
+  $t = get_t();
+  $fields = array(
+    // Custom track field type from discog_track
+    'track_node_field' => array(
+      'field_name' => 'track_node_field',
+      'label' => $t('Tracks'),
+      'type' => 'field_track',
+      'cardinality' => 1, // Only one track field per track node
+    ),
+  );
+  return $fields;
+}
+
+/**
+ * Helper function that returns all installed field instances.
+ *
+ * I'm using a helper function, even though we only have one instance, for
+ * forward compatibility in case we need to add more fields.
+ */
+function _discog_node_track_installed_instances() {
+  $t = get_t();
+  $instances = array(
+    // Custom track field type from discog_tracks
+    'track_node_field' => array(
+      'field_name' => 'track_node_field',
+      'label' => $t('Track'),
+      'type' => 'field_track',
+      'description' => $t('Track information'),
+      'widget' => array('type' => 'track_table_single_widget'),
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'type' => 'track_single',
+        ),
+      ),
+    ),
+  );
+  return $instances;
+}

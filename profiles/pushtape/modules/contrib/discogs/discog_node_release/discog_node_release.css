@@ -1,0 +1,176 @@
+
+/*
+ * Release wrapper and general field classes
+ */
+#discog-wrapper {}
+.label {
+	font-weight: bold;
+	width: 80px;
+  vertical-align: top;
+}
+.data {
+    vertical-align: top;
+}
+
+/*
+ * Release Image (Native - see below for imagefield/image_attach settings)
+ */
+#discog-img {
+	display: block;
+	float: left;
+	margin-right: 5px;
+}
+
+/*
+ * Release Artist fields
+ */
+#discog-artist {}
+#discog-artist .label {}
+#discog-artist .data {}
+
+/*
+ * Release Label fields
+ */
+#discog-label {}
+#discog-label .label {}
+#discog-label .data {}
+
+/*
+ * Release Catalog Number fields
+ */
+#discog-cat-num {}
+#discog-cat-num .label {}
+#discog-cat-num .data {}
+
+/*
+ * Release Format fields
+ */
+#discog-label {}
+#discog-label .label {}
+#discog-label .data {}
+
+/*
+ * Release Country fields
+ */
+#discog-country {}
+#discog-country .label {}
+#discog-country .data {}
+
+/*
+ * Release Date fields
+ */
+#discog-date {}
+#discog-date .label {}
+#discog-date .data {}
+
+/*
+ * Tracks table
+ */
+#discog-tracks {
+	vertical-align: top;
+	clear: both;
+}
+#discog-tracks-label {
+	background: #eee;
+	font-weight: bold;
+}
+tr.track-data {}
+td.track-position {
+	/* width: 1%; */
+  white-space: nowrap;
+}
+td.track-title {}
+td.track-artists {
+	width: 1%;
+	white-space: nowrap;
+	text-align: right;
+}
+td.track-duration {}
+.track-notes {
+	font-size: 0.8em;
+}
+tr.track-notes td.label {
+  vertical-align: top;
+	text-align: right;
+}
+tr.track-notes td.field {
+	vertical-align: top;
+}
+tr.track-notes td.field p {
+  margin-top: 0;
+}
+tr.track-lyrics {
+	font-size: 0.8em;
+}
+tr.track-lyrics td.label {
+	text-align: right;
+  vertical-align: top;
+}
+tr.track-lyrics td.field {
+    vertical-align: top;
+}
+tr.track-lyrics td.field p {
+    margin-top: 0;
+}
+
+/*
+ * Release Credits fields
+ */
+#discog-credits {}
+#discog-credits .label {
+	display: block;
+  width: 100%;
+	padding: 0.3em 0.5em;
+  border-bottom: 2px solid #ddd;
+	background-color: #eee;
+  font-weight: bold;
+}
+#discog-credits .data {}
+
+/*
+ * Release Notes fields
+ */
+#discog-notes {}
+#discog-notes .label {
+	display: block;
+  width: 100%;
+	padding: 0.3em 0.5em;
+	border-bottom: 2px solid #ddd;
+	background-color: #eee;
+  font-weight: bold;
+}
+#discog-notes .data {}
+
+/*
+ * Imagefield created by discogs.install
+ */
+.field-field-discog-cover {
+	display: inline;
+  float: left;
+  margin-right: 1em !important;
+  margin-left: 0 !important;
+}
+
+/*
+ * Override image_attach.css to make teaser image float left instead of right
+ * We need to put !important on this because apparently image_attach.css
+ * gets loaded after discog_node.css
+ */
+
+.image-attach-teaser {
+    float: left !important;
+    margin-right: 1em !important;
+    margin-left: 0 !important;
+}
+.all-attached-images {}
+.image-attach-body {
+    float: left !important;
+    margin-right: 1em !important;
+    margin-left: 0 !important;
+}
+
+/* Views fields */
+.views-field-image-attach-images,
+.views-field-discog-img {
+  text-align: center;
+}

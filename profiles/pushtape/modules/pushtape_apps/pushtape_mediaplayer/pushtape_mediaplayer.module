@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the pushtape mediaplayer feature.
+ */
+
+include_once 'pushtape_mediaplayer.features.inc';

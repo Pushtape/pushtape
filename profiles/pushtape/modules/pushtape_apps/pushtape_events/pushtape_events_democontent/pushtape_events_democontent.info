@@ -1,0 +1,34 @@
+name = Pushtape Events Demo Content
+description = The magic that allows for demo content for events.
+core = 7.x
+package = Pushtape Demo Content
+php = 5.2.4
+version = 7.x-1.0-alpha3
+project = pushtape_events_democontent
+dependencies[] = ctools
+dependencies[] = defaultcontent
+dependencies[] = strongarm
+datestamp = 1368729748
+features[content][] = pushtape-events-defaultcontent-1
+features[content][] = pushtape-events-defaultcontent-2
+features[content][] = pushtape-events-defaultcontent-3
+features[content][] = pushtape-events-defaultcontent-4
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1
+features[variable][] = node_content_enabled
+
+
+; Information added by drush on 2013-08-12
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_events"
+datestamp = "1376349392"
+
+
+
+; Information added by drush on 2013-09-09
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_events"
+datestamp = "1378747704"
+

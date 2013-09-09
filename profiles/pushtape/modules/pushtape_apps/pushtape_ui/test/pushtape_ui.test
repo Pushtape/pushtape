@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Simpletest case for pushtape_ui module.
+ *
+ * Verify pushtape ui functionality.
+ */
+
+/**
+ * Functionality tests for pushtape ui module.
+ */
+class PushtapeUiTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Pushtape ui',
+      'description' => 'Verify the Album type creation.',
+      'group' => 'Pushtape',
+    );
+  }
+
+  function setUp() {
+    // Enable the module.
+    parent::setUp('pushtape_ui');
+  }
+
+  /**
+   * Verify the functionality of the pushtape ui.
+   */
+  function testNodeCreation() {
+    // Create and login user.
+    $account = $this->drupalCreateUser(array('access content', 'create pushtape_ui content'));
+    $this->drupalLogin($account);
+
+    // Create a new node. The image makes it more complicated, so skip it.
+    $edit = array(
+      'title' => $this->randomName(),
+      'pushtape_ui_color[und][0][value]' => 'red',
+      'pushtape_ui_color[und][1][value]' => 'green',
+      'pushtape_ui_color[und][2][value]' => 'blue',
+      'pushtape_ui_quantity[und][0][value]' => 100,
+    );
+    $this->drupalPost('node/add/album', $edit, t('Save'));
+    $this->assertText("Example Node " . $edit['title'] . " has been created", "Found node creation message");
+    $this->assertPattern("/The colors available.*red.*green.*blue/", "Correct 'colors available' on node page");
+
+    // Look on the pushtape_ui page to make sure it shows up there also.
+    $this->drupalGet('pushtape_ui/pushtape_ui');
+    $this->assertText($edit['title'], "Found random title string");
+    $this->assertPattern("/red.*green.*blue/", "Correct 'colors available' on pushtape ui page");
+
+  }
+
+  /**
+   * Check the value of body label.
+   *
+   * Checks whether body label has a value of "Notes"
+   */
+
+  function testBodyLabel() {
+    // Create and login user.
+    $account = $this->drupalCreateUser(array('access content', 'create pushtape_ui content'));
+    $this->drupalLogin($account);
+
+    // Request a node add album page.
+    // Test whether the body label equals 'Notes'.
+    // Use '$this->assertRaw' to make certain to test the body label and not some other text.
+    $this->drupalGet('node/add/album');
+    $this->assertResponse(200, 'node/add/album page found');
+    $this->assertRaw('<label for="edit-body-und-0-value">Notes </label>', 'Body label equals \'Notes\'');
+  }
+}

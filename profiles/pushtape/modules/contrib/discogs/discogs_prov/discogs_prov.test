@@ -1,0 +1,312 @@
+<?php
+/**
+ * @file
+ * This file provides test classes for the Discogs.com Provider Adapter module.
+ */
+
+/**
+ * This is the base class for functional testing. We have to use
+ * DrupalWebTestCase as the base class because we're using theme functions,
+ * which require the database.
+ */
+class DiscogProvBaseTestCase extends DrupalWebTestCase {
+  protected $search_terms;
+  protected $search_ids;
+  protected $search_types;
+  protected $per_page;
+  protected $offset;
+
+  public function setUp() {
+    // Remember to enable the provider as well
+    parent::setUp(array('discogs_prov', 'discog_mediator'));
+    // Remember, no modules are loaded, including discogs_prov; load file here
+    include_once 'discogs_prov.module';
+    // I'm using The Vanity Set, 'cause it has a lot of information on Discogs
+    // (I should know, I wrote it...)
+    $this->search_types = array(
+      'artist',
+      'label',
+      'release',
+    );
+    $this->search_terms = array(
+      'artist' => 'Vanity Set',
+      'label' => 'Naked Spur',
+      'release' => 'The Vanity Set',
+    );
+    $this->search_ids = array(
+      'artist' => '326271',
+      'label' => '40067',
+      'release' => '434604',
+    );
+    $this->per_page = 20;
+    $this->offset = 0;
+  }
+
+  /**
+   * This function tests the base case itself, to make sure that everything will
+   * work properly when testing. Essentially, it just tests to see if PHP can
+   * find all the hook implementations.
+   */
+  protected function doDiscogProvBaseTestCase() {
+    $this->assertTrue(function_exists('discogs_prov_discog_provider_info'), 'discogs_prov_discog_provider_info() function exists');
+    $this->assertTrue(function_exists('discogs_prov_discog_search'), 'discogs_prov_discog_search() function exists');
+    $this->assertTrue(function_exists('discogs_prov_discog_fetch_release'), 'discogs_prov_discog_fetch_release() function exists');
+    $this->assertTrue(function_exists('discogs_prov_discog_fetch_releases'), 'discogs_prov_discog_fetch_releases() function exists');
+    // Test for the existence of common Drupal functions
+    $this->assertTrue(function_exists('drupal_json_decode'), 'drupal_json_decode() function exists');
+  }
+
+  /**
+   * Since most queries retrieve nearly identical data, let's set up a function
+   * to test that data
+   */
+  protected function assertQueryMany($result) {
+    // Test the returned array.
+    $this->assertTrue(is_array($result), '$result is an array');
+    $this->assertFalse(empty($result), '$result is not empty');
+    $this->assertTrue(isset($result['total_results']), '$result[\'total_results\'] is set');
+    $this->assertFalse(empty($result['total_results']), '$result[\'total_results\'] is not empty');
+    $this->assertTrue(is_array($result['results']), '$result[\'results\'] is an array');
+    $this->assertFalse(empty($result['results']), '$result[\'results\'] is not empty');
+    // Test ALL of the returned results.
+    if (isset($result['results'])) {
+      foreach ($result['results'] as $key => $result) {
+        $this->assertTrue(isset($result['id']), "\$result['results'][$key]['id'] is set");
+        $this->assertFalse(empty($result['id']), "\$result['results'][$key]['id'] is not empty");
+        $this->assertTrue(isset($result['title']), "\$result['results'][$key]['title'] is set");
+        $this->assertFalse(empty($result['title']), "\$result['results'][$key]['title'] is not empty");
+        // The other fields are not required, so no need to test for them.
+      }
+    }
+  }
+
+}
+
+/**
+ * This class tests the hook_discog_search() function.
+ */
+class DiscogProvSearchTestCase extends DiscogProvBaseTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Discogs.com Provider Search test case',
+      'description' => 'Tests the results from searches of the Discogs.com website',
+      'group' => 'Discography',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->doDiscogProvBaseTestCase();
+  }
+
+  public function testSearch() {
+    foreach ($this->search_types as $type) {
+      // Let the tester know what we're testing
+      $this->pass("...Testing search for $type=\"{$this->search_terms[$type]}\"...");
+      // Try to search by term
+      $result = discogs_prov_discog_search($this->search_terms[$type], $type, $this->per_page, $this->offset);
+      // Call assertQueryMany to test the results
+      $this->assertQueryMany($result);
+    }
+  }
+
+}
+
+/**
+ * This class tests the hook_discog_fetch_releases() function.
+ */
+class DiscogProvFetchTestCase extends DiscogProvBaseTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Discogs.com Provider Fetch Releases test case',
+      'description' => 'Tests the results from fetching releases for a particular ID from the Discogs.com website',
+      'group' => 'Discography',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->doDiscogProvBaseTestCase();
+  }
+
+  public function testFetchReleases() {
+    foreach ($this->search_types as $type) {
+      // Let the tester know what we're testing
+      $this->pass("...Testing fetch releases for $type ID=\"{$this->search_ids[$type]}\"...");
+      // Try to fetch releases
+      $result = discogs_prov_discog_fetch_releases($type, $this->search_ids[$type], $this->per_page, $this->offset);
+      // Call assertQueryMany to test the results
+      // ...except for type='release'
+      if ($type != 'release') {
+        $this->assertQueryMany($result);
+      }
+    }
+  }
+
+}
+
+/**
+ * This class tests the hook_discog_fetch_release() function.
+ */
+class DiscogProvFetchReleaseTestCase extends DiscogProvBaseTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Discogs.com Provider Fetch Release test case',
+      'description' => 'Tests the results from fetching a single release from the Discogs.com website',
+      'group' => 'Discography',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->doDiscogProvBaseTestCase();
+  }
+
+  /**
+   * Tests the helper functions (non-theme related) used when the Discogs.com
+   * Provider fetches a release.
+   */
+  public function testHelperFunctions() {
+    // Test _discogs_prov_to_str
+    $artists = array(0 => array(
+        'join' => NULL,
+        'name' => 'The Vanity Set',
+        'role' => NULL,
+        'id' => '1625490'
+      ), );
+    $result = _discogs_prov_to_str($artists);
+    $this->assertFalse(empty($result), 'Result from _discogs_prov_to_str() call is not empty');
+    $this->assertEqual($result, 'The Vanity Set', '_discogs_prov_to_str(): "' . $result . '" = "The Vanity Set"');
+  }
+
+  public function testFetchRelease() {
+    // $release_id = $this->search_ids['release'];
+    $release_id = 3894207;
+    // WSOD
+    // Let the tester know what we're testing
+    $this->pass("...Testing fetch releases for release ID=\"$release_id\"...");
+    // Try to fetch release
+    $result = discogs_prov_discog_fetch_release($this->search_ids['release']);
+
+    // Test the result (we can't use assertQueryMany for this one)
+    $this->assertTrue(is_array($result), '$result is an array');
+    $this->assertFalse(empty($result), '$result is not empty');
+
+    // Album fields
+    $this->assertTrue(isset($result['title']), '$result[\'title\'] is set');
+    $this->assertFalse(empty($result['title']), '$result[\'title\'] is not empty');
+    $this->assertTrue(isset($result['release_artist']), '$result[\'release_artist\'] is set');
+    $this->assertFalse(empty($result['release_artist']), '$result[\'release_artist\'] is not empty');
+    // The following are not required, but since we know the release has them,
+    // we'll test for them anyway.
+    $this->assertTrue(isset($result['release_label']), '$result[\'release_label\'] is set');
+    $this->assertFalse(empty($result['release_label']), '$result[\'release_label\'] is not empty');
+    $this->assertTrue(isset($result['release_catno']), '$result[\'release_catno\'] is set');
+    $this->assertFalse(empty($result['release_catno']), '$result[\'release_catno\'] is not empty');
+    $this->assertTrue(isset($result['release_format']), '$result[\'release_format\'] is set');
+    $this->assertFalse(empty($result['release_format']), '$result[\'release_format\'] is not empty');
+    $this->assertTrue(isset($result['release_country']), '$result[\'release_country\'] is set');
+    $this->assertFalse(empty($result['release_country']), '$result[\'release_country\'] is not empty');
+    $this->assertTrue(isset($result['release_date']), '$result[\'release_date\'] is set');
+    $this->assertFalse(empty($result['release_date']), '$result[\'release_date\'] is not empty');
+    $this->assertTrue(isset($result['release_credits']), '$result[\'release_credits\'] is set');
+    $this->assertFalse(empty($result['release_credits']), '$result[\'release_credits\'] is not empty');
+    $this->assertTrue(isset($result['release_notes']), '$result[\'release_notes\'] is set');
+    $this->assertFalse(empty($result['release_notes']), '$result[\'release_notes\'] is not empty');
+    $this->assertTrue(isset($result['release_images']), '$result[\'release_images\'] is set');
+    $this->assertFalse(empty($result['release_images']), '$result[\'release_images\'] is not empty');
+    $this->assertTrue(isset($result['release_images']['primary']), '$result[\'release_images\'][\'primary\'] is set');
+    // Primary can be 0 (first image index), so don't assert it's not empty
+    $this->assertTrue(isset($result['release_images']['image_urls']), '$result[\'release_images\'][\'image_urls\'] is set');
+    if (isset($result['release_images']['image_urls'])) {
+      $this->assertTrue(is_array($result['release_images']['image_urls']), '$result[\'release_images\'][\'image_urls\'] is an array');
+    }
+    $this->assertFalse(empty($result['release_images']['image_urls']), '$result[\'release_images\'][\'image_urls\'] is not empty');
+
+    // Track fields
+    $this->assertTrue(is_array($result['release_tracks']), '$result[\'tracks\'] is an array');
+    $this->assertFalse(empty($result['release_tracks']), '$result[\'tracks\'] is not empty');
+    // Test ALL of the returned results.
+    if (isset($result['release_tracks'])) {
+      foreach ($result['release_tracks'] as $key => $track) {
+        $this->assertTrue(isset($track['track_position']), "\$result['release_tracks'][$key]['track_position'] is set");
+        $this->assertFalse(empty($track['track_position']), "\$result['release_tracks'][$key]['track_position'] is not empty");
+        $this->assertTrue(isset($track['track_title']), "\$result['release_tracks'][$key]['track_title'] is set");
+        $this->assertFalse(empty($track['track_title']), "\$result['release_tracks'][$key]['track_title'] is not empty");
+        // The following are not required, but since we know the release has
+        // them, we'll test for them anyway.
+        $this->assertTrue(isset($track['track_duration']), "\$result['release_tracks'][$key]['track_duration'] is set");
+        $this->assertFalse(empty($track['track_duration']), "\$result['release_tracks'][$key]['track_duration'] is not empty");
+        /* Track artist isn't set if it's not a compilation, so don't assert
+        $this->assertTrue(isset($track['track_artist']), "\$result['release_tracks'][$key]['track_artist'] is set");
+        $this->assertFalse(empty($track['track_artist']), "\$result['release_tracks'][$key]['track_artist'] is not empty");
+        //*/
+        $this->assertTrue(isset($track['track_notes']), "\$result['release_tracks'][$key]['track_notes'] is set");
+        $this->assertFalse(empty($track['track_notes']), "\$result['release_tracks'][$key]['track_notes'] is not empty");
+        /* Like most discography sites, Discogs.com doesn't supply lyrics,
+        // so don't test for them.
+        $this->assertTrue(isset($track['track_lyrics']), "\$result[\'tracks\'][$key][\'track_lyrics\'] is set");
+        $this->assertFalse(empty($track['track_lyrics']), "\$result[\'tracks\'][$key][\'track_lyrics\'] is not empty");
+        //*/
+      }
+    }
+  }
+}
+
+/**
+ * This class tests the theme functions.
+ */
+class DiscogProvThemeTestCase extends DiscogProvBaseTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Discogs.com Provider theme tests',
+      'description' => 'Tests the theme hooks/overrides for the Discogs.com provider.',
+      'group' => 'Discography',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * Tests the helper functions (theme functions, etc) used when the Discogs
+   * Provider fetches a release.
+   */
+  public function testThemeFunctions() {
+    // Test theme_discogs_mult_artist
+    $extraartists = array(
+      0 => array(
+        'name' => 'Pete Shore',
+        'role' => 'Contra-bass, Trumpet, Enveloped Balalaika'
+      ),
+      1 => array(
+        'name' => 'Thomas Wydler',
+        'role' => 'Drums, Tambourine, Vocal'
+      ),
+      2 => array(
+        'name' => 'Jim Sclavunos',
+        'role' => 'Lead Vocal, Keyboards, Percussion'
+      ),
+    );
+    $result = theme_discogs_mult_artist($extraartists);
+    $this->assertFalse(empty($result), 'Result from theme_discogs_mult_artist() call is not empty');
+    $result = theme('discogs_mult_artist', $extraartists);
+    $this->assertFalse(empty($result), 'Result from theme(\'discogs_mult_artist\', $extraartists) is not empty');
+
+    // Test theme_discogs_check_name
+    $name = 'Vanity Set, The (2)';
+    $result = theme_discogs_check_name(array('name' => $name));
+    $this->assertFalse(empty($result), 'Result from theme_discogs_check_name() call is not empty');
+    $this->assertEqual($result, 'The Vanity Set', 'theme_discogs_check_name(): "' . $result . '" = "The Vanity Set"');
+    // Apparently the second parameter MUST be an array. Yay D7!!!!1one
+    $result = theme('discogs_check_name', array('name' => $name));
+    $this->assertFalse(empty($result), 'Result from theme(\'discogs_check_name\', array(\'name\' => $name)) call is not empty');
+    $this->assertEqual($result, 'The Vanity Set', 'theme(\'discogs_check_name\', array(\'name\' => $name)): "' . $result . '" = "The Vanity Set"');
+  }
+
+}
