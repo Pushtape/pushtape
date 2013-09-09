@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Pushtape Front feature.
- */
-
-include_once 'pushtape_front.features.inc';
