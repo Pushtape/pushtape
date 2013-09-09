@@ -71,7 +71,7 @@ projects[pushtape_discography_adpt][subdir] = contrib
 projects[entity_view_mode][version] = 1.0-rc1
 projects[entity_view_mode][subdir] = contrib
 
-projects[flexslider][version] = 2.0-alpha2
+projects[flexslider][version] = 2.x-dev
 projects[flexslider][subdir] = contrib
 
 projects[media_colorbox][version] = 1.x-dev
