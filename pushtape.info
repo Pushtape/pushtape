@@ -51,8 +51,14 @@ dependencies[] = navbar
 dependencies[] = devel
 dependencies[] = uuid
 
+; Other Dependencies
+dependencies[] = views_ui
+
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
+
+; System Requirements.
+php_memory_limit = 128M
 
 files[] = pushtape.profile
 

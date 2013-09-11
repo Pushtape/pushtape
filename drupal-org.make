@@ -201,6 +201,11 @@ projects[pushtape_kickstart][download][type] = "git"
 projects[pushtape_kickstart][download][url] = "git://github.com/gusaus/pushtape_kickstart.git"
 projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
 
+; Base theme.
+projects[omega][version] = 3.1
+projects[omega_kickstart][version] = 3.4
+projects[shiny][version] = 1.3
+
 ; Libraries.
 
 libraries[colorbox][download][type] = get
