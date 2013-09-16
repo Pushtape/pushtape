@@ -203,7 +203,7 @@ projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
 projects[omega][version] = 3.1
-projects[omega_kickstart][version] = 3.4
+;projects[omega_kickstart][version] = 3.4
 projects[shiny][version] = 1.3
 
 ; Libraries.
