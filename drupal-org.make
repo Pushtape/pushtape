@@ -95,6 +95,9 @@ projects[simplenews][subdir] = contrib
 projects[soundmanager2][version] = 2.0-beta1
 projects[soundmanager2][subdir] = contrib
 
+projects[views_responsive_grid][version] = 1.3
+projects[views_responsive_grid][subdir] = contrib
+
 projects[views_slideshow][version] = 3.0
 projects[views_slideshow][subdir] = contrib
 
