@@ -172,13 +172,13 @@ projects[flux_panels][download][type] = "git"
 projects[flux_panels][download][url] = "git://github.com/gusaus/flux_panels.git"
 projects[flux_panels][download][branch] = "7.x-1.x-panels"
 
-projects[pushtape_kickstart][type] = "theme"
-projects[pushtape_kickstart][download][type] = "git"
-projects[pushtape_kickstart][download][url] = "git://github.com/gusaus/pushtape_kickstart.git"
-projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
+;projects[pushtape_kickstart][type] = "theme"
+;projects[pushtape_kickstart][download][type] = "git"
+;projects[pushtape_kickstart][download][url] = "git://github.com/gusaus/pushtape_kickstart.git"
+;projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
-projects[omega][version] = 3.1
+projects[omega][version] = 4.0
 projects[shiny][version] = 1.3
 
 ; Libraries.
