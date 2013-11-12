@@ -4,9 +4,6 @@
 core = 7.23
 api = 2
 
-;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc3:/drupal-org.make
-;includes[panopoly] = http://drupalcode.org/project/panopoly.git/blob_plain/refs/tags/7.x-1.0-rc4:/drupal-org.make
-
 ; The Panopoly Foundation
 
 projects[panopoly_core][version] = 1.0-rc5
@@ -53,14 +50,11 @@ projects[calendar][subdir] = contrib
 projects[colorbox][version] = 2.x-dev
 projects[colorbox][subdir] = contrib
 
-projects[context][version] = 3.0-beta7
+projects[context][version] = 3.1
 projects[context][subdir] = contrib
 
 projects[discogs][version] = 1.x-dev
 projects[discogs][subdir] = contrib
-
-;projects[pushtape_discography_adpt][version] = 1.0-alpha1
-;projects[pushtape_discography_adpt][subdir] = contrib
 
 projects[pushtape_discography_adpt][type] = "module"
 projects[pushtape_discography_adpt][download][type] = "git"
@@ -101,22 +95,8 @@ projects[views_responsive_grid][subdir] = contrib
 projects[views_slideshow][version] = 3.0
 projects[views_slideshow][subdir] = contrib
 
-;projects[apps][type] = "module"
-;projects[apps][version] = 1.x-dev
-;projects[apps][subdir] = contrib
-
-;projects[app_manifest][type] = "module"
-;projects[app_manifest][version] = 1.0-alpha2
-;projects[app_manifest][subdir] = contrib
-
 
 ; Pushtape
-
-;projects[pushtape_admin][type] = "module"
-;projects[pushtape_admin][download][type] = "git"
-;projects[pushtape_admin][download][url] = "git://github.com/Pushtape/pushtape_admin.git"
-;projects[pushtape_admin][download][branch] = "7.x-1.x-panels"
-;projects[pushtape_admin][subdir] = pushtape_apps
 
 projects[pushtape_audio][type] = "module"
 projects[pushtape_audio][download][type] = "git"
@@ -184,13 +164,6 @@ projects[pushtape_ui][download][url] = "git://github.com/gusaus/pushtape_ui.git"
 projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
 projects[pushtape_ui][subdir] = pushtape_apps
 
-;projects[pushtape_commerce][type] = "module"
-;projects[pushtape_commerce][download][type] = "git"
-;projects[pushtape_commerce][download][url] = "http://git.drupal.org/sandbox/discipolo/1919326.git"
-;projects[pushtape_commerce][download][revision] = f82f911943ed40e671daad39b4e6bd373dd91ed5
-;projects[pushtape_commerce][download][branch] = "7.x-1.x"
-;projects[pushtape_commerce][subdir] = pushtape_apps
-
 
 ; Pushtape - Themes
 
@@ -206,7 +179,6 @@ projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
 projects[omega][version] = 3.1
-;projects[omega_kickstart][version] = 3.4
 projects[shiny][version] = 1.3
 
 ; Libraries.
