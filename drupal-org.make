@@ -1,41 +1,41 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.23
+core = 7.25
 api = 2
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.0-rc5
+projects[panopoly_core][version] = 1.0
 projects[panopoly_core][subdir] = panopoly
 
-projects[panopoly_images][version] = 1.0-rc5
+projects[panopoly_images][version] = 1.0
 projects[panopoly_images][subdir] = panopoly
 
-projects[panopoly_theme][version] = 1.0-rc5
+projects[panopoly_theme][version] = 1.0
 projects[panopoly_theme][subdir] = panopoly
 
-projects[panopoly_magic][version] = 1.0-rc5
+projects[panopoly_magic][version] = 1.0
 projects[panopoly_magic][subdir] = panopoly
 
-projects[panopoly_widgets][version] = 1.0-rc5
+projects[panopoly_widgets][version] = 1.0
 projects[panopoly_widgets][subdir] = panopoly
 
-projects[panopoly_admin][version] = 1.0-rc5
+projects[panopoly_admin][version] = 1.0
 projects[panopoly_admin][subdir] = panopoly
 
-projects[panopoly_users][version] = 1.0-rc5
+projects[panopoly_users][version] = 1.0
 projects[panopoly_users][subdir] = panopoly
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.0-rc5
+projects[panopoly_pages][version] = 1.0
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.0-rc5
+projects[panopoly_wysiwyg][version] = 1.0
 projects[panopoly_wysiwyg][subdir] = panopoly
 
-;projects[panopoly_search][version] = 1.0-rc5
+;projects[panopoly_search][version] = 1.0
 ;projects[panopoly_search][subdir] = panopoly
 
 
@@ -83,8 +83,14 @@ projects[multiform][subdir] = contrib
 projects[plupload][subdir] = 2.x-dev
 projects[plupload][subdir] = contrib
 
-projects[simplenews][subdir] = 1.0
-projects[simplenews][subdir] = contrib
+projects[responsive_menus][subdir] = 1.4
+projects[responsive_menus][subdir] = contrib
+
+;projects[simplenews][subdir] = 1.0
+;projects[simplenews][subdir] = contrib
+
+projects[simplehtmldom][version] = 1.12
+projects[simplehtmldom][subdir] = contrib
 
 projects[soundmanager2][version] = 2.0-beta1
 projects[soundmanager2][subdir] = contrib
@@ -92,8 +98,8 @@ projects[soundmanager2][subdir] = contrib
 projects[views_responsive_grid][version] = 1.3
 projects[views_responsive_grid][subdir] = contrib
 
-projects[views_slideshow][version] = 3.0
-projects[views_slideshow][subdir] = contrib
+;projects[views_slideshow][version] = 3.0
+;projects[views_slideshow][subdir] = contrib
 
 
 ; Pushtape
@@ -172,13 +178,13 @@ projects[flux_panels][download][type] = "git"
 projects[flux_panels][download][url] = "git://github.com/gusaus/flux_panels.git"
 projects[flux_panels][download][branch] = "7.x-1.x-panels"
 
-;projects[pushtape_kickstart][type] = "theme"
-;projects[pushtape_kickstart][download][type] = "git"
-;projects[pushtape_kickstart][download][url] = "git://github.com/gusaus/pushtape_kickstart.git"
-;projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
+projects[pushtape_kickstart][type] = "theme"
+projects[pushtape_kickstart][download][type] = "git"
+projects[pushtape_kickstart][download][url] = "git://github.com/gusaus/pushtape_omega.git"
+projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
-projects[omega][version] = 4.0
+projects[omega][version] = 4.x-dev
 projects[shiny][version] = 1.3
 
 ; Libraries.
