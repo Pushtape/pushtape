@@ -98,8 +98,8 @@ projects[soundmanager2][subdir] = contrib
 projects[views_responsive_grid][version] = 1.3
 projects[views_responsive_grid][subdir] = contrib
 
-;projects[views_slideshow][version] = 3.0
-;projects[views_slideshow][subdir] = contrib
+projects[views_slideshow][version] = 3.0
+projects[views_slideshow][subdir] = contrib
 
 
 ; Pushtape
@@ -178,10 +178,10 @@ projects[flux_panels][download][type] = "git"
 projects[flux_panels][download][url] = "git://github.com/gusaus/flux_panels.git"
 projects[flux_panels][download][branch] = "7.x-1.x-panels"
 
-projects[pushtape_kickstart][type] = "theme"
-projects[pushtape_kickstart][download][type] = "git"
-projects[pushtape_kickstart][download][url] = "git://github.com/gusaus/pushtape_omega.git"
-projects[pushtape_kickstart][download][branch] = "7.x-1.x-panels"
+projects[pushtape_omega][type] = "theme"
+projects[pushtape_omega][download][type] = "git"
+projects[pushtape_omega][download][url] = "git://github.com/gusaus/pushtape_omega.git"
+projects[pushtape_omega][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
 projects[omega][version] = 4.x-dev
