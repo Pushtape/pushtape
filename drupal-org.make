@@ -195,10 +195,11 @@ libraries[flexslider][download][url] = https://github.com/woothemes/FlexSlider/t
 libraries[flexslider][destination] = libraries
 libraries[plupload][directory_name] = plupload
 libraries[plupload][download][type] = file
-libraries[plupload][download][url] = "http://plupload.com/downloads/plupload_1_5_6.zip"
-libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
-libraries[plupload][destination] = libraries
 libraries[soundmanager2][download][type] = get
 libraries[soundmanager2][download][url] = https://github.com/scottschiller/SoundManager2/tarball/master
 libraries[soundmanager2][destination] = libraries
+libraries[plupload][download][url] = "http://plupload.com/downloads/plupload_1_5_6.zip"
+libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
+libraries[plupload][destination] = libraries
+
 
