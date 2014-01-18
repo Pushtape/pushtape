@@ -77,11 +77,11 @@ projects[pushtape_news][download][url] = "git://github.com/gusaus/pushtape_news.
 projects[pushtape_news][download][branch] = "7.x-1.x-panels"
 projects[pushtape_news][subdir] = pushtape_apps
 
-projects[pushtape_newsletter][type] = "module"
-projects[pushtape_newsletter][download][type] = "git"
-projects[pushtape_newsletter][download][url] = "git://github.com/gusaus/pushtape_newsletter.git"
-projects[pushtape_newsletter][download][branch] = "7.x-1.x-panels"
-projects[pushtape_newsletter][subdir] = pushtape_apps
+;projects[pushtape_newsletter][type] = "module"
+;projects[pushtape_newsletter][download][type] = "git"
+;projects[pushtape_newsletter][download][url] = "git://github.com/gusaus/pushtape_newsletter.git"
+;projects[pushtape_newsletter][download][branch] = "7.x-1.x-panels"
+;projects[pushtape_newsletter][subdir] = pushtape_apps
 
 projects[pushtape_photos][type] = "module"
 projects[pushtape_photos][download][type] = "git"
