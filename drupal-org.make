@@ -133,6 +133,9 @@ projects[pushtape_discography_adpt][subdir] = contrib
 projects[entity_view_mode][version] = 1.0-rc1
 projects[entity_view_mode][subdir] = contrib
 
+projects[features_override][subdir] = 2.0-rc1
+projects[features_override][subdir] = contrib
+
 projects[flexslider][version] = 2.x-dev
 projects[flexslider][subdir] = contrib
 
