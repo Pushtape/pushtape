@@ -160,6 +160,9 @@ projects[plupload][subdir] = contrib
 projects[responsive_menus][subdir] = 1.4
 projects[responsive_menus][subdir] = contrib
 
+projects[responsive_tables][version] = 2.x-dev
+projects[responsive_tables][subdir] = contrib
+
 ;projects[simplenews][subdir] = 1.1
 ;projects[simplenews][subdir] = contrib
 
