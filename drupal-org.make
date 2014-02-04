@@ -151,8 +151,8 @@ projects[mediafront][subdir] = contrib
 projects[multiform][version] = 1.0
 projects[multiform][subdir] = contrib
 
-projects[plup][subdir] = 1.0-alpha1
-projects[plup][subdir] = contrib
+projects[multiupload_filefield_widget][subdir] = 1.13
+projects[multiupload_filefield_widget][subdir] = contrib
 
 projects[plupload][subdir] = 2.x-dev
 projects[plupload][subdir] = contrib
