@@ -154,6 +154,9 @@ projects[multiform][subdir] = contrib
 projects[multiupload_filefield_widget][subdir] = 1.13
 projects[multiupload_filefield_widget][subdir] = contrib
 
+projects[multiupload_imagefield_widget][subdir] = 1.3
+projects[multiupload_imagefield_widget][subdir] = contrib
+
 projects[plupload][subdir] = 2.x-dev
 projects[plupload][subdir] = contrib
 
