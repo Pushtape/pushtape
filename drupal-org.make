@@ -217,9 +217,12 @@ libraries[plupload][download][url] = "http://plupload.com/downloads/plupload_1_5
 libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
 libraries[plupload][destination] = libraries
 
-; Probably will remove this when this is resolved
+; Probably will remove this when this is resolved https://drupal.org/node/2181079
 libraries[modernizr][download][type] = "get"
 libraries[modernizr][type] = "libraries"
 libraries[modernizr][download][url] = "https://github.com/Modernizr/Modernizr/archive/v2.7.1.tar.gz"
+
+libraries[underscore][download][type] = get
+libraries[underscore][download][url] = https://github.com/jashkenas/underscore/archive/1.5.2.zip
 
 
