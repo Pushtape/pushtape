@@ -13,6 +13,12 @@ projects[pushtape_audio][download][url] = "git://github.com/gusaus/pushtape_audi
 projects[pushtape_audio][download][branch] = "7.x-1.x-panels"
 projects[pushtape_audio][subdir] = pushtape
 
+projects[pushtape_core][type] = "module"
+projects[pushtape_core][download][type] = "git"
+projects[pushtape_core][download][url] = "git://github.com/gusaus/pushtape_core.git"
+projects[pushtape_core][download][branch] = "7.x-1.x-panels"
+projects[pushtape_core][subdir] = pushtape
+
 projects[pushtape_designer][type] = "module"
 projects[pushtape_designer][download][type] = "git"
 projects[pushtape_designer][download][url] = "git://github.com/gusaus/pushtape_designer.git"
@@ -30,12 +36,6 @@ projects[pushtape_events][download][type] = "git"
 projects[pushtape_events][download][url] = "git://github.com/gusaus/pushtape_events.git"
 projects[pushtape_events][download][branch] = "7.x-1.x-panels"
 projects[pushtape_events][subdir] = pushtape
-
-projects[pushtape_front][type] = "module"
-projects[pushtape_front][download][type] = "git"
-projects[pushtape_front][download][url] = "git://github.com/gusaus/pushtape_front.git"
-projects[pushtape_front][download][branch] = "7.x-1.x-panels"
-projects[pushtape_front][subdir] = pushtape
 
 projects[pushtape_mediaplayer][type] = "module"
 projects[pushtape_mediaplayer][download][type] = "git"
@@ -112,72 +112,6 @@ projects[panopoly_wysiwyg][subdir] = panopoly
 
 ;projects[panopoly_search][version] = 1.1
 ;projects[panopoly_search][subdir] = panopoly
-
-;Contrib
-
-projects[backstretch][version] = 2.x-dev
-projects[backstretch][subdir] = contrib
-
-projects[calendar][version] = 3.4
-projects[calendar][subdir] = contrib
-
-projects[colorbox][version] = 2.x-dev
-projects[colorbox][subdir] = contrib
-
-projects[context][version] = 3.2
-projects[context][subdir] = contrib
-
-projects[discogs][version] = 1.x-dev
-projects[discogs][subdir] = contrib
-
-projects[pushtape_discography_adpt][type] = "module"
-projects[pushtape_discography_adpt][download][type] = "git"
-projects[pushtape_discography_adpt][download][url] = "git://github.com/gusaus/pushtape_discography_adpt.git"
-projects[pushtape_discography_adpt][download][branch] = "7.x-1.x-panels"
-projects[pushtape_discography_adpt][subdir] = contrib
-
-projects[entity_view_mode][version] = 1.0-rc1
-projects[entity_view_mode][subdir] = contrib
-
-projects[features_override][subdir] = 2.0-rc1
-projects[features_override][subdir] = contrib
-
-projects[flexslider][version] = 2.x-dev
-projects[flexslider][subdir] = contrib
-
-projects[media_colorbox][version] = 1.x-dev
-projects[media_colorbox][subdir] = contrib
-
-projects[media_soundcloud][version] = 1.0
-projects[media_soundcloud][subdir] = contrib
-
-projects[mediafront][version] = 2.x-dev
-projects[mediafront][subdir] = contrib
-
-projects[multiform][version] = 1.0
-projects[multiform][subdir] = contrib
-
-projects[multiupload_filefield_widget][subdir] = 1.13
-projects[multiupload_filefield_widget][subdir] = contrib
-
-projects[multiupload_imagefield_widget][subdir] = 1.3
-projects[multiupload_imagefield_widget][subdir] = contrib
-
-projects[plupload][subdir] = 2.x-dev
-projects[plupload][subdir] = contrib
-
-projects[responsive_menus][subdir] = 1.4
-projects[responsive_menus][subdir] = contrib
-
-projects[responsive_tables][version] = 2.x-dev
-projects[responsive_tables][subdir] = contrib
-
-projects[soundmanager2][version] = 2.0-beta1
-projects[soundmanager2][subdir] = contrib
-
-projects[views_responsive_grid][version] = 1.3
-projects[views_responsive_grid][subdir] = contrib
-
 
 ; Pushtape - Themes
 
