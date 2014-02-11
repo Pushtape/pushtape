@@ -35,13 +35,13 @@ projects[pushtape_front][type] = "module"
 projects[pushtape_front][download][type] = "git"
 projects[pushtape_front][download][url] = "git://github.com/gusaus/pushtape_front.git"
 projects[pushtape_front][download][branch] = "7.x-1.x-panels"
-projects[pushtape_front][subdir] = pushtape_apps
+projects[pushtape_front][subdir] = pushtape
 
 projects[pushtape_mediaplayer][type] = "module"
 projects[pushtape_mediaplayer][download][type] = "git"
 projects[pushtape_mediaplayer][download][url] = "git://github.com/gusaus/pushtape_mediaplayer.git"
 projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
-projects[pushtape_mediaplayer][subdir] = pushtape_apps
+projects[pushtape_mediaplayer][subdir] = pushtape
 
 projects[pushtape_news][type] = "module"
 projects[pushtape_news][download][type] = "git"
