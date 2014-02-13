@@ -55,6 +55,12 @@ projects[pushtape_news][subdir] = pushtape
 ;projects[pushtape_newsletter][download][branch] = "7.x-1.x-panels"
 ;projects[pushtape_newsletter][subdir] = pushtape
 
+projects[pushtape_pages][type] = "module"
+projects[pushtape_pages][download][type] = "git"
+projects[pushtape_pages][download][url] = "git://github.com/gusaus/pushtape_pages.git"
+projects[pushtape_pages][download][branch] = "7.x-1.x-panels"
+projects[pushtape_pages][subdir] = pushtape
+
 projects[pushtape_permissions][type] = "module"
 projects[pushtape_permissions][download][type] = "git"
 projects[pushtape_permissions][download][url] = "git://github.com/gusaus/pushtape_permissions.git"
