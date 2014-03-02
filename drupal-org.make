@@ -37,12 +37,6 @@ projects[pushtape_events][download][url] = "git://github.com/gusaus/pushtape_eve
 projects[pushtape_events][download][branch] = "7.x-1.x-panels"
 projects[pushtape_events][subdir] = pushtape
 
-projects[pushtape_mediaplayer][type] = "module"
-projects[pushtape_mediaplayer][download][type] = "git"
-projects[pushtape_mediaplayer][download][url] = "git://github.com/gusaus/pushtape_mediaplayer.git"
-projects[pushtape_mediaplayer][download][branch] = "7.x-1.x-panels"
-projects[pushtape_mediaplayer][subdir] = pushtape
-
 projects[pushtape_news][type] = "module"
 projects[pushtape_news][download][type] = "git"
 projects[pushtape_news][download][url] = "git://github.com/gusaus/pushtape_news.git"
@@ -90,6 +84,12 @@ projects[pushtape_ui][download][type] = "git"
 projects[pushtape_ui][download][url] = "git://github.com/gusaus/pushtape_ui.git"
 projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
 projects[pushtape_ui][subdir] = pushtape
+
+projects[pushtape_widgets][type] = "module"
+projects[pushtape_widgets][download][type] = "git"
+projects[pushtape_widgets][download][url] = "git://github.com/gusaus/pushtape_widgets.git"
+projects[pushtape_widgets][download][branch] = "7.x-1.x-panels"
+projects[pushtape_widgets][subdir] = pushtape
 
 ; The Panopoly Foundation
 
