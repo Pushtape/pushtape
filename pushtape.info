@@ -33,6 +33,7 @@ dependencies[] = pushtape_photos
 dependencies[] = pushtape_social
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_video
+dependencies[] = pushtape_widgets
 
 
 ; Panopoly Foundation
