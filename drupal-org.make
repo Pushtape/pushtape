@@ -4,7 +4,6 @@
 core = 7.26
 api = 2
 
-
 ; Pushtape
 
 projects[pushtape_audio][type] = "module"
@@ -93,36 +92,36 @@ projects[pushtape_widgets][subdir] = pushtape
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.1
+projects[panopoly_core][version] = 1.2
 projects[panopoly_core][subdir] = panopoly
 
-projects[panopoly_images][version] = 1.1
+projects[panopoly_images][version] = 1.2
 projects[panopoly_images][subdir] = panopoly
 
-projects[panopoly_theme][version] = 1.1
+projects[panopoly_theme][version] = 1.2
 projects[panopoly_theme][subdir] = panopoly
 
-projects[panopoly_magic][version] = 1.1
+projects[panopoly_magic][version] = 1.2
 projects[panopoly_magic][subdir] = panopoly
 
-projects[panopoly_widgets][version] = 1.1
+projects[panopoly_widgets][version] = 1.2
 projects[panopoly_widgets][subdir] = panopoly
 
-projects[panopoly_admin][version] = 1.1
+projects[panopoly_admin][version] = 1.2
 projects[panopoly_admin][subdir] = panopoly
 
-projects[panopoly_users][version] = 1.1
+projects[panopoly_users][version] = 1.2
 projects[panopoly_users][subdir] = panopoly
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.1
+projects[panopoly_pages][version] = 1.2
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.1
+projects[panopoly_wysiwyg][version] = 1.2
 projects[panopoly_wysiwyg][subdir] = panopoly
 
-;projects[panopoly_search][version] = 1.1
+;projects[panopoly_search][version] = 1.2
 ;projects[panopoly_search][subdir] = panopoly
 
 ; Pushtape - Themes
@@ -139,7 +138,7 @@ projects[pushtape_omega][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
 projects[omega][version] = 4.x-dev
-projects[shiny][version] = 1.3
+projects[shiny][version] = 1.4
 
 ; Libraries.
 
@@ -149,21 +148,19 @@ libraries[colorbox][destination] = libraries
 libraries[flexslider][download][type] = get
 libraries[flexslider][download][url] = https://github.com/woothemes/FlexSlider/tarball/master
 libraries[flexslider][destination] = libraries
-libraries[plupload][directory_name] = plupload
-libraries[plupload][download][type] = file
 libraries[soundmanager2][download][type] = get
 libraries[soundmanager2][download][url] = https://github.com/scottschiller/SoundManager2/tarball/master
 libraries[soundmanager2][destination] = libraries
-libraries[plupload][download][url] = "http://plupload.com/downloads/plupload_1_5_6.zip"
-libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
-libraries[plupload][destination] = libraries
+libraries[plupload][download][type] = "get"
+libraries[plupload][download][url] = "https://github.com/moxiecode/plupload/archive/v1.5.8.zip"
+libraries[plupload][patch][1903850] = "http://drupal.org/files/issues/plupload-1_5_8-rm_examples-1903850-16.patch"
 
 ; Probably will remove this when this is resolved https://drupal.org/node/2181079
-libraries[modernizr][download][type] = "get"
-libraries[modernizr][type] = "libraries"
-libraries[modernizr][download][url] = "https://github.com/Modernizr/Modernizr/archive/v2.7.1.tar.gz"
+;libraries[modernizr][download][type] = "get"
+;libraries[modernizr][type] = "libraries"
+;libraries[modernizr][download][url] = "https://github.com/Modernizr/Modernizr/archive/v2.7.1.tar.gz"
 
-libraries[underscore][download][type] = get
-libraries[underscore][download][url] = https://github.com/jashkenas/underscore/archive/1.5.2.zip
+;libraries[underscore][download][type] = get
+;libraries[underscore][download][url] = https://github.com/jashkenas/underscore/archive/1.5.2.zip
 
 

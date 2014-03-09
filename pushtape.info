@@ -47,22 +47,29 @@ dependencies[] = panopoly_users
 
 ; Panopoly Toolset
 dependencies[] = panopoly_pages
-;dependencies[] = panopoly_search
+dependencies[] = panopoly_search
 dependencies[] = panopoly_wysiwyg
 
-; Panopoly Recommended
+; Panopoly Recommended - Admin & UI
 dependencies[] = navbar
+dependencies[] = breakpoints
+dependencies[] = backports
+dependencies[] = simplified_menu_admin
+dependencies[] = save_draft
+dependencies[] = module_filter
+dependencies[] = date_popup_authored
+dependencies[] = views_ui
+
+; Panopoly Recommended - Other
 dependencies[] = devel
 dependencies[] = uuid
-
-; Other Dependencies
-dependencies[] = views_ui
+dependencies[] = apps
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
 
 ; System Requirements.
-php_memory_limit = 128M
+php_memory_limit = 256M
 
 files[] = pushtape.profile
 
