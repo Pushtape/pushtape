@@ -61,9 +61,9 @@ dependencies[] = date_popup_authored
 dependencies[] = views_ui
 
 ; Panopoly Recommended - Other
-dependencies[] = devel
+;dependencies[] = devel
 dependencies[] = uuid
-dependencies[] = apps
+;dependencies[] = apps
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css

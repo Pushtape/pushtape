@@ -126,11 +126,6 @@ projects[panopoly_wysiwyg][subdir] = panopoly
 
 ; Pushtape - Themes
 
-projects[flux_panels][type] = "theme"
-projects[flux_panels][download][type] = "git"
-projects[flux_panels][download][url] = "git://github.com/gusaus/flux_panels.git"
-projects[flux_panels][download][branch] = "7.x-1.x-panels"
-
 projects[pushtape_omega][type] = "theme"
 projects[pushtape_omega][download][type] = "git"
 projects[pushtape_omega][download][url] = "git://github.com/gusaus/pushtape_omega.git"
@@ -154,13 +149,4 @@ libraries[soundmanager2][destination] = libraries
 libraries[plupload][download][type] = "get"
 libraries[plupload][download][url] = "https://github.com/moxiecode/plupload/archive/v1.5.8.zip"
 libraries[plupload][patch][1903850] = "http://drupal.org/files/issues/plupload-1_5_8-rm_examples-1903850-16.patch"
-
-; Probably will remove this when this is resolved https://drupal.org/node/2181079
-;libraries[modernizr][download][type] = "get"
-;libraries[modernizr][type] = "libraries"
-;libraries[modernizr][download][url] = "https://github.com/Modernizr/Modernizr/archive/v2.7.1.tar.gz"
-
-;libraries[underscore][download][type] = get
-;libraries[underscore][download][url] = https://github.com/jashkenas/underscore/archive/1.5.2.zip
-
 
