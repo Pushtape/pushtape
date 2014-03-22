@@ -74,14 +74,9 @@ php_memory_limit = 256M
 files[] = pushtape.profile
 
 
-
-
-
-
-
-; Information added by drush on 2014-02-11
-version = "7.x-1.x-panels-dev"
+; Information added by drush on 2014-03-21
+version = "7.x-1.x-panels"
 core = "7.x"
 project = "pushtape"
-datestamp = "1392093657"
+datestamp = "1395445840"
 
