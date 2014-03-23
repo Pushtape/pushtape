@@ -5,6 +5,27 @@
 * Perform actions to set up the site for this profile.
 */
 function pushtape_install() {  
+  // Enable the admin theme.
+  db_update('system')
+    ->fields(array('status' => 1))
+    ->condition('type', 'theme')
+    ->condition('name', 'shiny')
+    ->execute();
+  variable_set('admin_theme', 'shiny');
+  variable_set('node_admin_theme', '1');
+
+
+  /**
+   * Enable PushtapeOmega theme as default
+   */
+  db_update('system')
+    ->fields(array('status' => 1))
+    ->condition('type', 'theme')
+    ->condition('name', 'pushtape_omega')
+    ->execute();
+
+  variable_set('theme_default', 'pushtape_omega');
+
   // Add text formats.
   $filtered_html_format = array(
     'format' => 'filtered_html', 
@@ -113,13 +134,9 @@ function pushtape_install() {
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
   
-  // Enable themes
+  // Set site front page
 
-  theme_enable(array('pushtape_omega'));
-  variable_set('admin_theme', 'shiny');
-  variable_set('theme_default', 'pushtape_omega');
   variable_set('site_frontpage', 'front');
-  variable_set('node_admin_theme', '1');
 
 }
 
