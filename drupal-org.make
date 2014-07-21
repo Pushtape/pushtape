@@ -20,7 +20,7 @@ projects[pushtape_core][subdir] = pushtape
 
 projects[pushtape_designer][type] = "module"
 projects[pushtape_designer][download][type] = "git"
-projects[pushtape_designer][download][url] = "git://github.com/gusaus/pushtape_events.git"
+projects[pushtape_designer][download][url] = "git://github.com/gusaus/pushtape_designer.git"
 projects[pushtape_designer][download][branch] = "7.x-1.x-panels"
 projects[pushtape_designer][subdir] = pushtape
 
