@@ -18,17 +18,17 @@ dependencies[] = dblog
 dependencies[] = update
 
 ; Pushtape Foundation
-;dependencies[] = pushtape_admin
 dependencies[] = pushtape_audio
+dependencies[] = pushtape_core
 dependencies[] = pushtape_discography
 dependencies[] = pushtape_events
-dependencies[] = pushtape_front
 dependencies[] = pushtape_news
-dependencies[] = pushtape_newsletter
+dependencies[] = pushtape_pages
 dependencies[] = pushtape_photos
-;dependencies[] = pushtape_social
+dependencies[] = pushtape_social
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_video
+dependencies[] = pushtape_widgets
 
 
 ; Panopoly Foundation
@@ -45,13 +45,26 @@ dependencies[] = panopoly_pages
 ;dependencies[] = panopoly_search
 dependencies[] = panopoly_wysiwyg
 
-; Panopoly Recommended
+; Panopoly Recommended - Admin & UI
 dependencies[] = navbar
-dependencies[] = devel
+dependencies[] = breakpoints
+dependencies[] = backports
+dependencies[] = simplified_menu_admin
+dependencies[] = save_draft
+dependencies[] = module_filter
+dependencies[] = date_popup_authored
+dependencies[] = views_ui
+
+; Panopoly Recommended - Other
+;dependencies[] = devel
 dependencies[] = uuid
+;dependencies[] = apps
 
 ; CSS Stylesheets
 stylesheets[all][] = pushtape.css
+
+; System Requirements.
+php_memory_limit = 256M
 
 files[] = pushtape.profile
 
