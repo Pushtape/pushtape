@@ -20,12 +20,10 @@ dependencies[] = update
 ; Pushtape Foundation
 dependencies[] = pushtape_audio
 dependencies[] = pushtape_core
-dependencies[] = pushtape_designer
 dependencies[] = pushtape_discography
 dependencies[] = pushtape_events
 dependencies[] = pushtape_news
 dependencies[] = pushtape_pages
-dependencies[] = pushtape_permissions
 dependencies[] = pushtape_photos
 dependencies[] = pushtape_social
 dependencies[] = pushtape_ui

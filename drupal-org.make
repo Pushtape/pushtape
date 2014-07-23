@@ -8,85 +8,67 @@ api = 2
 
 projects[pushtape_audio][type] = "module"
 projects[pushtape_audio][download][type] = "git"
-projects[pushtape_audio][download][url] = "git://github.com/gusaus/pushtape_audio.git"
+projects[pushtape_audio][download][url] = "git://github.com/pushtape/pushtape_audio.git"
 projects[pushtape_audio][download][branch] = "7.x-1.x-panels"
 projects[pushtape_audio][subdir] = pushtape
 
 projects[pushtape_core][type] = "module"
 projects[pushtape_core][download][type] = "git"
-projects[pushtape_core][download][url] = "git://github.com/gusaus/pushtape_core.git"
+projects[pushtape_core][download][url] = "git://github.com/pushtape/pushtape_core.git"
 projects[pushtape_core][download][branch] = "7.x-1.x-panels"
 projects[pushtape_core][subdir] = pushtape
 
-projects[pushtape_designer][type] = "module"
-projects[pushtape_designer][download][type] = "git"
-projects[pushtape_designer][download][url] = "git://github.com/gusaus/pushtape_designer.git"
-projects[pushtape_designer][download][branch] = "7.x-1.x-panels"
-projects[pushtape_designer][subdir] = pushtape
-
 projects[pushtape_discography][type] = "module"
 projects[pushtape_discography][download][type] = "git"
-projects[pushtape_discography][download][url] = "git://github.com/gusaus/pushtape_discography.git"
+projects[pushtape_discography][download][url] = "git://github.com/pushtape/pushtape_discography.git"
 projects[pushtape_discography][download][branch] = "7.x-1.x-panels"
 projects[pushtape_discography][subdir] = pushtape
 
 projects[pushtape_events][type] = "module"
 projects[pushtape_events][download][type] = "git"
-projects[pushtape_events][download][url] = "git://github.com/gusaus/pushtape_events.git"
+projects[pushtape_events][download][url] = "git://github.com/pushtape/pushtape_events.git"
 projects[pushtape_events][download][branch] = "7.x-1.x-panels"
 projects[pushtape_events][subdir] = pushtape
 
 projects[pushtape_news][type] = "module"
 projects[pushtape_news][download][type] = "git"
-projects[pushtape_news][download][url] = "git://github.com/gusaus/pushtape_news.git"
+projects[pushtape_news][download][url] = "git://github.com/pushtape/pushtape_news.git"
 projects[pushtape_news][download][branch] = "7.x-1.x-panels"
 projects[pushtape_news][subdir] = pushtape
 
-;projects[pushtape_newsletter][type] = "module"
-;projects[pushtape_newsletter][download][type] = "git"
-;projects[pushtape_newsletter][download][url] = "git://github.com/gusaus/pushtape_newsletter.git"
-;projects[pushtape_newsletter][download][branch] = "7.x-1.x-panels"
-;projects[pushtape_newsletter][subdir] = pushtape
-
 projects[pushtape_pages][type] = "module"
 projects[pushtape_pages][download][type] = "git"
-projects[pushtape_pages][download][url] = "git://github.com/gusaus/pushtape_pages.git"
+projects[pushtape_pages][download][url] = "git://github.com/pushtape/pushtape_pages.git"
 projects[pushtape_pages][download][branch] = "7.x-1.x-panels"
 projects[pushtape_pages][subdir] = pushtape
 
-projects[pushtape_permissions][type] = "module"
-projects[pushtape_permissions][download][type] = "git"
-projects[pushtape_permissions][download][url] = "git://github.com/gusaus/pushtape_permissions.git"
-projects[pushtape_permissions][download][branch] = "7.x-1.x-panels"
-projects[pushtape_permissions][subdir] = pushtape
-
 projects[pushtape_photos][type] = "module"
 projects[pushtape_photos][download][type] = "git"
-projects[pushtape_photos][download][url] = "git://github.com/gusaus/pushtape_photos.git"
+projects[pushtape_photos][download][url] = "git://github.com/pushtape/pushtape_photos.git"
 projects[pushtape_photos][download][branch] = "7.x-1.x-panels"
 projects[pushtape_photos][subdir] = pushtape
 
 projects[pushtape_social][type] = "module"
 projects[pushtape_social][download][type] = "git"
-projects[pushtape_social][download][url] = "git://github.com/gusaus/pushtape_social.git"
+projects[pushtape_social][download][url] = "git://github.com/pushtape/pushtape_social.git"
 projects[pushtape_social][download][branch] = "7.x-1.x-panels"
 projects[pushtape_social][subdir] = pushtape
 
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
-projects[pushtape_ui][download][url] = "git://github.com/gusaus/pushtape_ui.git"
+projects[pushtape_ui][download][url] = "git://github.com/pushtape/pushtape_ui.git"
 projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
 projects[pushtape_ui][subdir] = pushtape
 
 projects[pushtape_video][type] = "module"
 projects[pushtape_video][download][type] = "git"
-projects[pushtape_video][download][url] = "git://github.com/gusaus/pushtape_video.git"
+projects[pushtape_video][download][url] = "git://github.com/pushtape/pushtape_video.git"
 projects[pushtape_video][download][branch] = "7.x-1.x-panels"
 projects[pushtape_video][subdir] = pushtape
 
 projects[pushtape_widgets][type] = "module"
 projects[pushtape_widgets][download][type] = "git"
-projects[pushtape_widgets][download][url] = "git://github.com/gusaus/pushtape_widgets.git"
+projects[pushtape_widgets][download][url] = "git://github.com/pushtape/pushtape_widgets.git"
 projects[pushtape_widgets][download][branch] = "7.x-1.x-panels"
 projects[pushtape_widgets][subdir] = pushtape
 
@@ -128,7 +110,7 @@ projects[panopoly_wysiwyg][subdir] = panopoly
 
 projects[pushtape_omega][type] = "theme"
 projects[pushtape_omega][download][type] = "git"
-projects[pushtape_omega][download][url] = "git://github.com/gusaus/pushtape_omega.git"
+projects[pushtape_omega][download][url] = "git://github.com/pushtape/pushtape_omega.git"
 projects[pushtape_omega][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
