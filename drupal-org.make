@@ -1,7 +1,7 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.29
+core = 7.30
 api = 2
 
 ; Pushtape
@@ -74,37 +74,35 @@ projects[pushtape_widgets][subdir] = pushtape
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.7
+projects[panopoly_core][version] = 1.9
 projects[panopoly_core][subdir] = panopoly
 
-projects[panopoly_images][version] = 1.7
+projects[panopoly_images][version] = 1.9
 projects[panopoly_images][subdir] = panopoly
 
-projects[panopoly_theme][version] = 1.7
+projects[panopoly_theme][version] = 1.9
 projects[panopoly_theme][subdir] = panopoly
 
-projects[panopoly_magic][version] = 1.7
+projects[panopoly_magic][version] = 1.9
 projects[panopoly_magic][subdir] = panopoly
 
-projects[panopoly_widgets][version] = 1.7
+projects[panopoly_widgets][version] = 1.9
 projects[panopoly_widgets][subdir] = panopoly
 
-projects[panopoly_admin][version] = 1.7
+projects[panopoly_admin][version] = 1.9
 projects[panopoly_admin][subdir] = panopoly
 
-projects[panopoly_users][version] = 1.7
+projects[panopoly_users][version] = 1.9
 projects[panopoly_users][subdir] = panopoly
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.7
+projects[panopoly_pages][version] = 1.9
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.7
+projects[panopoly_wysiwyg][version] = 1.9
 projects[panopoly_wysiwyg][subdir] = panopoly
 
-;projects[panopoly_search][version] = 1.7
-;projects[panopoly_search][subdir] = panopoly
 
 ; Pushtape - Themes
 
