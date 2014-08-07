@@ -1,21 +1,5 @@
-name = Pushtape
-description = Music publishing profile.
-
-; Drupal Core
-dependencies[] = menu
-dependencies[] = image
-dependencies[] = list
-dependencies[] = number
-dependencies[] = options
-dependencies[] = path
-dependencies[] = taxonomy
-dependencies[] = search
-dependencies[] = shortcut
-dependencies[] = field
-dependencies[] = field_ui
-dependencies[] = file
-dependencies[] = dblog
-dependencies[] = update
+name = Pushtape Panels
+description = Music publishing profile powered by Pushtape
 
 ; Pushtape Foundation
 dependencies[] = pushtape_audio
