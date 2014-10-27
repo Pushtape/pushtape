@@ -30,13 +30,13 @@ dependencies[] = panopoly_pages
 dependencies[] = panopoly_wysiwyg
 
 ; Panopoly Recommended - Admin & UI
-dependencies[] = navbar
-dependencies[] = breakpoints
 dependencies[] = backports
-dependencies[] = simplified_menu_admin
-dependencies[] = save_draft
-dependencies[] = module_filter
+dependencies[] = breakpoints
 dependencies[] = date_popup_authored
+dependencies[] = module_filter
+dependencies[] = navbar
+dependencies[] = save_draft
+dependencies[] = simplified_menu_admin
 dependencies[] = views_ui
 
 ; Panopoly Recommended - Other
