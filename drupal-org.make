@@ -1,7 +1,7 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.32
+core = 7.33
 api = 2
 
 ; Pushtape
