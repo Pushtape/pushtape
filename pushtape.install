@@ -16,7 +16,7 @@ function pushtape_install() {
  * Set the default theme.
  */
 function _pushtape_set_up_theme() {
-  $theme = 'pushtape_omega';
+  $theme = 'pushtape_bootstrap';
   theme_enable(array($theme));
   variable_set('theme_default', $theme);
   variable_set('admin_theme', 'shiny');
