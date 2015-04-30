@@ -1,10 +1,17 @@
 ; The version of Drupal the profile is built for. You must include both a
 ; major and a minor release - just specifying 6.x won't work in drupal.org-make (but not sure if this works)
 
-core = 7.33
+core = 7.x
 api = 2
 
 ; Pushtape
+
+projects[pushtape_player] = 1.0-beta2
+projects[pushtape_player][subdir] = pushtape
+
+projects[pushtape_services] = 1.0-beta3
+projects[pushtape_services][subdir] = pushtape
+
 
 projects[pushtape_audio][type] = "module"
 projects[pushtape_audio][download][type] = "git"
@@ -74,46 +81,46 @@ projects[pushtape_widgets][subdir] = pushtape
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.13
+projects[panopoly_core][version] = 1.21
 projects[panopoly_core][subdir] = panopoly
 
-projects[panopoly_images][version] = 1.13
+projects[panopoly_images][version] = 1.21
 projects[panopoly_images][subdir] = panopoly
 
-projects[panopoly_theme][version] = 1.13
+projects[panopoly_theme][version] = 1.21
 projects[panopoly_theme][subdir] = panopoly
 
-projects[panopoly_magic][version] = 1.13
+projects[panopoly_magic][version] = 1.21
 projects[panopoly_magic][subdir] = panopoly
 
-projects[panopoly_widgets][version] = 1.13
+projects[panopoly_widgets][version] = 1.21
 projects[panopoly_widgets][subdir] = panopoly
 
-projects[panopoly_admin][version] = 1.13
+projects[panopoly_admin][version] = 1.21
 projects[panopoly_admin][subdir] = panopoly
 
-projects[panopoly_users][version] = 1.13
+projects[panopoly_users][version] = 1.21
 projects[panopoly_users][subdir] = panopoly
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.13
+projects[panopoly_pages][version] = 1.21
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.13
+projects[panopoly_wysiwyg][version] = 1.21
 projects[panopoly_wysiwyg][subdir] = panopoly
 
 
 ; Pushtape - Themes
 
-projects[pushtape_omega][type] = "theme"
-projects[pushtape_omega][download][type] = "git"
-projects[pushtape_omega][download][url] = "git://github.com/pushtape/pushtape_omega.git"
-projects[pushtape_omega][download][branch] = "7.x-1.x-panels"
+projects[pushtape_bootstrap][type] = "theme"
+projects[pushtape_bootstrap][download][type] = "git"
+projects[pushtape_bootstrap][download][url] = "git://github.com/gusaus/pushtape_bootstrap.git"
+projects[pushtape_bootstrap][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
-projects[omega][version] = 4.x-dev
-projects[shiny][version] = 1.4
+projects[radix][version] = 3.0-rc2
+projects[shiny][version] = 1.6
 
 ; Libraries.
 
@@ -129,4 +136,6 @@ libraries[soundmanager2][destination] = libraries
 libraries[plupload][download][type] = "get"
 libraries[plupload][download][url] = "https://github.com/moxiecode/plupload/archive/v1.5.8.zip"
 libraries[plupload][patch][1903850] = "http://drupal.org/files/issues/plupload-1_5_8-rm_examples-1903850-16.patch"
-
+libraries[genericons][download][type] = get
+libraries[genericons][download][url] = https://github.com/Automattic/Genericons/tarball/master
+libraries[genericons][destination] = libraries
