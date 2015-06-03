@@ -1,5 +1,11 @@
-name = Pushtape Panels
-description = Music publishing profile powered by Pushtape
+name = Pushtape
+description = DIY platform for musicians, artists, and other producers built on top of Pushtape.
+core = 7.x
+distribution_name = Pushtape Producer
+
+
+;Make this the default install profile
+exclusive = 1
 
 ; Pushtape Foundation
 dependencies[] = pushtape_audio
