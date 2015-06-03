@@ -1,4 +1,4 @@
-name = PushtapeProducer
+name = Pushtape
 description = DIY platform for musicians, artists, and other producers built on top of Pushtape.
 core = 7.x
 distribution_name = Pushtape Producer
