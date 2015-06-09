@@ -16,67 +16,67 @@ projects[pushtape_services][subdir] = pushtape
 projects[pushtape_audio][type] = "module"
 projects[pushtape_audio][download][type] = "git"
 projects[pushtape_audio][download][url] = "git://github.com/pushtape/pushtape_audio.git"
-projects[pushtape_audio][download][branch] = "7.x-1.x-panels"
+projects[pushtape_audio][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_audio][subdir] = pushtape
 
 projects[pushtape_core][type] = "module"
 projects[pushtape_core][download][type] = "git"
 projects[pushtape_core][download][url] = "git://github.com/pushtape/pushtape_core.git"
-projects[pushtape_core][download][branch] = "7.x-1.x-panels"
+projects[pushtape_core][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_core][subdir] = pushtape
 
 projects[pushtape_discography][type] = "module"
 projects[pushtape_discography][download][type] = "git"
 projects[pushtape_discography][download][url] = "git://github.com/pushtape/pushtape_discography.git"
-projects[pushtape_discography][download][branch] = "7.x-1.x-panels"
+projects[pushtape_discography][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_discography][subdir] = pushtape
 
 projects[pushtape_events][type] = "module"
 projects[pushtape_events][download][type] = "git"
 projects[pushtape_events][download][url] = "git://github.com/pushtape/pushtape_events.git"
-projects[pushtape_events][download][branch] = "7.x-1.x-panels"
+projects[pushtape_events][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_events][subdir] = pushtape
 
 projects[pushtape_news][type] = "module"
 projects[pushtape_news][download][type] = "git"
 projects[pushtape_news][download][url] = "git://github.com/pushtape/pushtape_news.git"
-projects[pushtape_news][download][branch] = "7.x-1.x-panels"
+projects[pushtape_news][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_news][subdir] = pushtape
 
 projects[pushtape_pages][type] = "module"
 projects[pushtape_pages][download][type] = "git"
 projects[pushtape_pages][download][url] = "git://github.com/pushtape/pushtape_pages.git"
-projects[pushtape_pages][download][branch] = "7.x-1.x-panels"
+projects[pushtape_pages][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_pages][subdir] = pushtape
 
 projects[pushtape_photos][type] = "module"
 projects[pushtape_photos][download][type] = "git"
 projects[pushtape_photos][download][url] = "git://github.com/pushtape/pushtape_photos.git"
-projects[pushtape_photos][download][branch] = "7.x-1.x-panels"
+projects[pushtape_photos][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_photos][subdir] = pushtape
 
 projects[pushtape_social][type] = "module"
 projects[pushtape_social][download][type] = "git"
 projects[pushtape_social][download][url] = "git://github.com/pushtape/pushtape_social.git"
-projects[pushtape_social][download][branch] = "7.x-1.x-panels"
+projects[pushtape_social][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_social][subdir] = pushtape
 
 projects[pushtape_ui][type] = "module"
 projects[pushtape_ui][download][type] = "git"
 projects[pushtape_ui][download][url] = "git://github.com/pushtape/pushtape_ui.git"
-projects[pushtape_ui][download][branch] = "7.x-1.x-panels"
+projects[pushtape_ui][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_ui][subdir] = pushtape
 
 projects[pushtape_video][type] = "module"
 projects[pushtape_video][download][type] = "git"
 projects[pushtape_video][download][url] = "git://github.com/pushtape/pushtape_video.git"
-projects[pushtape_video][download][branch] = "7.x-1.x-panels"
+projects[pushtape_video][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_video][subdir] = pushtape
 
 projects[pushtape_widgets][type] = "module"
 projects[pushtape_widgets][download][type] = "git"
 projects[pushtape_widgets][download][url] = "git://github.com/pushtape/pushtape_widgets.git"
-projects[pushtape_widgets][download][branch] = "7.x-1.x-panels"
+projects[pushtape_widgets][download][tag] = "panels7.x-1.0-beta22"
 projects[pushtape_widgets][subdir] = pushtape
 
 ; The Panopoly Foundation
