@@ -81,33 +81,33 @@ projects[pushtape_widgets][subdir] = pushtape
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.23
+projects[panopoly_core][version] = 1.25
 projects[panopoly_core][subdir] = panopoly
 
-projects[panopoly_images][version] = 1.23
+projects[panopoly_images][version] = 1.25
 projects[panopoly_images][subdir] = panopoly
 
-projects[panopoly_theme][version] = 1.23
+projects[panopoly_theme][version] = 1.25
 projects[panopoly_theme][subdir] = panopoly
 
-projects[panopoly_magic][version] = 1.23
+projects[panopoly_magic][version] = 1.25
 projects[panopoly_magic][subdir] = panopoly
 
-projects[panopoly_widgets][version] = 1.23
+projects[panopoly_widgets][version] = 1.25
 projects[panopoly_widgets][subdir] = panopoly
 
-projects[panopoly_admin][version] = 1.23
+projects[panopoly_admin][version] = 1.25
 projects[panopoly_admin][subdir] = panopoly
 
-projects[panopoly_users][version] = 1.23
+projects[panopoly_users][version] = 1.25
 projects[panopoly_users][subdir] = panopoly
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.23
+projects[panopoly_pages][version] = 1.25
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.23
+projects[panopoly_wysiwyg][version] = 1.25
 projects[panopoly_wysiwyg][subdir] = panopoly
 
 
@@ -115,7 +115,7 @@ projects[panopoly_wysiwyg][subdir] = panopoly
 
 projects[pushtape_bootstrap][type] = "theme"
 projects[pushtape_bootstrap][download][type] = "git"
-projects[pushtape_bootstrap][download][url] = "git://github.com/gusaus/pushtape_bootstrap.git"
+projects[pushtape_bootstrap][download][url] = "git://github.com/pushtape/pushtape_bootstrap.git"
 projects[pushtape_bootstrap][download][branch] = "7.x-1.x-panels"
 
 ; Base theme.
